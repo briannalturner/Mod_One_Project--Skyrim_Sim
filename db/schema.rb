@@ -10,6 +10,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2020_02_10_211627) do
+
+  create_table "interactions", force: :cascade do |t|
+    t.text "description"
+    t.integer "goodwill"
+    t.integer "bounty"
+    t.integer "npc_id"
+  end
+
+  create_table "npcs", force: :cascade do |t|
+    t.text "description"
+    t.integer "town_id"
+  end
+
+  create_table "players", force: :cascade do |t|
+    t.string "name"
+    t.string "gender"
+    t.string "race"
+    t.integer "money"
+  end
+
+  create_table "quests", force: :cascade do |t|
+    t.text "description"
+    t.integer "reward"
+    t.integer "goodwill"
+    t.integer "town_id"
+  end
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer "player_id"
+    t.integer "town_id"
+    t.integer "bounty"
+    t.boolean "thanehood"
+    t.integer "goodwill"
+    t.boolean "home"
+  end
+
+  create_table "town", force: :cascade do |t|
+    t.string "name"
+    t.string "jarl"
+  end
 
 end
