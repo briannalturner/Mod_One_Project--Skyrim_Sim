@@ -5,3 +5,4 @@ ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: 'db/develo
 ActiveRecord::Base.logger = nil
 
 require_all 'app/models'
+require_relative '../db/seeds.rb'

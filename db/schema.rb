@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 2020_02_10_215222) do
     t.boolean "home"
   end
 
-  create_table "town", force: :cascade do |t|
+  create_table "towns", force: :cascade do |t|
     t.string "name"
     t.string "jarl"
   end
