@@ -10,27 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_10_205249) do
-
-  create_table "players", force: :cascade do |t|
-    t.string "name"
-    t.string "gender"
-    t.string "race"
-    t.integer "money"
-  end
-
-  create_table "relationships", force: :cascade do |t|
-    t.integer "bounty"
-    t.boolean "thanehood"
-    t.integer "goodwill"
-    t.boolean "home"
-  end
-
-  create_table "town", force: :cascade do |t|
-    t.string "name"
-    t.string "jarl"
-    t.integer "quest_id"
-    t.integer "interaction_id"
-  end
+ActiveRecord::Schema.define(version: 0) do
 
 end
