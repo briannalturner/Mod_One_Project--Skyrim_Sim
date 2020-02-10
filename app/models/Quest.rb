@@ -1,4 +1,4 @@
 class Quest < ActiveRecord::Base
-    attr_accessor :description, :money
+    attr_reader :description, :reward, :goodwill, :town_id
     
 end
