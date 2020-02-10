@@ -1,4 +1,6 @@
 class Player < ActiveRecord::Base
-    attr_accessor :name, :gender, :race, :money
-    
+    attr_reader :name, :gender, :race
+    attr_accessor :money
+
+
 end

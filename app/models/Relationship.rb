@@ -1,4 +1,5 @@
 class Relationship < ActiveRecord::Base
-    attr_accessor :name, :gender, :race, :money
+    attr_reader :player_id, :town_id
+    attr_accessor :bounty, :thanehood, :goodwill, :home
     
 end

@@ -1,4 +1,4 @@
 class Interaction < ActiveRecord::Base
-    attr_accessor :name, :gender, :race, :money
+    attr_reader :description, :goodwill, :bounty, :npc_id
     
 end
