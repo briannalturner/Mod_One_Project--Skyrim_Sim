@@ -15,7 +15,6 @@ riften = Town.find_or_create_by(name: "Riften", jarl: "Laila Law-Giver")
 riften = Town.find_or_create_by(name: "Riften", jarl: "Laila Law-Giver")
 
 #make npc for riften to falkreath
-:name, :description, :town_id
 riften_guard = Npc.find_or_create_by(name: "X-adventurer", description: "I used to be an adventurer like you..." town_id: riften.id)
 riften_edda_beggar = Npc.find_or_create_by(name: "Edda", description: "spare change pls..." town_id: riften.id)
 riften_maven = Npc.find_or_create_by(name: "Maven Black-Briar", description: "the head of the Black-Briars" town_id: riften.id)
