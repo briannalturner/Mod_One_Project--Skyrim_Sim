@@ -163,6 +163,12 @@ support_edda = Interaction.find_or_create_by(description: "You hand Edda 5 gold.
 
 
 ### Winterhold Interactions ###
+kill_savos_aren = Interaction.find_or_create_by(description: "You slice Savos Aren cleanly through the chest with your blade.", npc_id: savos_aren.id, bounty: 1000)
+talk_savos_aren = Interaction.find_or_create_by(description: "Allow me to introduce myself. I am Savos Aren, Arch-Mage of the College of Winterhold. I am quite content to see nearly any aspect of magic explored and investigated here. But I do not and will not approve of any research or experiments that cause purposeful harm to members of the College. Are we clear?", npc_id: savos_aren.id)
+kill_winterhold_jarl = Interaction.find_or_create_by(description: "You destroy Jarl Korir's torso with a firebolt spell.", npc_id: winterhold_jarl.id)
+talk_winterhold_jarl = Interaction.find_or_create_by(description: "You know Winterhold used to be the seat of power in Skyrim? Now it's a shell. Few will admit it, but we know the truth about the Great Collapse. The College is the worst thing that's ever happened to Winterhold, maybe to Skyrim.", npc_id: winterhold_jarl.id)
+kill_ancano = Interaction.find_or_create_by(description: "You cleave Lurbuk's head in two with your sword.", npc_id: ancano.id, bounty: 1000)
+talk_ancano = Interaction.find_or_create_by(description: " have many important things on my mind. Your concerns are not among them. Are you quite sure we need to be speaking?", npc_id: ancano.id)
 
 
 ### Whiterun Interactions ###
@@ -172,7 +178,6 @@ kill_sinding = Interaction.find_or_create_by(description: "You eviscerate Sindin
 talk_sinding = Interaction.find_or_create_by(description: "I am one of them. A werewolf. It's my secret, and my shame. I had just come into Falkreath. They needed some help working the mill, and I thought that would be something safe. Something I could do. When I saw the little girl, I was just... I could feel it coming on. I could taste the... I needed to hunt. But this pitiful, limited body wasn't meant for hunting. Slow. No claws. Weak, mashing teeth for chewing cud. I held in my rage as long as I could. But it boiled inside of me. She looked so fragile. Helpless prey. And then... I feel terrible about what happened. About what I did. It would probably be best for everyone if I just went away.", npc_id: sinding.id)
 talk_mathies = Interaction.find_or_create_by(description: "Our daughter died. She was... Sinding ripped her apart. Like a sabre cat tears a deer. We barely found enough of her to bury.", npc_id: mathies.id)
 kill_mathies = Interaction.find_or_create_by(description: "You slaughter Mathies while his wife watches.", npc_id: mathies.id, bounty: 1000, goodwill: 0)
-
 
 
 
