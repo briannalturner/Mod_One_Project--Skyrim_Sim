@@ -96,8 +96,6 @@ falkreath_jarl = Npc.find_or_create_by(name: "Jarl Siddgeir", town_id: falkreath
 
 
 
-
-
 ### INTERACTIONS ###
 ### markarth ###
 kill_vorstag = Interaction.find_or_create_by(description: "You slice Vorstag cleanly through the chest with your blade.", npc_id: vorstag.id, bounty: 1000)
@@ -155,12 +153,16 @@ support_edda = Interaction.find_or_create_by(description: "You hand Edda 5 gold.
 talk_riften_guard = Interaction.find_or_create_by(description: "Let me guess... someone stole your sweetroll.", npc_id: riften_guard.id, bounty: 0, goodwill: 0)
 
 ### Windhelm Interactions ###
-
-
+talk_windhelm_guard = Interaction.find_or_create_by(description: "Welcome to Windhelm traveller.", npc_id: windhelm_guard.id, bounty: 0, goodwill: 0)
+kill_windhelm_guard = Interaction.find_or_create_by(description: "You eviscerate the Guard's neck with one swipe of your sword.", npc_id: windhelm_guard.id, bounty: 100, goodwill: 0)
+help_aventus = Interaction.find_or_create_by(description: "You kill the cruel matron, Grelod the Kind, who abused Aventus and the other children.", goodwill: 100)
+help_jarl = Interaction.find_or_create_by(description: "You learn of a murderer on the loose, and you eventually capture him.", goodwill: 100, bounty: 0)
+kill_jarl = Interaction.find_or_create_by(description: "You kill Ulfric with your Shout... Karma", goodwill: 0, bounty: 1000)
 ### Winterhold Interactions ###
 
 
 ### Whiterun Interactions ###
+
 
 ### Falkreath Interactions ###
 kill_sinding = Interaction.find_or_create_by(description: "You slayed Sinding, the werewolf who escaped prison!", npc_id: sinding.id, bounty: 0, goodwill: 100)
