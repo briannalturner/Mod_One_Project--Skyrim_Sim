@@ -6,6 +6,8 @@ require 'colorized_string'
 $current_player = nil
 $current_location = nil
 
+#after creating character... find way to login with that character. 
+
 def run
     welcome
     selection_menu #choose to create a character or login to pre-existing character
@@ -81,7 +83,7 @@ def create_character
     race = races[(gets.chomp.to_i - 1)]
     # binding.pry
     new_player = Player.find_or_create_by(:name => name, :gender => gender, :race => race, :money => 0, :location => Town.all[0].id)
-    # puts new_player
+    puts new_player
     $current_player = Player.find_by(:name => name)
     puts "\nYou awake in Riften\n".colorize(:blue)
     #binding.pry
@@ -251,20 +253,28 @@ def quest_method
     relationship = Relationship.find_by(:player_id => $current_player.id, :town_id => $current_location.id)
     q = Quest.all.sample
     q.town_id = $current_location.id
-    puts "\n"
-    puts q.description.colorize(:yellow)
-    puts "\n"
-    puts"The reward is #{q.reward} and the goodwill #{q.goodwill}.\n".colorize(:light_red)
-    puts'1. Accept Quest  2. Reject Quest'.colorize(:light_blue)
+    puts q.description
+    puts"The reward is #{q.reward} and the goodwill #{q.goodwill}"
+    puts'1. Accept Quest  2. Reject Quest'
     input = gets.chomp
+    puts "\n\n"
     if input == '1'
-        # 50/50 chance to complete quest
-        puts 'You successfully completed the Quest.'.colorize(:light_red)
-        $current_player.money += q.reward
-        # binding.pry
-        relationship.goodwill += q.goodwill
-        puts"You now have #{$current_player.money} septims and you gained #{relationship.goodwill} goodwill.".colorize(:light_red)
-        player_options
+        puts "You depart for adventure to #{q.description.split(" ")[-1]}\n" #This returns name of place we are going to
+        completion_chance = rand(0..100)
+        #binding.pry
+        if completion_chance > 60
+            puts ". . .\n. . .\n"
+            puts'You successfully completed the Quest.'
+            $current_player.money += q.reward
+            relationship.goodwill += q.goodwill
+            puts"You now have #{$current_player.money} septims and you gained #{relationship.goodwill} goodwill."
+            player_options
+        else
+            puts ". . .\n. . .\n"
+            puts "Along the way you realize the challenge ahead of you and you say  '!@#$ it.' '"
+            puts "With that you decide to head back to town"
+            player_options
+        end
     elsif input == '2'
         player_options
     end
