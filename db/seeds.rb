@@ -205,6 +205,8 @@ quest5 = Quest.find_or_create_by(description: "The Jarl has set a bounty on the 
 quest6 = Quest.find_or_create_by(description: "The Jarl has set a bounty on the #{enemies.sample} at #{locations.sample}.", reward: 200, goodwill: 200)
 
 
+
+
 #
 
 # binding.pry

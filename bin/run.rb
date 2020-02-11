@@ -116,7 +116,10 @@ def login()
         puts '▒█▄▀▄█ ▀▀▀ ▀▀▀ ▀▀▀ ▀▀▀▀ ▀░░░▀ ▀▀▀ 　 ░░▀░░ ▀▀▀▀ 　 ▒█▄▄▄█ ▀░▀ ▄▄▄█ ▀░▀▀ ▀▀▀ ▀░░░▀'.colorize(:light_blue)
         puts "\n"
     end
+    current_id = $current_player.id
+    $current_player.add_relationships(current_id)
 end
+
 
 def player_options
     $current_location = Town.find($current_player.location)
@@ -179,12 +182,12 @@ def interact_with_citizens
         puts"2. Talk to #{names[0]}".colorize(:light_red)
         input2 = gets.chomp
         if input2 == '1'
-            putsx[0].description
+            puts x[0].description
             relationship.bounty += x[0].bounty
             puts"Your bounty is #{relationship.bounty}".colorize(:light_red)
             interact_with_citizens
         elsif input2 == '2'
-            putsx[1].description
+            puts x[1].description
             interact_with_citizens
         else
             puts'Invalid input. Please try again'.colorize(:light_red)
@@ -195,12 +198,12 @@ def interact_with_citizens
         puts"2. Talk to #{names[1]}".colorize(:light_red)
         input2 = gets.chomp
         if input2 == '1'
-            putsx[2].description
+            puts x[2].description
             relationship.bounty += x[0].bounty
             puts "Your bounty is #{relationship.bounty}".colorize(:light_red)
             interact_with_citizens
         elsif input2 == '2'
-            putsx[3].description
+            puts x[3].description
             puts "\n\n"
             interact_with_citizens
         else
@@ -212,12 +215,12 @@ def interact_with_citizens
         puts"2. Talk to #{names[2]}".colorize(:light_red)
         input2 = gets.chomp
         if input2 == '1'
-            putsx[4].description
+            puts x[4].description
             relationship.bounty += x[0].bounty
             puts"Your bounty is #{relationship.bounty}".colorize(:light_red)
             interact_with_citizens
         elsif input2 == '2'
-            putsx[5].description
+            puts x[5].description
             interact_with_citizens
         else
             puts'Invalid input. Please try again'.colorize(:light_red)
@@ -228,12 +231,12 @@ def interact_with_citizens
         puts"2. Talk to #{names[3]}".colorize(:light_red)
         input2 = gets.chomp
         if input2 == '1'
-            putsx[6].description
+            puts x[6].description
             relationship.bounty += x[0].bounty
             puts"Your bounty is #{relationship.bounty}".colorize(:light_red)
             interact_with_citizens
         elsif input2 == '2'
-            putsx[7].description
+            puts x[7].description
             interact_with_citizens
         else
             puts'Invalid input. Please try again'.colorize(:light_red)
