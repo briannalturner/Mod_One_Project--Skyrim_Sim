@@ -115,6 +115,7 @@ end
 
 def interact_with_citizens
     p 'You see the following citizens:'
+    x = Interaction.find_by(:town_id => $current_player.location)
 end
 
 
