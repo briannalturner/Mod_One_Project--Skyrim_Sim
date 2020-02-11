@@ -33,6 +33,10 @@ valentin = Player.find_or_create_by(name: "Valentin", gender: "male", race: "Nor
 jason = Player.find_or_create_by(name: "Jason", gender: "male", race: "Wood Elf", money: 0)
 
 
+
+
+
+
 ### MARKARTH NPCS ###
 vorstag = Npc.find_or_create_by(name: "Vorstag", town_id: markarth.id, description: "Vorstag is sitting by the fire in the Silver-Blood Inn.")
 markarth_guard = Npc.find_or_create_by(name: "Markarth Guard", town_id: markarth.id, description: "Markarth Guard is leaning against a market stall.")
@@ -59,18 +63,40 @@ solitude_guard = Npc.find_or_create_by(name: "Solitude Guard", town_id: solitude
 
 
 ### RIFTEN NPCS ###
-riften_guard = Npc.find_or_create_by(name: "Riften Guard", description: "I used to be an adventurer like you...", town_id: riften.id)
-riften_edda_beggar = Npc.find_or_create_by(name: "Edda", description: "Edda is begging passersby for septims.", town_id: riften.id)
-riften_maven = Npc.find_or_create_by(name: "Maven Black-Briar", description: "Maven Black-Briar is perusing the market.", town_id: riften.id)
+riften_guard = Npc.find_or_create_by(name: "Riften Guard", description: "Riften Guard is carefully watching shoppers in the market.", town_id: riften.id)
+edda = Npc.find_or_create_by(name: "Edda", description: "Edda is begging passersby for septims.", town_id: riften.id)
+maven = Npc.find_or_create_by(name: "Maven Black-Briar", description: "Maven Black-Briar is perusing the market.", town_id: riften.id)
 riften_jarl = Npc.find_or_create_by(name: "Jarl Laila Law-Giver", town_id: riften.id, description: "Jarl Laila Law-Giver is sitting confidently on her throne.")
 
 ### WHITERUN NPCS ###
-whiterun_nazeem = Npc.find_or_create_by(name: "Nazeem", description: "Do you get to the Cloud District very often? Oh, what am I saying, of course you don't.", town_id: riften.id)
-whiterun_guard = Npc.find_or_create_by(name: "Basic Guard", description: "Disrespect the law, and you disrespect me.", town_id: riften.id)
-whiterun_Heimskr = Npc.find_or_create_by(name: "Heimskr", description: "You have come! You have come to hear the word of Talos!, The truth, child of Talos, is that the Dragon's children have come! To purge the world in fire and righteousness!, There are those who would silence the Dragon's truth! But not I! Not Heimskr! His word will be known!, He has returned... Oh, how Talos has returned. Helgen has been purged in his light. Will Whiterun be next?, and The Imperials silence us because they fear us! They are cowards! Cowards and fools who have forgotten the truth! ... May Talos guide you...", town_id: riften.id)
+nazeem = Npc.find_or_create_by(name: "Nazeem", description: "Nazeem is haughtily surveying the town center.", town_id: whiterun.id)
+whiterun_guard = Npc.find_or_create_by(name: "Whiterun Guard", description: "Whiterun Guard is looking through the window of Belethor's shop.", town_id: whiterun.id)
+heimskr = Npc.find_or_create_by(name: "Heimskr", description: "You have come! You have come to hear the word of Talos!, The truth, child of Talos, is that the Dragon's children have come! To purge the world in fire and righteousness!, There are those who would silence the Dragon's truth! But not I! Not Heimskr! His word will be known!, He has returned... Oh, how Talos has returned. Helgen has been purged in his light. Will Whiterun be next?, and The Imperials silence us because they fear us! They are cowards! Cowards and fools who have forgotten the truth! ... May Talos guide you...", town_id: whiterun.id)
+whiterun_jarl = Npc.find_or_create_by(name: "Jarl Balgruuf the Greater", description: "Jarl Balgruuf the Greater is disussing dragons with his court wizard.")
 
 ### WINTERHOLD NPCS ###
-winterhold_guard = Npc.find_or_create_by(name: "winterhold_guard", description: "Do you get to the Cloud District very often? Oh, what am I saying, of course you don't.", town_id: riften.id)
+winterhold_guard = Npc.find_or_create_by(name: "Winterhold Guard", description: "Winterhold Guard is clutching his robes for warmth.", town_id: winterhold.id)
+savos_aren = Npc.find_or_create_by(name: "Savos Aren", description: "Savos Aren is instructing magi at the College of Winterhold.", town_id: winterhold.id)
+ancano = Npc.find_or_create_by(name: "Ancano", description: "Ancano is watching Savos Aren with distrust.", town_id: winterhold.id)
+winterhold_jarl = Npc.find_or_create_by(name: "Jarl Korir", town_id: winterhold.id, description: "Jarl Korir is rambling about horkers to his housecarl.")
+
+### WINDHELM NPCS ###
+windhelm_guard = Npc.find_or_create_by(name: "Windhelm Guard", description: "Windhelm Guard is clutching his robes for warmth.", town_id: windhelm.id)
+aventus_aretino = Npc.find_or_create_by(name: "Aventus Aretino", description: "Aventus Aretino is performing the Black Sacrament.", town_id: windhelm.id)
+calixto_corrium = Npc.find_or_create_by(name: "Calixto Corrium", description: "Calixto Corrium is watching you out of the corner of his eye.", town_id: windhelm.id)
+windhelm_jarl = Npc.find_or_create_by(name: "Jarl Ulfric Stormcloak", town_id: windhelm.id, description: "Jarl Ulfric Stormcloak is discussing making a siege on Whiterun with his housecarl.")
+
+### FALKREATH NPCS ###
+falkreath_guard = Npc.find_or_create_by(name: "Falkreath Guard", description: "Falkreath Guard is visiting Falkreath's massive graveyard.", town_id: falkreath.id)
+cicero = Npc.find_or_create_by(name: "Cicero", description: "Cicero is happily dancing around the Night Mother's coffin.", town_id: falkreath.id)
+astrid = Npc.find_or_create_by(name: "Astrid", description: "Astrid is discussing the Dark Brotherhood's newest contract with Babette.", town_id: falkreath.id)
+falkreath_jarl = Npc.find_or_create_by(name: "Jarl Siddgeir", town_id: falkreath.id, description: "Jarl Siddgeir is drinking wine from a large flask.")
+
+
+
+
+
+
 
 ### INTERACTIONS ###
 ### markarth ###
@@ -89,8 +115,23 @@ talk_dawnstar_jarl = Interaction.find_or_create_by(description: "Are you a sells
 kill_alesan = Interaction.find_or_create_by(description: "You seriously tried to kill a kid? You're sick.", npc_id: alesan.id, bounty: 1000)
 talk_alesan = Interaction.find_or_create_by(description: "My parents are dead. My pa was a sailor. Took me with him on his last trip. After he got sick, they... put us off here and left without us. He... died a few days later. I've tried to make do since then, but... it's been hard. Real hard.", npc_id: alesan.id)
 
+    
+### morthal ###
+kill_lami = Interaction.find_or_create_by(description: "You slice Lami cleanly through the chest with your blade.", npc_id: lami.id, bounty: 1000)
+talk_lami = Interaction.find_or_create_by(description: "If you need any alchemy supplies, I'll do my best to provide them. Assuming I haven't used them all up.", npc_id: lami.id)
+kill_morthal_jarl = Interaction.find_or_create_by(description: "You destroy Jarl Idgrod Ravencrone's torso with a firebolt spell.", npc_id: morthal_jarl.id)
+talk_morthal_jarl = Interaction.find_or_create_by(description: "So, life has brought you to Morthal, and to me. What purpose this serves, we will no doubt see. Welcome.", npc_id: morthal_jarl.id)
+kill_lurbuk = Interaction.find_or_create_by(description: "You cleave Lurbuk's head in two with your sword.", npc_id: lurbuk.id, bounty: 1000)
+talk_lurbuk = Interaction.find_or_create_by(description: "Don't fret over the gloom, there's nothing to fear! Old Lurbuk will brighten your spirits -- just lend him your ear! Try as you may, they won't say 'good day,' but will just walk away. Worry not, Morthal! Lurbuk is here to stay!", npc_id: lurbuk.id)
 
 
+### solitude ###
+kill_dervenin = Interaction.find_or_create_by(description: "You slice Dervenin cleanly through the chest with your blade.", npc_id: dervenin.id, bounty: 1000)
+talk_dervenin = Interaction.find_or_create_by(description: "Tendrils of thought may wind their way through this realm, but those tendrils bind our reality together. A method to your madness and your madness is the method and the melody...", npc_id: dervenin.id)
+kill_solitude_jarl = Interaction.find_or_create_by(description: "You destroy Jarl Elisif the Fair's torso with a firebolt spell.", npc_id: solitude_jarl.id)
+talk_solitude_jarl = Interaction.find_or_create_by(description: "With the passing of my dear husband, Torygg, the weighty position of Jarl has fallen to me. Please direct questions to my steward.", npc_id: solitude_jarl.id)
+kill_svari = Interaction.find_or_create_by(description: "You seriously tried to kill a kid? You're sick.", npc_id: svari.id, bounty: 1000)
+talk_svari = Interaction.find_or_create_by(description: "Mum doesn't say much since Uncle Roggvir died. She doesn't even go to Temple anymore. I wish she would. At least that way she'd have people to talk to.", npc_id: svari.id)
 
 
 ### guard interactions ###
