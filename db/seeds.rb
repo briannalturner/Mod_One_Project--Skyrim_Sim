@@ -28,7 +28,7 @@ will = Player.find_or_create_by(name: "Will", gender: "male", race: "Wood Elf", 
 paul = Player.find_or_create_by(name: "Paul", gender: "male", race: "High Elf", money: 0)
 yo = Player.find_or_create_by(name: "Yo", gender: "male", race: "Dark Elf", money: 0)
 wesley = Player.find_or_create_by(name: "Wesley", gender: "male", race: "Khajiit", money: 0)
-matteo = Player.find_or_create_by(name: "Matteo", gender: "male", race: "Argonian", money: 0)
+matteo = Player.find_or_create_by(name: "Matteo", gender: "male", race: "Khajiit", money: 0)
 valentin = Player.find_or_create_by(name: "Valentin", gender: "male", race: "Nord", money: 0)
 jason = Player.find_or_create_by(name: "Jason", gender: "male", race: "Wood Elf", money: 0)
 
