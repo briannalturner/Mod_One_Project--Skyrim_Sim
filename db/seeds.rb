@@ -24,6 +24,27 @@ calcelmo = Npc.find_or_create_by(name: "Calcelmo", town_id: markarth.id, descrip
 ### DAWNSTAR NPCS ###
 capt_wayfinder = Npc.find_or_create_by(name: "Captain Wayfinder", town_id: dawnstar.id, description: "Captain Wayfinder is buying supplies for his next maritime voyage.")
 dawnstar_guard = Npc.find_or_create_by(name: "Dawnstar Guard", town_id: dawnstar.id, description: "Dawnstar Guard is patrolling the streets of Dawnstar.")
+dawnstar_jarl = Npc.find_or_create_by(name: "Jarl Skald the Elder", town_id: dawnstar.id, description: "Jarl Skald the Elder is discussing the civil war with her housecarl.")
+alesan = Npc.find_or_create_by(name: "Alesan", town_id: dawnstar.id, description: "Alesan is playing with a wooden sword.")
+
+### MORTHAL NPCS ###
+lami = Npc.find_or_create_by(name: "Lami", town_id: morthal.id, description: "Lami is crafting potions in her alchemy shop.")
+lurbuk = Npc.find_or_create_by(name: "Lurbuk", town_id: morthal.id, description: 'Lurbuk is singing "Age of Aggression" in Moorside Inn.')
+morthal_jarl = Npc.find_or_create_by(name: "Jarl Idgrod Ravencrone", town_id: morthal.id, description: "Jarl Idgrod Ravencrone is muttering to herself on her throne.")
+morthal_guard = Npc.find_or_create_by(name: "Morthal Guard", town_id: morthal.id, description: "Morthal Guard is watching you from his post by the gate.")
+
+### SOLITUDE NPCS ###
+dervenin = Npc.find_or_create_by(name: "Dervenin", town_id: solitude.id, description: "Dervenin is sitting on a ragged mat begging passersby for septims.")
+svari = Npc.find_or_create_by(name: "Svari", town_id: solitude.id, description: "Svari is playing tag with the other children in the town square.")
+solitude_jarl = Npc.find_or_create_by(name: "Jarl Elisif the Fair", town_id: solitude.id, description: "Jarl Elisif the Fair is sitting uncertainly on the throne.")
+solitude_guard = Npc.find_or_create_by(name: "Solitude Guard", town_id: solitude.id, description: "Solitude Guard is patrolling the market.")
+
+
+
+
+
+
+
 
 ### RIFTEN NPCS ###
 riften_guard = Npc.find_or_create_by(name: "X-adventurer", description: "I used to be an adventurer like you...", town_id: riften.id)
@@ -42,5 +63,5 @@ winterhold_guard = Npc.find_or_create_by(name: "winterhold_guard", description: 
 
 
 
-binding.pry
+# binding.pry
 0
