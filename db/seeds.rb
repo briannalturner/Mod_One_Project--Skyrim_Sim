@@ -150,6 +150,20 @@ talk_guard = Interaction.find_or_create_by(description: "I used to be an adventu
 
 
 
+### Riften Interactions ###
+support_edda = Interaction.find_or_create_by(description: "You hand Edda 5 gold.", npc_id: edda.id, bounty: 0, goodwill: 100)
+talk_riften_guard = Interaction.find_or_create_by(description: "Let me guess... someone stole your sweetroll.", npc_id: riften_guard.id, bounty: 0, goodwill: 0)
+
+### Windhelm Interactions ###
+
+
+### Winterhold Interactions ###
+
+
+### Whiterun Interactions ###
+
+### Falkreath Interactions ###
+kill_sinding = Interaction.find_or_create_by(description: "You slayed Sinding, the werewolf who escaped prison!", npc_id: sinding.id, bounty: 0, goodwill: 100)
 
 
 
