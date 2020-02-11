@@ -1,3 +1,7 @@
+# require_relative '../bin/run.rb'
+# require_relative '../app/models'
+# #require_relative '../db/seeds.rb'
+
 Town.destroy_all
 Interaction.destroy_all
 Player.destroy_all
@@ -152,8 +156,6 @@ talk_riften_guard = Interaction.find_or_create_by(description: "Let me guess... 
 talk_whiterun_guard = Interaction.find_or_create_by(description: "Let me guess... someone stole your sweetroll.", npc_id: whiterun_guard.id)
 talk_winterhold_guard = Interaction.find_or_create_by(description: "Let me guess... someone stole your sweetroll.", npc_id: winterhold_guard.id)
 
-
-
 ### Riften Interactions ###
 kill_edda = Interaction.find_or_create_by(description: "You straight up kill her.", npc_id: edda.id, bounty: 0, goodwill: 0)
 support_edda = Interaction.find_or_create_by(description: "You hand Edda 5 gold.", npc_id: edda.id, bounty: 0, goodwill: 100)
@@ -193,5 +195,5 @@ kill_mathies = Interaction.find_or_create_by(description: "You slaughter Mathies
 
 
 
-binding.pry
-0
+# binding.pry
+# 0

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_10_215222) do
+ActiveRecord::Schema.define(version: 2020_02_11_163756) do
 
   create_table "interactions", force: :cascade do |t|
     t.text "description"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 2020_02_10_215222) do
     t.string "gender"
     t.string "race"
     t.integer "money"
+    t.integer "location"
   end
 
   create_table "quests", force: :cascade do |t|
