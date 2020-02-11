@@ -152,11 +152,12 @@ def travel_menu
     puts "  1. #{towns[0].name}     2. #{towns[1].name}     3. #{towns[2].name}\n".colorize(:light_red)
     puts "  4. #{towns[3].name}     5. #{towns[4].name}     6. #{towns[5].name}\n".colorize(:light_red)
     puts "  7. #{towns[6].name}     8. #{towns[7].name}     9. #{towns[8].name}\n".colorize(:light_red)
-    puts "\nEnter Number:".colorize(:light_red)
-
-    input = gets.chomp
-    input = input.to_i
+    print "Enter Number:  ".colorize(:light_red)
+    input = gets.chomp.to_i
     $current_location = towns[input - 1]
+
+    #updating the current_player location... So that the next time we reach player_options menu... the location is correct.
+    $current_player.location = $current_location.id
     player_options
 end
 
@@ -313,7 +314,7 @@ end
 #     puts '▒█▄▀▄█ ▀▀▀ ▀▀▀ ▀▀▀ ▀▀▀▀ ▀░░░▀ ▀▀▀ 　 ░░▀░░ ▀▀▀▀ 　 ▒█░▒█ ▀▀▀ ▀░░ ░░▀░░ ▀▀▀ ▀░░▀ '
 # end
 
-run
+#run
 
-# binding.pry
-# 0
+binding.pry
+0
