@@ -193,5 +193,5 @@ kill_mathies = Interaction.find_or_create_by(description: "You slaughter Mathies
 
 
 
-binding.pry
-0
+# binding.pry
+# 0
