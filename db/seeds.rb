@@ -22,8 +22,8 @@ bri = Player.find_or_create_by(name: "Bri", gender: "female", race: "Khajiit", m
 alan = Player.find_or_create_by(name: "Alan", gender: "male", race: "Argonian", money: 0)
 carl = Player.find_or_create_by(name: "Carl", gender: "male", race: "Breton", money: 0)
 lauren = Player.find_or_create_by(name: "Lauren", gender: "female", race: "Redguard", money: 0)
-sonata = Player.find_or_create_by(name: "Sonata", gender: "female", race: "Breton", money: 0)
-ryan = Player.find_or_create_by(name: "Ryan", gender: "male", race: "Redguard", money: 0)
+sonata = Player.find_or_create_by(name: "Sonata", gender: "female", race: "Imperial", money: 0)
+ryan = Player.find_or_create_by(name: "Ryan", gender: "male", race: "Orc", money: 0)
 will = Player.find_or_create_by(name: "Will", gender: "male", race: "Wood Elf", money: 0)
 paul = Player.find_or_create_by(name: "Paul", gender: "male", race: "High Elf", money: 0)
 yo = Player.find_or_create_by(name: "Yo", gender: "male", race: "Dark Elf", money: 0)
@@ -36,7 +36,7 @@ jason = Player.find_or_create_by(name: "Jason", gender: "male", race: "Wood Elf"
 ### MARKARTH NPCS ###
 vorstag = Npc.find_or_create_by(name: "Vorstag", town_id: markarth.id, description: "Vorstag is sitting by the fire in the Silver-Blood Inn.")
 markarth_guard = Npc.find_or_create_by(name: "Markarth Guard", town_id: markarth.id, description: "Markarth Guard is leaning against a market stall.")
-markarth_jarl = Npc.find_or_create_by(name: "Jarl Laila Law-Giver", town_id: markarth.id, description: "Jarl Laila Law-Giver is sitting confidently on her throne.")
+markarth_jarl = Npc.find_or_create_by(name: "Jarl Igmund", town_id: markarth.id, description: "Jarl Igmund is sitting confidently on his throne.")
 calcelmo = Npc.find_or_create_by(name: "Calcelmo", town_id: markarth.id, description: "Calcelmo is hunched over an enchanting table reading spell books.")
 
 ### DAWNSTAR NPCS ###
@@ -59,9 +59,10 @@ solitude_guard = Npc.find_or_create_by(name: "Solitude Guard", town_id: solitude
 
 
 ### RIFTEN NPCS ###
-riften_guard = Npc.find_or_create_by(name: "X-adventurer", description: "I used to be an adventurer like you...", town_id: riften.id)
-riften_edda_beggar = Npc.find_or_create_by(name: "Edda", description: "spare change pls...", town_id: riften.id)
-riften_maven = Npc.find_or_create_by(name: "Maven Black-Briar", description: "the head of the Black-Briars", town_id: riften.id)
+riften_guard = Npc.find_or_create_by(name: "Riften Guard", description: "I used to be an adventurer like you...", town_id: riften.id)
+riften_edda_beggar = Npc.find_or_create_by(name: "Edda", description: "Edda is begging passersby for septims.", town_id: riften.id)
+riften_maven = Npc.find_or_create_by(name: "Maven Black-Briar", description: "Maven Black-Briar is perusing the market.", town_id: riften.id)
+riften_jarl = Npc.find_or_create_by(name: "Jarl Laila Law-Giver", town_id: riften.id, description: "Jarl Laila Law-Giver is sitting confidently on her throne.")
 
 ### WHITERUN NPCS ###
 whiterun_nazeem = Npc.find_or_create_by(name: "Nazeem", description: "Do you get to the Cloud District very often? Oh, what am I saying, of course you don't.", town_id: riften.id)
@@ -71,9 +72,46 @@ whiterun_Heimskr = Npc.find_or_create_by(name: "Heimskr", description: "You have
 ### WINTERHOLD NPCS ###
 winterhold_guard = Npc.find_or_create_by(name: "winterhold_guard", description: "Do you get to the Cloud District very often? Oh, what am I saying, of course you don't.", town_id: riften.id)
 
+### INTERACTIONS ###
+### markarth ###
+kill_vorstag = Interaction.find_or_create_by(description: "You slice Vorstag cleanly through the chest with your blade.", npc_id: vorstag.id, bounty: 1000)
+talk_vorstag = Interaction.find_or_create_by(description: "Some call me a mercenary, but I like to think of myself as a freelance adventurer for hire.", npc_id: vorstag.id)
+kill_markarth_jarl = Interaction.find_or_create_by(description: "You destroy Jarl Igmund's torso with a firebolt spell.", npc_id: markarth_jarl.id)
+talk_markarth_jarl = Interaction.find_or_create_by(description: "Are you a sellsword? I don't like your kind. No honor. No loyalty. Unreliable. But I can't turn away a potential ally in these times.", npc_id: markarth_jarl.id)
+kill_calcelmo = Interaction.find_or_create_by(description: "You cleave Calcelmo's head in two with your sword.", npc_id: calcelmo.id, bounty: 1000)
+talk_calcelmo = Interaction.find_or_create_by(description: "You idiot. Do you even know who I am? The most recognized scholar on the Dwemer in all of Tamriel, and you people keep bothering me! I... I'm sorry I... I got too excited. I'm in the middle of some very... stressful work, and I shouldn't have yelled. How can I help you?", npc_id: calcelmo.id)
+
+### dawnstar ###
+kill_wayfinder = Interaction.find_or_create_by(description: "You slice Captain Wayfinder cleanly through the chest with your blade.", npc_id: capt_wayfinder.id, bounty: 1000)
+talk_wayfinder = Interaction.find_or_create_by(description: "Everyone thinks I'm too young to be a ship's captain, but I'm going to prove them wrong. I don't buy all that talk about ship captains having to be stern and strict. I want my crewmen to enjoy their work.", npc_id: capt_wayfinder.id)
+kill_dawnstar_jarl = Interaction.find_or_create_by(description: "You destroy Jarl Skald the Elder's torso with a firebolt spell.", npc_id: dawnstar_jarl.id)
+talk_dawnstar_jarl = Interaction.find_or_create_by(description: "Are you a sellsword? I don't like your kind. No honor. No loyalty. Unreliable. But I can't turn away a potential ally in these times.", npc_id: dawnstar_jarl.id)
+kill_alesan = Interaction.find_or_create_by(description: "You seriously tried to kill a kid? You're sick.", npc_id: alesan.id, bounty: 1000)
+talk_alesan = Interaction.find_or_create_by(description: "My parents are dead. My pa was a sailor. Took me with him on his last trip. After he got sick, they... put us off here and left without us. He... died a few days later. I've tried to make do since then, but... it's been hard. Real hard.", npc_id: alesan.id)
 
 
 
 
-# binding.pry
+
+### guard interactions ###
+kill_guard = Interaction.find_or_create_by(description: "You eviscerate the Guard's neck with one swipe of your sword.", npc_id: markarth_guard.id, bounty: 1000)
+kill_guard = Interaction.find_or_create_by(description: "You eviscerate the Guard's neck with one swipe of your sword.", npc_id: dawnstar_guard.id, bounty: 1000)
+kill_guard = Interaction.find_or_create_by(description: "You eviscerate the Guard's neck with one swipe of your sword.", npc_id: morthal_guard.id, bounty: 1000)
+kill_guard = Interaction.find_or_create_by(description: "You eviscerate the Guard's neck with one swipe of your sword.", npc_id: solitude_guard.id, bounty: 1000)
+kill_guard = Interaction.find_or_create_by(description: "You eviscerate the Guard's neck with one swipe of your sword.", npc_id: riften_guard.id, bounty: 1000)
+kill_guard = Interaction.find_or_create_by(description: "You eviscerate the Guard's neck with one swipe of your sword.", npc_id: winterhold_guard.id, bounty: 1000)
+talk_guard = Interaction.find_or_create_by(description: " used to be an adventurer like you, then I took an arrow in the knee.", npc_id: markarth_guard.id, bounty: 1000)
+talk_guard = Interaction.find_or_create_by(description: " used to be an adventurer like you, then I took an arrow in the knee.", npc_id: dawnstar_guard.id, bounty: 1000)
+talk_guard = Interaction.find_or_create_by(description: " used to be an adventurer like you, then I took an arrow in the knee.", npc_id: morthal_guard.id, bounty: 1000)
+talk_guard = Interaction.find_or_create_by(description: " used to be an adventurer like you, then I took an arrow in the knee.", npc_id: solitude_guard.id, bounty: 1000)
+talk_guard = Interaction.find_or_create_by(description: " used to be an adventurer like you, then I took an arrow in the knee.", npc_id: riften_guard.id, bounty: 1000)
+talk_guard = Interaction.find_or_create_by(description: " used to be an adventurer like you, then I took an arrow in the knee.", npc_id: winterhold_guard.id, bounty: 1000)
+
+
+
+
+
+
+
+binding.pry
 0
