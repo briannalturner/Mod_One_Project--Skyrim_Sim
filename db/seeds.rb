@@ -1,3 +1,7 @@
+# require_relative '../bin/run.rb'
+# require_relative '../app/models'
+# #require_relative '../db/seeds.rb'
+
 Town.destroy_all
 Interaction.destroy_all
 Player.destroy_all
@@ -18,19 +22,19 @@ solitude = Town.find_or_create_by(name: "Solitude", jarl: "Jarl Elisif the Fair"
 
 
 ### PLAYERS ###
-bri = Player.find_or_create_by(name: "Bri", gender: "female", race: "Khajiit", money: 0)
-alan = Player.find_or_create_by(name: "Alan", gender: "male", race: "Argonian", money: 0)
-carl = Player.find_or_create_by(name: "Carl", gender: "male", race: "Breton", money: 0)
-lauren = Player.find_or_create_by(name: "Lauren", gender: "female", race: "Redguard", money: 0)
-sonata = Player.find_or_create_by(name: "Sonata", gender: "female", race: "Imperial", money: 0)
-ryan = Player.find_or_create_by(name: "Ryan", gender: "male", race: "Orc", money: 0)
-will = Player.find_or_create_by(name: "Will", gender: "male", race: "Wood Elf", money: 0)
-paul = Player.find_or_create_by(name: "Paul", gender: "male", race: "High Elf", money: 0)
-yo = Player.find_or_create_by(name: "Yo", gender: "male", race: "Dark Elf", money: 0)
-wesley = Player.find_or_create_by(name: "Wesley", gender: "male", race: "Khajiit", money: 0)
-matteo = Player.find_or_create_by(name: "Matteo", gender: "male", race: "Khajiit", money: 0)
-valentin = Player.find_or_create_by(name: "Valentin", gender: "male", race: "Nord", money: 0)
-jason = Player.find_or_create_by(name: "Jason", gender: "male", race: "Wood Elf", money: 0)
+bri = Player.find_or_create_by(name: "Bri", gender: "female", race: "Khajiit", money: 0, location: riften.id)
+alan = Player.find_or_create_by(name: "Alan", gender: "male", race: "Argonian", money: 0, location: riften.id)
+carl = Player.find_or_create_by(name: "Carl", gender: "male", race: "Breton", money: 0, location: riften.id)
+lauren = Player.find_or_create_by(name: "Lauren", gender: "female", race: "Redguard", money: 0, location: riften.id)
+sonata = Player.find_or_create_by(name: "Sonata", gender: "female", race: "Imperial", money: 0, location: riften.id)
+ryan = Player.find_or_create_by(name: "Ryan", gender: "male", race: "Orc", money: 0, location: riften.id)
+will = Player.find_or_create_by(name: "Will", gender: "male", race: "Wood Elf", money: 0, location: riften.id)
+paul = Player.find_or_create_by(name: "Paul", gender: "male", race: "High Elf", money: 0, location: riften.id)
+yo = Player.find_or_create_by(name: "Yo", gender: "male", race: "Dark Elf", money: 0, location: riften.id)
+wesley = Player.find_or_create_by(name: "Wesley", gender: "male", race: "Khajiit", money: 0, location: riften.id)
+matteo = Player.find_or_create_by(name: "Matteo", gender: "male", race: "Khajiit", money: 0, location: riften.id)
+valentin = Player.find_or_create_by(name: "Valentin", gender: "male", race: "Nord", money: 0, location: riften.id)
+jason = Player.find_or_create_by(name: "Jason", gender: "male", race: "Wood Elf", money: 0, location: riften.id)
 
 
 
@@ -151,8 +155,6 @@ talk_solitude_guard = Interaction.find_or_create_by(description: "Let me guess..
 talk_riften_guard = Interaction.find_or_create_by(description: "Let me guess... someone stole your sweetroll.", npc_id: riften_guard.id)
 talk_whiterun_guard = Interaction.find_or_create_by(description: "Let me guess... someone stole your sweetroll.", npc_id: whiterun_guard.id)
 talk_winterhold_guard = Interaction.find_or_create_by(description: "Let me guess... someone stole your sweetroll.", npc_id: winterhold_guard.id)
-
-
 
 ### Riften Interactions ###
 kill_edda = Interaction.find_or_create_by(description: "You straight up kill her.", npc_id: edda.id, bounty: 0, goodwill: 0)
