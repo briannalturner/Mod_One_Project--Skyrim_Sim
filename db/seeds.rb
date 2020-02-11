@@ -155,14 +155,19 @@ talk_winterhold_guard = Interaction.find_or_create_by(description: "Let me guess
 
 
 ### Riften Interactions ###
+kill_edda = Interaction.find_or_create_by(description: "You straight up kill her.", npc_id: edda.id, bounty: 0, goodwill: 0)
 support_edda = Interaction.find_or_create_by(description: "You hand Edda 5 gold.", npc_id: edda.id, bounty: 0, goodwill: 100)
-
+help_maven = Interaction.find_or_create_by(description: "You help Maven, by finding into the double-agent stealing all of her mead!", bounty: 0, goodwill: 100, npc_id: maven)
+kill_maven = Interaction.find_or_create_by(description: "You assasinate Maven Black Briar... you cause havoc in all of Riften", bounty: 1000, goodwill: 0, npc_id: maven)
+kill_riften_guard = Interaction.find_or_create_by(description: "You assasinate the guard when no one is watching... you still get a bounty though.", npc_id: riften_guard, bounty: 0, goodwill: 100)
+talk_riften_guard = Interaction.find_or_create_by(description: "Watch the Skies traveller", npc_id: riften_guard, bounty: 0, goodwill: 100)
 ### Windhelm Interactions ###
 talk_windhelm_guard = Interaction.find_or_create_by(description: "Welcome to Windhelm traveller.", npc_id: windhelm_guard.id, bounty: 0, goodwill: 0)
 kill_windhelm_guard = Interaction.find_or_create_by(description: "You eviscerate the Guard's neck with one swipe of your sword.", npc_id: windhelm_guard.id, bounty: 100, goodwill: 0)
 help_aventus = Interaction.find_or_create_by(description: "You kill the cruel matron, Grelod the Kind, who abused Aventus and the other children.", goodwill: 100)
 help_jarl = Interaction.find_or_create_by(description: "You learn of a murderer on the loose, and you eventually capture him.", goodwill: 100, bounty: 0)
 kill_jarl = Interaction.find_or_create_by(description: "You kill Ulfric with your Shout... Karma", goodwill: 0, bounty: 1000)
+
 ### Winterhold Interactions ###
 kill_savos_aren = Interaction.find_or_create_by(description: "You slice Savos Aren cleanly through the chest with your blade.", npc_id: savos_aren.id, bounty: 1000)
 talk_savos_aren = Interaction.find_or_create_by(description: "Allow me to introduce myself. I am Savos Aren, Arch-Mage of the College of Winterhold. I am quite content to see nearly any aspect of magic explored and investigated here. But I do not and will not approve of any research or experiments that cause purposeful harm to members of the College. Are we clear?", npc_id: savos_aren.id)
