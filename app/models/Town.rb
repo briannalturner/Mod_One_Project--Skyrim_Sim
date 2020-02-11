@@ -12,7 +12,7 @@ class Town < ActiveRecord::Base
 
     #returns NPC instances in town that is calling this.
     def get_npcs_for_city
-        p Npc.all.select {|npc| self.id == npc.town_id} 
+        Npc.all.select {|npc| self.id == npc.town_id} 
     end
 
     #We have to go through all interactions... and find the npc_id associated with that interaction.
