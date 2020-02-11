@@ -1,12 +1,14 @@
 require_relative '../config/environment'
 #require '../db/seeds.rb'
+require 'colorize'
+require 'colorized_string'
+
 $current_player = nil
 $current_location = nil
 
 #after creating character... find way to login with that character. 
 
 def run
-    binding.pry
     welcome
     selection_menu #choose to create a character or login to pre-existing character
     player_options #a list of options the selected player from 'selection_menu' can accomplish
@@ -17,11 +19,11 @@ def login()
     puts "Enter your name"
     name = gets.chomp
     if Player.find_by(:name => name) == false 
-        p "This player doesn't exist"
+        puts"This player doesn't exist"
         login()
     else
         $current_player = Player.find_by(:name => name)
-        p "Welcome to Skyrim #{$current_player.name}"
+        puts"Welcome to Skyrim #{$current_player.name}"
     end
 end
 
@@ -43,18 +45,18 @@ end
 
 def welcome
     puts "\n\n"
-    p '░██████╗██╗░░██╗██╗░░░██╗██████╗░██╗███╗░░░███╗  ░██████╗██╗███╗░░░███╗'
-    p '██╔════╝██║░██╔╝╚██╗░██╔╝██╔══██╗██║████╗░████║  ██╔════╝██║████╗░████║'
-    p '╚█████╗░█████═╝░░╚████╔╝░██████╔╝██║██╔████╔██║  ╚█████╗░██║██╔████╔██║'
-    p '░╚═══██╗██╔═██╗░░░╚██╔╝░░██╔══██╗██║██║╚██╔╝██║  ░╚═══██╗██║██║╚██╔╝██║'
-    p '██████╔╝██║░╚██╗░░░██║░░░██║░░██║██║██║░╚═╝░██║  ██████╔╝██║██║░╚═╝░██║'
-    p '╚═════╝░╚═╝░░╚═╝░░░╚═╝░░░╚═╝░░╚═╝╚═╝╚═╝░░░░░╚═╝  ╚═════╝░╚═╝╚═╝░░░░░╚═╝'
-    puts "\n\n\t\t\t\   Welcome to Skyrim\n\n"
+    puts'░██████╗██╗░░██╗██╗░░░██╗██████╗░██╗███╗░░░███╗  ░██████╗██╗███╗░░░███╗'.colorize(:light_blue)
+    puts'██╔════╝██║░██╔╝╚██╗░██╔╝██╔══██╗██║████╗░████║  ██╔════╝██║████╗░████║'.colorize(:light_blue)
+    puts'╚█████╗░█████═╝░░╚████╔╝░██████╔╝██║██╔████╔██║  ╚█████╗░██║██╔████╔██║'.colorize(:light_blue)
+    puts'░╚═══██╗██╔═██╗░░░╚██╔╝░░██╔══██╗██║██║╚██╔╝██║  ░╚═══██╗██║██║╚██╔╝██║'.colorize(:light_blue)
+    puts'██████╔╝██║░╚██╗░░░██║░░░██║░░██║██║██║░╚═╝░██║  ██████╔╝██║██║░╚═╝░██║'.colorize(:light_blue)
+    puts'╚═════╝░╚═╝░░╚═╝░░░╚═╝░░░╚═╝░░╚═╝╚═╝╚═╝░░░░░╚═╝  ╚═════╝░╚═╝╚═╝░░░░░╚═╝'.colorize(:light_blue)
+    puts "\n\n\t\t\t\   Welcome to Skyrim\n\n".colorize(:blue)
 end
 
 def main_menu
-    puts "Main Menu"
-    puts "Please select one of the following options:"
+    puts "Main Menu".colorize(:background => :dark_blue)
+    puts "Please select one of the following options:".colorize(:background => :dark_blue)
     puts "\n"
     puts "1. Login"
     puts "2. Create a new character"
@@ -79,46 +81,51 @@ def create_character
     6. Imperial    7. Khajiit     8. Nord        9. Orc       10. Redguard\n\n"
     print "enter number: "
     race = races[(gets.chomp.to_i - 1)]
-    binding.pry
-    new_player = Player.find_or_create_by(:name => name, :gender => gender, :race => race, :money => 0, :location => Town.all.first.id)
-    p new_player
+    # binding.pry
+    new_player = Player.find_or_create_by(:name => name, :gender => gender, :race => race, :money => 0, :location => Town.all[0].id)
+    puts new_player
     $current_player = Player.find_by(:name => name)
     puts "You awake in Riften"
     #binding.pry
 
-
-    rel1 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: riften.id, thanehood: false, bounty: 0, goodwill: 0, home: false)
-    rel2 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: windhelm.id, thanehood: false, bounty: 0, goodwill: 0, home: false)
-    rel3 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: winterhold.id, thanehood: false, bounty: 0, goodwill: 0, home: false)
-    rel4 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: whiterun.id, thanehood: false, bounty: 0, goodwill: 0, home: false)
-    rel5 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: falkreath.id, thanehood: false, bounty: 0, goodwill: 0, home: false)
-    rel6 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: markarth.id, thanehood: false, bounty: 0, goodwill: 0, home: false)
-    rel7 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: dawnstar.id, thanehood: false, bounty: 0, goodwill: 0, home: false)
-    rel8 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: morthal.id, thanehood: false, bounty: 0, goodwill: 0, home: false)
-    rel9 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: solitude.id, thanehood: false, bounty: 0, goodwill: 0, home: false)
+    rel1 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: Town.all[0].id, thanehood: false, bounty: 0, goodwill: 0, home: false)
+    rel2 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: Town.all[1].id, thanehood: false, bounty: 0, goodwill: 0, home: false)
+    rel3 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: Town.all[2].id, thanehood: false, bounty: 0, goodwill: 0, home: false)
+    rel4 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: Town.all[3].id, thanehood: false, bounty: 0, goodwill: 0, home: false)
+    rel5 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: Town.all[4].id, thanehood: false, bounty: 0, goodwill: 0, home: false)
+    rel6 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: Town.all[5].id, thanehood: false, bounty: 0, goodwill: 0, home: false)
+    rel7 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: Town.all[6].id, thanehood: false, bounty: 0, goodwill: 0, home: false)
+    rel8 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: Town.all[7].id, thanehood: false, bounty: 0, goodwill: 0, home: false)
+    rel9 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: Town.all[8].id, thanehood: false, bounty: 0, goodwill: 0, home: false)
 end
 
 def login()
-    puts "Enter your name"
+    puts "****************"
+    puts "Enter your name:"
+    puts "\n"
     name = gets.chomp
     if Player.find_by(:name => name) == false 
-        p "This player doesn't exist"
+        puts"This player doesn't exist"
         login()
     else
         $current_player = Player.find_by(:name => name)
-        p "Welcome to Skyrim #{$current_player.name}"
+        puts "\n"
+        puts '▒█░░▒█ █▀▀ █░░ █▀▀ █▀▀█ █▀▄▀█ █▀▀ 　 ▀▀█▀▀ █▀▀█ 　 ▒█▀▀▀█ █░█ █░░█ █▀▀█ ░▀░ █▀▄▀█' 
+        puts '▒█▒█▒█ █▀▀ █░░ █░░ █░░█ █░▀░█ █▀▀ 　 ░░█░░ █░░█ 　 ░▀▀▀▄▄ █▀▄ █▄▄█ █▄▄▀ ▀█▀ █░▀░█'
+        puts '▒█▄▀▄█ ▀▀▀ ▀▀▀ ▀▀▀ ▀▀▀▀ ▀░░░▀ ▀▀▀ 　 ░░▀░░ ▀▀▀▀ 　 ▒█▄▄▄█ ▀░▀ ▄▄▄█ ▀░▀▀ ▀▀▀ ▀░░░▀'
+        puts "\n"
     end
 end
 
 def player_options
     $current_location = Town.find($current_player.location)
-    p "Logged in as: #{$current_player.name}"
-    p "You are currently in #{$current_location.name}"
+    puts"Logged in as: #{$current_player.name}"
+    puts"You are currently in #{$current_location.name}"
 
     #For interactions should we make it so that we show all interactions possible in that location
     #since interactions class does not specify town location... we have to use npc.id and then get the npc.town_id 
-    puts "\nWhat do you want to do\n
-    1. Interact with citizens    2. Travel to another city    3. Return to Main Menu\n\n"
+    puts "\nWhat do you want to do?\n
+    1. Interact with citizens    2. Travel to another city    3. Look for Quests    4. Return to Main Menu\n\n"
     print "enter number: "
     input = gets.chomp
     if input == '1'
@@ -126,9 +133,11 @@ def player_options
     elsif input == '2'
         travel_menu
     elsif input == '3'
+        quest_method
+    elsif input == '4'
         main_menu
     else
-        p 'Invalid input. Please try again.'
+        puts'Invalid input. Please try again.'
         player_options
     end
 end
@@ -143,81 +152,118 @@ def interact_with_citizens
     }
     relationship = Relationship.find_by(:player_id => $current_player.id, :town_id => $current_location.id)
 
-    p 'You see the following citizens:'
-    p "1. #{names[0]}   2. #{names[1]}"
-    p "3. #{names[2]}   4. #{names[3]}"
-    p "5. Exit"
+    puts'You see the following citizens:'
+    puts"1. #{names[0]}   2. #{names[1]}"
+    puts"3. #{names[2]}   4. #{names[3]}"
+    puts"5. Exit"
 
     input = gets.chomp
 
-
     if input == '1'
-        p "1. Kill #{names[0]}"
-        p "2. Talk to #{names[0]}"
+        puts"1. Kill #{names[0]}"
+        puts"2. Talk to #{names[0]}"
         input2 = gets.chomp
         if input2 == '1'
-            p x[0].description
+            putsx[0].description
             relationship.bounty += x[0].bounty
-            p "Your bounty is #{relationship.bounty}"
+            puts"Your bounty is #{relationship.bounty}"
+            interact_with_citizens
         elsif input2 == '2'
-            p x[1].description
+            putsx[1].description
+            interact_with_citizens
         else
-            p 'Invalid input. Please try again'
+            puts'Invalid input. Please try again'
             interact_with_citizens
         end
     elsif input == '2'
-        p "1. Kill #{names[1]}"
-        p "2. Talk to #{names[1]}"
+        puts"1. Kill #{names[1]}"
+        puts"2. Talk to #{names[1]}"
         input2 = gets.chomp
         if input2 == '1'
-            p x[2].description
+            putsx[2].description
             relationship.bounty += x[0].bounty
-            p "Your bounty is #{relationship.bounty}"
+            puts "Your bounty is #{relationship.bounty}"
+            interact_with_citizens
         elsif input2 == '2'
-            p x[3].description
+            putsx[3].description
+            puts "\n\n"
+            interact_with_citizens
         else
-            p 'Invalid input. Please try again'
+            puts'Invalid input. Please try again'
             interact_with_citizens
         end
     elsif input == '3'
-        p "1. Kill #{names[2]}"
-        p "2. Talk to #{names[2]}"
+        puts"1. Kill #{names[2]}"
+        puts"2. Talk to #{names[2]}"
         input2 = gets.chomp
         if input2 == '1'
-            p x[4].description
+            putsx[4].description
             relationship.bounty += x[0].bounty
-            p "Your bounty is #{relationship.bounty}"
+            puts"Your bounty is #{relationship.bounty}"
+            interact_with_citizens
         elsif input2 == '2'
-            p x[5].description
+            putsx[5].description
+            interact_with_citizens
         else
-            p 'Invalid input. Please try again'
+            puts'Invalid input. Please try again'
             interact_with_citizens
         end
     elsif input == '4'
-        p "1. Kill #{names[3]}"
-        p "2. Talk to #{names[3]}"
+        puts"1. Kill #{names[3]}"
+        puts"2. Talk to #{names[3]}"
         input2 = gets.chomp
         if input2 == '1'
-            p x[6].description
+            putsx[6].description
             relationship.bounty += x[0].bounty
-            p "Your bounty is #{relationship.bounty}"
+            puts"Your bounty is #{relationship.bounty}"
+            interact_with_citizens
         elsif input2 == '2'
-            p x[7].description
+            putsx[7].description
+            interact_with_citizens
         else
-            p 'Invalid input. Please try again'
+            puts'Invalid input. Please try again'
             interact_with_citizens
         end
     elsif input == '5'
         player_options
     else
-        p '*******************************'
-        p 'Invalid input. Please try again'
-        p '*******************************'
+        puts'*******************************'
+        puts'Invalid input. Please try again'
+        puts'*******************************'
         interact_with_citizens
     end
 end
 
-
+def quest_method
+    relationship = Relationship.find_by(:player_id => $current_player.id, :town_id => $current_location.id)
+    q = Quest.all.sample
+    q.town_id = $current_location.id
+    puts q.description
+    puts"The reward is #{q.reward} and the goodwill #{q.goodwill}"
+    puts'1. Accept Quest  2. Reject Quest'
+    input = gets.chomp
+    puts "\n\n"
+    if input == '1'
+        puts "You depart for adventure to #{q.description.split(" ")[-1]}\n" #This returns name of place we are going to
+        completion_chance = rand(0..100)
+        #binding.pry
+        if completion_chance > 60
+            puts ". . .\n. . .\n"
+            puts'You successfully completed the Quest.'
+            $current_player.money += q.reward
+            relationship.goodwill += q.goodwill
+            puts"You now have #{$current_player.money} septims and you gained #{relationship.goodwill} goodwill."
+            player_options
+        else
+            puts ". . .\n. . .\n"
+            puts "Along the way you realize the challenge ahead of you and you say  '!@#$ it.' '"
+            puts "With that you decide to head back to town"
+            player_options
+        end
+    elsif input == '2'
+        player_options
+    end
+end
 
 
 def enter_city(user_input_number)
@@ -234,6 +280,13 @@ end
 def visit_city(name)
     puts "You have arrived to #{name}"
 
+end
+
+def find_city_id_by_name(string)
+    x = Town.all.select { |city|
+        city.name == string
+    }
+    x.id
 end
 
 # def riften
