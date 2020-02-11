@@ -96,8 +96,6 @@ falkreath_jarl = Npc.find_or_create_by(name: "Jarl Siddgeir", town_id: falkreath
 
 
 
-
-
 ### INTERACTIONS ###
 ### markarth ###
 kill_vorstag = Interaction.find_or_create_by(description: "You slice Vorstag cleanly through the chest with your blade.", npc_id: vorstag.id, bounty: 1000)
@@ -110,7 +108,7 @@ talk_calcelmo = Interaction.find_or_create_by(description: "You idiot. Do you ev
 ### dawnstar ###
 kill_wayfinder = Interaction.find_or_create_by(description: "You slice Captain Wayfinder cleanly through the chest with your blade.", npc_id: capt_wayfinder.id, bounty: 1000)
 talk_wayfinder = Interaction.find_or_create_by(description: "Everyone thinks I'm too young to be a ship's captain, but I'm going to prove them wrong. I don't buy all that talk about ship captains having to be stern and strict. I want my crewmen to enjoy their work.", npc_id: capt_wayfinder.id)
-kill_dawnstar_jarl = Interaction.find_or_create_by(description: "You destroy Jarl Skald the Elder's torso with a firebolt spell.", npc_id: dawnstar_jarl.id)
+kill_dawnstar_jarl = Interaction.find_or_create_by(description: "You destroy Jarl Skald the Elder's torso with a firebolt spell.", npc_id: dawnstar_jarl.id, bounty: 1000)
 talk_dawnstar_jarl = Interaction.find_or_create_by(description: "Are you a sellsword? I don't like your kind. No honor. No loyalty. Unreliable. But I can't turn away a potential ally in these times.", npc_id: dawnstar_jarl.id)
 kill_alesan = Interaction.find_or_create_by(description: "You seriously tried to kill a kid? You're sick.", npc_id: alesan.id, bounty: 1000)
 talk_alesan = Interaction.find_or_create_by(description: "My parents are dead. My pa was a sailor. Took me with him on his last trip. After he got sick, they... put us off here and left without us. He... died a few days later. I've tried to make do since then, but... it's been hard. Real hard.", npc_id: alesan.id)
@@ -119,7 +117,7 @@ talk_alesan = Interaction.find_or_create_by(description: "My parents are dead. M
 ### morthal ###
 kill_lami = Interaction.find_or_create_by(description: "You slice Lami cleanly through the chest with your blade.", npc_id: lami.id, bounty: 1000)
 talk_lami = Interaction.find_or_create_by(description: "If you need any alchemy supplies, I'll do my best to provide them. Assuming I haven't used them all up.", npc_id: lami.id)
-kill_morthal_jarl = Interaction.find_or_create_by(description: "You destroy Jarl Idgrod Ravencrone's torso with a firebolt spell.", npc_id: morthal_jarl.id)
+kill_morthal_jarl = Interaction.find_or_create_by(description: "You destroy Jarl Idgrod Ravencrone's torso with a firebolt spell.", npc_id: morthal_jarl.id, bounty: 1000)
 talk_morthal_jarl = Interaction.find_or_create_by(description: "So, life has brought you to Morthal, and to me. What purpose this serves, we will no doubt see. Welcome.", npc_id: morthal_jarl.id)
 kill_lurbuk = Interaction.find_or_create_by(description: "You cleave Lurbuk's head in two with your sword.", npc_id: lurbuk.id, bounty: 1000)
 talk_lurbuk = Interaction.find_or_create_by(description: "Don't fret over the gloom, there's nothing to fear! Old Lurbuk will brighten your spirits -- just lend him your ear! Try as you may, they won't say 'good day,' but will just walk away. Worry not, Morthal! Lurbuk is here to stay!", npc_id: lurbuk.id)
@@ -128,7 +126,7 @@ talk_lurbuk = Interaction.find_or_create_by(description: "Don't fret over the gl
 ### solitude ###
 kill_dervenin = Interaction.find_or_create_by(description: "You slice Dervenin cleanly through the chest with your blade.", npc_id: dervenin.id, bounty: 1000)
 talk_dervenin = Interaction.find_or_create_by(description: "Tendrils of thought may wind their way through this realm, but those tendrils bind our reality together. A method to your madness and your madness is the method and the melody...", npc_id: dervenin.id)
-kill_solitude_jarl = Interaction.find_or_create_by(description: "You destroy Jarl Elisif the Fair's torso with a firebolt spell.", npc_id: solitude_jarl.id)
+kill_solitude_jarl = Interaction.find_or_create_by(description: "You destroy Jarl Elisif the Fair's torso with a firebolt spell.", npc_id: solitude_jarl.id, bounty: 1000)
 talk_solitude_jarl = Interaction.find_or_create_by(description: "With the passing of my dear husband, Torygg, the weighty position of Jarl has fallen to me. Please direct questions to my steward.", npc_id: solitude_jarl.id)
 kill_svari = Interaction.find_or_create_by(description: "You seriously tried to kill a kid? You're sick.", npc_id: svari.id, bounty: 1000)
 talk_svari = Interaction.find_or_create_by(description: "Mum doesn't say much since Uncle Roggvir died. She doesn't even go to Temple anymore. I wish she would. At least that way she'd have people to talk to.", npc_id: svari.id)
@@ -160,8 +158,11 @@ talk_winterhold_guard = Interaction.find_or_create_by(description: "Let me guess
 support_edda = Interaction.find_or_create_by(description: "You hand Edda 5 gold.", npc_id: edda.id, bounty: 0, goodwill: 100)
 
 ### Windhelm Interactions ###
-
-
+talk_windhelm_guard = Interaction.find_or_create_by(description: "Welcome to Windhelm traveller.", npc_id: windhelm_guard.id, bounty: 0, goodwill: 0)
+kill_windhelm_guard = Interaction.find_or_create_by(description: "You eviscerate the Guard's neck with one swipe of your sword.", npc_id: windhelm_guard.id, bounty: 100, goodwill: 0)
+help_aventus = Interaction.find_or_create_by(description: "You kill the cruel matron, Grelod the Kind, who abused Aventus and the other children.", goodwill: 100)
+help_jarl = Interaction.find_or_create_by(description: "You learn of a murderer on the loose, and you eventually capture him.", goodwill: 100, bounty: 0)
+kill_jarl = Interaction.find_or_create_by(description: "You kill Ulfric with your Shout... Karma", goodwill: 0, bounty: 1000)
 ### Winterhold Interactions ###
 kill_savos_aren = Interaction.find_or_create_by(description: "You slice Savos Aren cleanly through the chest with your blade.", npc_id: savos_aren.id, bounty: 1000)
 talk_savos_aren = Interaction.find_or_create_by(description: "Allow me to introduce myself. I am Savos Aren, Arch-Mage of the College of Winterhold. I am quite content to see nearly any aspect of magic explored and investigated here. But I do not and will not approve of any research or experiments that cause purposeful harm to members of the College. Are we clear?", npc_id: savos_aren.id)
@@ -177,6 +178,7 @@ kill_whiterun_jarl = Interaction.find_or_create_by(description: "You destroy Jar
 talk_whiterun_jarl = Interaction.find_or_create_by(description: "I'm the Jarl, not a barkeep. Speak your business.", npc_id: whiterun_jarl.id)
 kill_nazeem = Interaction.find_or_create_by(description: "You cleave Nazeem's head in two with your sword.", npc_id: nazeem.id, bounty: 1000)
 talk_nazeem = Interaction.find_or_create_by(description: "Do you get to the Cloud District very often? Oh, what am I saying - of course you don't.", npc_id: nazeem.id)
+
 
 ### Falkreath Interactions ###
 kill_sinding = Interaction.find_or_create_by(description: "You eviscerate Sinding's neck with one swipe of your sword.", npc_id: sinding.id, bounty: 0, goodwill: 100)
