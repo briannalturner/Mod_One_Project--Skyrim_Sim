@@ -72,7 +72,7 @@ riften_jarl = Npc.find_or_create_by(name: "Jarl Laila Law-Giver", town_id: rifte
 nazeem = Npc.find_or_create_by(name: "Nazeem", description: "Nazeem is haughtily surveying the town center.", town_id: whiterun.id)
 whiterun_guard = Npc.find_or_create_by(name: "Whiterun Guard", description: "Whiterun Guard is looking through the window of Belethor's shop.", town_id: whiterun.id)
 heimskr = Npc.find_or_create_by(name: "Heimskr", description: "You have come! You have come to hear the word of Talos!, The truth, child of Talos, is that the Dragon's children have come! To purge the world in fire and righteousness!, There are those who would silence the Dragon's truth! But not I! Not Heimskr! His word will be known!, He has returned... Oh, how Talos has returned. Helgen has been purged in his light. Will Whiterun be next?, and The Imperials silence us because they fear us! They are cowards! Cowards and fools who have forgotten the truth! ... May Talos guide you...", town_id: whiterun.id)
-whiterun_jarl = Npc.find_or_create_by(name: "Jarl Balgruuf the Greater", description: "Jarl Balgruuf the Greater is disussing dragons with his court wizard.")
+whiterun_jarl = Npc.find_or_create_by(name: "Jarl Balgruuf the Greater", description: "Jarl Balgruuf the Greater is disussing dragons with his court wizard.", town_id: whiterun.id)
 
 ### WINTERHOLD NPCS ###
 winterhold_guard = Npc.find_or_create_by(name: "Winterhold Guard", description: "Winterhold Guard is clutching his robes for warmth.", town_id: winterhold.id)
@@ -141,12 +141,12 @@ kill_guard = Interaction.find_or_create_by(description: "You eviscerate the Guar
 kill_guard = Interaction.find_or_create_by(description: "You eviscerate the Guard's neck with one swipe of your sword.", npc_id: solitude_guard.id, bounty: 1000)
 kill_guard = Interaction.find_or_create_by(description: "You eviscerate the Guard's neck with one swipe of your sword.", npc_id: riften_guard.id, bounty: 1000)
 kill_guard = Interaction.find_or_create_by(description: "You eviscerate the Guard's neck with one swipe of your sword.", npc_id: winterhold_guard.id, bounty: 1000)
-talk_guard = Interaction.find_or_create_by(description: " used to be an adventurer like you, then I took an arrow in the knee.", npc_id: markarth_guard.id, bounty: 1000)
-talk_guard = Interaction.find_or_create_by(description: " used to be an adventurer like you, then I took an arrow in the knee.", npc_id: dawnstar_guard.id, bounty: 1000)
-talk_guard = Interaction.find_or_create_by(description: " used to be an adventurer like you, then I took an arrow in the knee.", npc_id: morthal_guard.id, bounty: 1000)
-talk_guard = Interaction.find_or_create_by(description: " used to be an adventurer like you, then I took an arrow in the knee.", npc_id: solitude_guard.id, bounty: 1000)
-talk_guard = Interaction.find_or_create_by(description: " used to be an adventurer like you, then I took an arrow in the knee.", npc_id: riften_guard.id, bounty: 1000)
-talk_guard = Interaction.find_or_create_by(description: " used to be an adventurer like you, then I took an arrow in the knee.", npc_id: winterhold_guard.id, bounty: 1000)
+talk_guard = Interaction.find_or_create_by(description: "I used to be an adventurer like you, then I took an arrow in the knee.", npc_id: markarth_guard.id, bounty: 1000)
+talk_guard = Interaction.find_or_create_by(description: "I used to be an adventurer like you, then I took an arrow in the knee.", npc_id: dawnstar_guard.id, bounty: 1000)
+talk_guard = Interaction.find_or_create_by(description: "I used to be an adventurer like you, then I took an arrow in the knee.", npc_id: morthal_guard.id, bounty: 1000)
+talk_guard = Interaction.find_or_create_by(description: "I used to be an adventurer like you, then I took an arrow in the knee.", npc_id: solitude_guard.id, bounty: 1000)
+talk_guard = Interaction.find_or_create_by(description: "I used to be an adventurer like you, then I took an arrow in the knee.", npc_id: riften_guard.id, bounty: 1000)
+talk_guard = Interaction.find_or_create_by(description: "I used to be an adventurer like you, then I took an arrow in the knee.", npc_id: winterhold_guard.id, bounty: 1000)
 
 
 
