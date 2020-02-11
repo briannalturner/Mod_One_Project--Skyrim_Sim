@@ -3,6 +3,8 @@ require_relative '../config/environment'
 $current_player = nil
 $current_location = nil
 
+#after creating character... find way to login with that character. 
+
 def run
     binding.pry
     welcome
@@ -78,11 +80,12 @@ def create_character
     print "enter number: "
     race = races[(gets.chomp.to_i - 1)]
     binding.pry
-    new_player = Player.find_or_create_by(:name => name, :gender => gender, :race => race, :money => 0, :location => riften.id)
+    new_player = Player.find_or_create_by(:name => name, :gender => gender, :race => race, :money => 0, :location => Town.all.first.id)
     p new_player
     $current_player = Player.find_by(:name => name)
     puts "You awake in Riften"
     #binding.pry
+
 
     rel1 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: riften.id, thanehood: false, bounty: 0, goodwill: 0, home: false)
     rel2 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: windhelm.id, thanehood: false, bounty: 0, goodwill: 0, home: false)
