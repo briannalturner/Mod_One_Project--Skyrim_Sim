@@ -5,6 +5,7 @@ Npc.destroy_all
 Quest.destroy_all
 Relationship.destroy_all
 
+### TOWNS ###
 riften = Town.find_or_create_by(name: "Riften", jarl: "Jarl Laila Law-Giver")
 windhelm = Town.find_or_create_by(name: "Windhelm", jarl: "Jarl Ulfric Stormcloak")
 winterhold = Town.find_or_create_by(name: "Winterhold", jarl: "Jarl Korir")
@@ -14,6 +15,23 @@ markarth = Town.find_or_create_by(name: "Markarth", jarl: "Jarl Igmund")
 dawnstar = Town.find_or_create_by(name: "Dawnstar", jarl: "Jarl Skald the Elder")
 morthal = Town.find_or_create_by(name: "Morthal", jarl: "Jarl Idgrod Ravencrone")
 solitude = Town.find_or_create_by(name: "Solitude", jarl: "Jarl Elisif the Fair")
+
+
+### PLAYERS ###
+bri = Player.find_or_create_by(name: "Bri", gender: "female", race: "Khajiit", money: 0)
+alan = Player.find_or_create_by(name: "Alan", gender: "male", race: "Argonian", money: 0)
+carl = Player.find_or_create_by(name: "Carl", gender: "male", race: "Breton", money: 0)
+lauren = Player.find_or_create_by(name: "Lauren", gender: "female", race: "Redguard", money: 0)
+sonata = Player.find_or_create_by(name: "Sonata", gender: "female", race: "Breton", money: 0)
+ryan = Player.find_or_create_by(name: "Ryan", gender: "male", race: "Redguard", money: 0)
+will = Player.find_or_create_by(name: "Will", gender: "male", race: "Wood Elf", money: 0)
+paul = Player.find_or_create_by(name: "Paul", gender: "male", race: "High Elf", money: 0)
+yo = Player.find_or_create_by(name: "Yo", gender: "male", race: "Dark Elf", money: 0)
+wesley = Player.find_or_create_by(name: "Wesley", gender: "male", race: "Khajiit", money: 0)
+matteo = Player.find_or_create_by(name: "Matteo", gender: "male", race: "Argonian", money: 0)
+valentin = Player.find_or_create_by(name: "Valentin", gender: "male", race: "Nord", money: 0)
+jason = Player.find_or_create_by(name: "Jason", gender: "male", race: "Wood Elf", money: 0)
+
 
 ### MARKARTH NPCS ###
 vorstag = Npc.find_or_create_by(name: "Vorstag", town_id: markarth.id, description: "Vorstag is sitting by the fire in the Silver-Blood Inn.")
@@ -38,12 +56,6 @@ dervenin = Npc.find_or_create_by(name: "Dervenin", town_id: solitude.id, descrip
 svari = Npc.find_or_create_by(name: "Svari", town_id: solitude.id, description: "Svari is playing tag with the other children in the town square.")
 solitude_jarl = Npc.find_or_create_by(name: "Jarl Elisif the Fair", town_id: solitude.id, description: "Jarl Elisif the Fair is sitting uncertainly on the throne.")
 solitude_guard = Npc.find_or_create_by(name: "Solitude Guard", town_id: solitude.id, description: "Solitude Guard is patrolling the market.")
-
-
-
-
-
-
 
 
 ### RIFTEN NPCS ###
