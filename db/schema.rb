@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_11_163756) do
+ActiveRecord::Schema.define(version: 2020_02_11_191657) do
 
   create_table "interactions", force: :cascade do |t|
     t.text "description"
     t.integer "goodwill"
     t.integer "bounty"
     t.integer "npc_id"
+    t.integer "town_id"
   end
 
   create_table "npcs", force: :cascade do |t|

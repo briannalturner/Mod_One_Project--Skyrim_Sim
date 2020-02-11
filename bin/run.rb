@@ -4,8 +4,8 @@ $current_location = nil
 
 def run
     welcome
-    selection_menu
-    options
+    selection_menu #choose to create a character or login to pre-existing character
+    player_options #a list of options the selected player from 'selection_menu' can accomplish
 end
 
 def login()
@@ -21,7 +21,6 @@ def login()
 end
 
 
-#we don't have to implement this... this is from Ann's code
 def selection_menu
     selection = main_menu #input from main menu
     #binding.pry
@@ -91,11 +90,31 @@ def login()
     end
 end
 
-def options
+def player_options
     $current_location = Town.find($current_player.location)
     p "Logged in as: #{$current_player.name}"
     p "You are currently in #{$current_location.name}"
-    p 'Options'
+
+    #For interactions should we make it so that we show all interactions possible in that location
+    #since interactions class does not specify town location... we have to use npc.id and then get the npc.town_id 
+    puts "\nWhat do you want to do\n
+    1. Interact with citizens    2. Travel to another city    3. Return to Main Menu\n\n"
+    print "enter number: "
+    input = gets.chomp
+    if input == '1'
+        interact_with_citizens
+    elsif input == '2'
+        travel_menu
+    elsif input == '3'
+        main_menu
+    else
+        p 'Invalid input. Please try again.'
+        player_options
+    end
+end
+
+def interact_with_citizens
+    p 'You see the following citizens:'
 end
 
 
