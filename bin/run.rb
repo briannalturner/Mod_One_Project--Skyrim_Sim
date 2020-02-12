@@ -104,8 +104,6 @@ def create_character
     puts '      ▒█▄▀▄█ ▀▀▀ ▀▀▀ ▀▀▀ ▀▀▀▀ ▀░░░▀ ▀▀▀ 　 ░░▀░░ ▀▀▀▀ 　 ▒█▄▄▄█ ▀░▀ ▄▄▄█ ▀░▀▀ ▀▀▀ ▀░░░▀'.colorize(:light_blue)
     puts "\n"
     
-    system("say 'welcome to skyrim, #{name}'")
-
 end
 
 def login()
@@ -137,7 +135,6 @@ def login()
     current_id = $current_player.id
     $current_player.add_relationships(current_id)
     name = $current_player.name
-    system("say 'welcome to skyrim, #{name}'")
 end
 
 
@@ -186,87 +183,166 @@ def travel_menu
 
     #updating the current_player location... So that the next time we reach player_options menu... the location is correct.
     $current_player.location = $current_location.id
-    system("say 'Welcome to #{$current_location.name}'")
     player_options
 end
 
 def interact_with_citizens
+    # all interactions for city
     x = Interaction.all.select { |inst|
         inst.town_id == $current_player.location
     }
-    # gives npc instances
-    names = $current_location.get_npcs_for_city.map { |npc|
-        npc.name
+    # gives npc ids
+    ids = x.map{ |interaction|
+        interaction.npc_id
+    }
+    # gives npc names
+    names = [] 
+    npc_descriptions = []
+    ids.each{ |x|
+        names << Npc.all.find_by(id: x).name
+        npc_descriptions << Npc.all.find_by(id: x).description
     }
     relationship = Relationship.find_by(:player_id => $current_player.id, :town_id => $current_location.id)
-
+    puts "\n"
+    puts "*******************************"
+    puts "       INTERACTION MENU".colorize(:light_blue)
+    puts "*******************************"
     puts "\nYou see the following citizens:\n
-    1. #{names[0]}   2. #{names[1]}\n
-    3. #{names[2]}   4. #{names[3]}\n
+    1. #{names[0]}   2. #{names[2]}\n
+    3. #{names[4]}   4. #{names[6]}\n
     5. Exit\n\n"
-    print "Enter Number:".colorize(:light_blue)
+    print "Enter Number: ".colorize(:light_blue)
     input = gets.chomp
 
     if input == '1'
-        puts"1. Kill #{names[0]}"
-        puts"2. Talk to #{names[0]}"
+        puts "\n***************************\n"
+        puts "#{names[0].upcase}".colorize(:yellow)
+        puts "\n"
+        puts "#{npc_descriptions[0]}"
+        puts "\n"
+        puts"1. #{x[0].action_name}     2. #{x[1].action_name}\n"
+        print "Enter Number: ".colorize(:light_blue)
+        print "Enter Number: ".colorize(:light_blue)
         input2 = gets.chomp
+
         if input2 == '1'
-            puts x[0].description
-            relationship.bounty += x[0].bounty
-            puts"Your bounty is #{relationship.bounty}".colorize(:red)
+            puts "\n"
+            puts x[0].description.colorize(:yellow)
+            sleep(1.5)
+            if x[0].bounty
+                relationship.bounty += x[0].bounty
+                relationship.save
+                puts"Your bounty is #{relationship.bounty}".colorize(:red)
+            end
             interact_with_citizens
         elsif input2 == '2'
-            puts x[1].description
+            puts "\n"
+            puts x[1].description.colorize(:yellow)
+            sleep(1.5)
+            if x[1].bounty
+                relationship.bounty += x[1].bounty
+                relationship.save
+                puts"Your bounty is #{relationship.bounty}".colorize(:red)
+            end
             interact_with_citizens
         else
             puts'Invalid input. Please try again'
             interact_with_citizens
         end
     elsif input == '2'
-        puts"1. Kill #{names[1]}"
-        puts"2. Talk to #{names[1]}"
+        puts "\n***************************\n"
+        puts "#{names[2].upcase}".colorize(:yellow)
+        puts "\n"
+        puts "#{npc_descriptions[2]}"
+        puts "\n"
+        puts"1. #{x[2].action_name}     2. #{x[3].action_name}"
+        print "Enter Number: ".colorize(:light_blue)
         input2 = gets.chomp
         if input2 == '1'
-            puts x[2].description
-            relationship.bounty += x[0].bounty
-            puts "Your bounty is #{relationship.bounty}"
+            puts "\n"
+            puts x[2].description.colorize(:yellow)
+            sleep(1.5)
+            if x[2].bounty
+                relationship.bounty += x[2].bounty
+                relationship.save
+                puts"Your bounty is #{relationship.bounty}".colorize(:red)
+            end
             interact_with_citizens
         elsif input2 == '2'
-            puts x[3].description
-            puts "\n\n"
+            puts "\n"
+            puts x[3].description.colorize(:yellow)
+            sleep(1.5)
+            if x[3].bounty
+                relationship.bounty += x[3].bounty
+                relationship.save
+                puts"Your bounty is #{relationship.bounty}".colorize(:red)
+            end
             interact_with_citizens
         else
             puts'Invalid input. Please try again'
             interact_with_citizens
         end
     elsif input == '3'
-        puts"1. Kill #{names[2]}"
-        puts"2. Talk to #{names[2]}"
+        puts "\n***************************\n"
+        puts "#{names[4].upcase}".colorize(:yellow)
+        puts "\n"
+        puts "#{npc_descriptions[4]}"
+        puts "\n"
+        puts"1. #{x[4].action_name}     2. #{x[5].action_name}"
+        print "Enter Number: ".colorize(:light_blue)
         input2 = gets.chomp
         if input2 == '1'
-            puts x[4].description
-            relationship.bounty += x[0].bounty
-            puts"Your bounty is #{relationship.bounty}"
+            puts "\n"
+            puts x[4].description.colorize(:yellow)
+            sleep(1.5)
+            if x[4].bounty
+                relationship.bounty += x[4].bounty
+                relationship.save
+                puts"Your bounty is #{relationship.bounty}".colorize(:red)
+            end
             interact_with_citizens
         elsif input2 == '2'
-            puts x[5].description
+            puts "\n"
+            puts x[5].description.colorize(:yellow)
+            sleep(1.5)
+            if x[5].bounty
+                relationship.bounty += x[5].bounty
+                relationship.save
+                puts"Your bounty is #{relationship.bounty}".colorize(:red)
+            end
             interact_with_citizens
         else
             puts'Invalid input. Please try again'
             interact_with_citizens
         end
     elsif input == '4'
-        puts"1. Kill #{names[3]}"
-        puts"2. Talk to #{names[3]}"
+        puts "\n***************************\n"
+        puts "#{names[6].upcase}".colorize(:yellow)
+        puts "\n"
+        puts "#{npc_descriptions[6]}"
+        puts "\n"
+        puts"1. #{x[6].action_name}     2. #{x[7].action_name}"
+        print "Enter Number: ".colorize(:light_blue)
         input2 = gets.chomp
         if input2 == '1'
-            puts x[6].description
-            relationship.bounty += x[0].bounty
-            puts"Your bounty is #{relationship.bounty}"
+            puts "\n"
+            puts x[6].description.colorize(:yellow)
+            sleep(1.5)
+            if x[6].bounty
+                relationship.bounty += x[6].bounty
+                relationship.save
+                puts"Your bounty is #{relationship.bounty}".colorize(:red)
+            end
             interact_with_citizens
         elsif input2 == '2'
-            puts x[7].description
+            puts "\n"
+            puts x[7].description.colorize(:yellow)
+            sleep(1.5)
+            if x[7].bounty
+                relationship.bounty += x[7].bounty
+                relationship.save
+                puts"Your bounty is #{relationship.bounty}".colorize(:red)
+            end
             interact_with_citizens
         else
             puts'Invalid input. Please try again'
