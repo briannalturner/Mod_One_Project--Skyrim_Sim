@@ -166,10 +166,11 @@ end
 
 def travel_menu
     towns = [Town.all[0], Town.all[1], Town.all[2] ,Town.all[3], Town.all[4], Town.all[5] ,Town.all[6], Town.all[7], Town.all[8]]
-    puts "\nWhich city do you want to travel to?\n
-      1. #{towns[0].name}     2. #{towns[1].name}     3. #{towns[2].name}\n
-      4. #{towns[3].name}     5. #{towns[4].name}     6. #{towns[5].name}\n
-      7. #{towns[6].name}     8. #{towns[7].name}     9. #{towns[8].name}\n\n"
+    puts "------------------------------------\n"
+    puts "Which city do you want to travel to?\n".colorize(:yellow)
+      puts "1.".colorize(:blue)+" #{towns[0].name}"+"       2.".colorize(:blue)+" #{towns[1].name}"+"     3.".colorize(:blue)+ " #{towns[2].name}\n"
+      puts "4.".colorize(:blue)+" #{towns[3].name}"+"     5.".colorize(:blue)+" #{towns[4].name}"+"    6.".colorize(:blue)+ " #{towns[5].name}\n"
+      puts "7.".colorize(:blue)+" #{towns[6].name}"+"     8.".colorize(:blue)+" #{towns[7].name}"+"      9.".colorize(:blue)+ " #{towns[8].name}\n\n"
     print "Enter Number:  ".colorize(:light_blue)
     input = gets.chomp.to_i
     $current_location = towns[input - 1]
