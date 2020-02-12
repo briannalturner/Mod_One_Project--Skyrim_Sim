@@ -320,15 +320,15 @@ def quest_method
         #binding.pry
         if completion_chance > 60
             puts ". . .\n. . .\n"
-            puts'You successfully completed the Quest.'
+            puts'You successfully completed the Quest.'.colorize(:green)
             $current_player.money += q.reward
             relationship.goodwill += q.goodwill
-            puts"You now have #{$current_player.money} septims and you gained #{relationship.goodwill} goodwill."
+            puts"You now have #{$current_player.money} septims and you gained #{relationship.goodwill} goodwill.".colorize(:green)
             player_options
         else
             puts ". . .\n. . .\n"
-            puts "Along the way you realize the challenge ahead of you and you say  '!@#$ it.' '"
-            puts "With that you decide to head back to town"
+            puts "Along the way you realize the challenge ahead of you and you say  '!@#$ it.' '".colorize(:yellow)
+            puts "With that you decide to head back to town".colorize(:yellow)
             player_options
         end
     elsif input == '2'

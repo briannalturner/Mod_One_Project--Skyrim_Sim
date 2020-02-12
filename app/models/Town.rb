@@ -9,7 +9,6 @@ class Town < ActiveRecord::Base
     #Npc instance has id:, description:, town_id:, name:
     #We need self.id == Npc.town_id
 
-
     #returns NPC instances in town that is calling this.
     def get_npcs_for_city
         Npc.all.select {|npc| self.id == npc.town_id} 
@@ -19,5 +18,7 @@ class Town < ActiveRecord::Base
     def get_interactions_for_city
         self.get_npcs_for_city.select {|npc| binding.pry}
     end
+
+    
 
 end
