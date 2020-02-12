@@ -11,24 +11,9 @@ $current_location = nil
 
 def run
     welcome
-    selection_menu #choose to create a character or login to pre-existing character
+    main_menu_selection #choose to create a character or login to pre-existing character
     player_options #a list of options the selected player from 'selection_menu' can accomplish
 
-end
-
-
-def selection_menu
-    selection = main_menu #input from main menu
-    #binding.pry
-    if selection == '1'
-        login
-    elsif selection == '2'
-        create_character
-    elsif selection == '3'
-        exit
-    else
-      selection_menu
-    end
 end
 
 
@@ -43,7 +28,7 @@ def welcome
     puts "\n\n\t\t\t\        Welcome to Skyrim\n\n".colorize(:blue)
 end
 
-def main_menu
+def main_menu_selection
     # puts "Main Menu"
     puts "Please select one of the following options:"
     puts "\n"
@@ -52,11 +37,16 @@ def main_menu
     puts "3. Exit program"
     #maybe add a future puts statement for showing the current accounts?
     print "\nEnter Number: ".colorize(:light_blue)
-    x = gets.chomp
-    return x
-    
-    #create character/login
-    #name of who you are logged in as and where you are...
+    selection = gets.chomp
+    if selection == '1'
+        login
+    elsif selection == '2'
+        create_character
+    elsif selection == '3'
+        exit
+    else
+      selection_menu
+    end
 end
 
 def create_character
@@ -116,7 +106,8 @@ def login()
 
     print "\nEnter your name: ".colorize(:light_blue)
     name = gets.chomp
-    if Player.find_by(:name => name) == false 
+    
+    if Player.find_by(:name => name) == nil 
         puts"This player doesn't exist"
         login()
     else
@@ -137,16 +128,15 @@ def login()
     name = $current_player.name
 end
 
-
 def player_options
     $current_location = Town.find($current_player.location)
     relationship = Relationship.find_by(:player_id => $current_player.id, :town_id => $current_location.id)
-    puts "**********\n\n"
+    puts "\t\t\t      **************************\n\n"
     puts"Logged in as: ".colorize(:yellow) + "#{$current_player.name}".colorize(:blue)
 
     puts"\nYou are currently in: ".colorize(:yellow) + "#{$current_location.name}.".colorize(:blue)
     puts "   Money: ".colorize(:yellow) + "#{$current_player.money}"
-    #binding.pry
+    
     puts "   Reputation points: ".colorize(:yellow) + "#{relationship.goodwill}"
     puts "   Bounty: ".colorize(:yellow) + "#{relationship.bounty}"
 
@@ -164,7 +154,7 @@ def player_options
         quest_method
     elsif input == '4'
         puts "\n"
-        main_menu
+        run
     else
         puts'Invalid input. Please try again.'
         player_options
@@ -173,16 +163,19 @@ end
 
 def travel_menu
     towns = [Town.all[0], Town.all[1], Town.all[2] ,Town.all[3], Town.all[4], Town.all[5] ,Town.all[6], Town.all[7], Town.all[8]]
-    puts "\nWhich city do you want to travel to?\n
-      1. #{towns[0].name}     2. #{towns[1].name}     3. #{towns[2].name}\n
-      4. #{towns[3].name}     5. #{towns[4].name}     6. #{towns[5].name}\n
-      7. #{towns[6].name}     8. #{towns[7].name}     9. #{towns[8].name}\n\n"
+    puts "------------------------------------\n"
+    puts "Which city do you want to travel to?\n".colorize(:yellow)
+      puts "1.".colorize(:blue)+" #{towns[0].name}"+"       2.".colorize(:blue)+" #{towns[1].name}"+"     3.".colorize(:blue)+ " #{towns[2].name}\n"
+      puts "4.".colorize(:blue)+" #{towns[3].name}"+"     5.".colorize(:blue)+" #{towns[4].name}"+"    6.".colorize(:blue)+ " #{towns[5].name}\n"
+      puts "7.".colorize(:blue)+" #{towns[6].name}"+"     8.".colorize(:blue)+" #{towns[7].name}"+"      9.".colorize(:blue)+ " #{towns[8].name}\n\n"
     print "Enter Number:  ".colorize(:light_blue)
     input = gets.chomp.to_i
     $current_location = towns[input - 1]
 
     #updating the current_player location... So that the next time we reach player_options menu... the location is correct.
     $current_player.location = $current_location.id
+    system("say 'Welcome to #{$current_location.name}'")
+    get_logo(input) #this will print ASCII text of town name
     player_options
 end
 
@@ -361,7 +354,7 @@ end
 def quest_method
     relationship = Relationship.find_by(:player_id => $current_player.id, :town_id => $current_location.id)
     q = Quest.all.sample
-    # binding.pry
+    # 
     relationship.town_id = $current_location.id
     puts "\n"
     puts q.description
@@ -373,7 +366,7 @@ def quest_method
     if input == '1'
         puts "You depart for your adventure to the #{q.description.split(" ")[-1]}\n" #This returns name of place we are going to
         completion_chance = 80 #rand(0..100)
-        #binding.pry
+        #
         if completion_chance > 60
             puts ". . .\n. . .\n"
             puts'You successfully completed the Quest.'.colorize(:green)
@@ -418,13 +411,76 @@ def find_city_id_by_name(string)
     x.id
 end
 
-# def riften
-#     puts '▒█░░▒█ █▀▀ █░░ █▀▀ █▀▀█ █▀▄▀█ █▀▀ 　 ▀▀█▀▀ █▀▀█ 　 ▒█▀▀█ ░▀░ █▀▀ ▀▀█▀▀ █▀▀ █▀▀▄ '
-#     puts '▒█▒█▒█ █▀▀ █░░ █░░ █░░█ █░▀░█ █▀▀ 　 ░░█░░ █░░█ 　 ▒█▄▄▀ ▀█▀ █▀▀ ░░█░░ █▀▀ █░░█ '
-#     puts '▒█▄▀▄█ ▀▀▀ ▀▀▀ ▀▀▀ ▀▀▀▀ ▀░░░▀ ▀▀▀ 　 ░░▀░░ ▀▀▀▀ 　 ▒█░▒█ ▀▀▀ ▀░░ ░░▀░░ ▀▀▀ ▀░░▀ '
-# end
+def get_logo(input_from_travel_city_method)
+    if input_from_travel_city_method == 1
+        3.times { puts ""}
+        puts '   ▒█░░▒█ █▀▀ █░░ █▀▀ █▀▀█ █▀▄▀█ █▀▀ 　 ▀▀█▀▀ █▀▀█ 　 ▒█▀▀█ ░▀░ █▀▀ ▀▀█▀▀ █▀▀ █▀▀▄ '
+        puts '   ▒█▒█▒█ █▀▀ █░░ █░░ █░░█ █░▀░█ █▀▀ 　 ░░█░░ █░░█ 　 ▒█▄▄▀ ▀█▀ █▀▀ ░░█░░ █▀▀ █░░█ '
+        puts '   ▒█▄▀▄█ ▀▀▀ ▀▀▀ ▀▀▀ ▀▀▀▀ ▀░░░▀ ▀▀▀ 　 ░░▀░░ ▀▀▀▀ 　 ▒█░▒█ ▀▀▀ ▀░░ ░░▀░░ ▀▀▀ ▀░░▀ '
+        puts ""
+    elsif input_from_travel_city_method == 2
+        3.times { puts ""}
+        puts '   ▒█░░▒█ █▀▀ █░░ █▀▀ █▀▀█ █▀▄▀█ █▀▀ 　 ▀▀█▀▀ █▀▀█ 　 ▒█░░▒█ ░▀░ █▀▀▄ █▀▀▄ █░░█ █▀▀ █░░ █▀▄▀█'
+        puts '   ▒█▒█▒█ █▀▀ █░░ █░░ █░░█ █░▀░█ █▀▀ 　 ░░█░░ █░░█ 　 ▒█▒█▒█ ▀█▀ █░░█ █░░█ █▀▀█ █▀▀ █░░ █░▀░█'
+        puts '   ▒█▄▀▄█ ▀▀▀ ▀▀▀ ▀▀▀ ▀▀▀▀ ▀░░░▀ ▀▀▀ 　 ░░▀░░ ▀▀▀▀ 　 ▒█▄▀▄█ ▀▀▀ ▀░░▀ ▀▀▀░ ▀░░▀ ▀▀▀ ▀▀▀ ▀░░░'
+        puts ""
+    elsif input_from_travel_city_method == 3
+        3.times { puts ""}
+        puts '   ▒█░░▒█ █▀▀ █░░ █▀▀ █▀▀█ █▀▄▀█ █▀▀ 　 ▀▀█▀▀ █▀▀█ 　 ▒█░░▒█ ░▀░ █▀▀▄ ▀▀█▀▀ █▀▀ █▀▀█ █░░█ █▀▀█ █░░ █▀▀▄'
+        puts '   ▒█▒█▒█ █▀▀ █░░ █░░ █░░█ █░▀░█ █▀▀ 　 ░░█░░ █░░█ 　 ▒█▒█▒█ ▀█▀ █░░█ ░░█░░ █▀▀ █▄▄▀ █▀▀█ █░░█ █░░ █░░█'
+        puts '   ▒█▄▀▄█ ▀▀▀ ▀▀▀ ▀▀▀ ▀▀▀▀ ▀░░░▀ ▀▀▀ 　 ░░▀░░ ▀▀▀▀ 　 ▒█▄▀▄█ ▀▀▀ ▀░░▀ ░░▀░░ ▀▀▀ ▀░▀▀ ▀░░▀ ▀▀▀▀ ▀▀▀ ▀▀▀░'
+        puts ""
+    elsif input_from_travel_city_method == 4
+        3.times { puts ""}
+        puts '   ▒█░░▒█ █▀▀ █░░ █▀▀ █▀▀█ █▀▄▀█ █▀▀ 　 ▀▀█▀▀ █▀▀█ 　 ▒█░░▒█ █░░█ ░▀░ ▀▀█▀▀ █▀▀ █▀▀█ █░░█ █▀▀▄'
+        puts '   ▒█▒█▒█ █▀▀ █░░ █░░ █░░█ █░▀░█ █▀▀ 　 ░░█░░ █░░█ 　 ▒█▒█▒█ █▀▀█ ▀█▀ ░░█░░ █▀▀ █▄▄▀ █░░█ █░░█'
+        puts '   ▒█▄▀▄█ ▀▀▀ ▀▀▀ ▀▀▀ ▀▀▀▀ ▀░░░▀ ▀▀▀ 　 ░░▀░░ ▀▀▀▀ 　 ▒█▄▀▄█ ▀░░▀ ▀▀▀ ░░▀░░ ▀▀▀ ▀░▀▀ ░▀▀▀ ▀░░▀'
+        puts ""
+    elsif input_from_travel_city_method == 5
+        3.times { puts ""}
+        puts '   ▒█░░▒█ █▀▀ █░░ █▀▀ █▀▀█ █▀▄▀█ █▀▀ 　 ▀▀█▀▀ █▀▀█ 　 ▒█▀▀▀ █▀▀█ █░░ █░█ █▀▀█ █▀▀ █▀▀█ ▀▀█▀▀ █░░█'
+        puts '   ▒█▒█▒█ █▀▀ █░░ █░░ █░░█ █░▀░█ █▀▀ 　 ░░█░░ █░░█ 　 ▒█▀▀▀ █▄▄█ █░░ █▀▄ █▄▄▀ █▀▀ █▄▄█ ░░█░░ █▀▀█'
+        puts '   ▒█▄▀▄█ ▀▀▀ ▀▀▀ ▀▀▀ ▀▀▀▀ ▀░░░▀ ▀▀▀ 　 ░░▀░░ ▀▀▀▀ 　 ▒█░░░ ▀░░▀ ▀▀▀ ▀░▀ ▀░▀▀ ▀▀▀ ▀░░▀ ░░▀░░ ▀░░▀'
+        puts ""
+    elsif input_from_travel_city_method == 6
+        3.times { puts ""}
+        puts '   ▒█░░▒█ █▀▀ █░░ █▀▀ █▀▀█ █▀▄▀█ █▀▀ 　 ▀▀█▀▀ █▀▀█ 　 ▒█▀▄▀█ █▀▀█ █▀▀█ █░█ █▀▀█ █▀▀█ ▀▀█▀▀ █░░█'
+        puts '   ▒█▒█▒█ █▀▀ █░░ █░░ █░░█ █░▀░█ █▀▀ 　 ░░█░░ █░░█ 　 ▒█▒█▒█ █▄▄█ █▄▄▀ █▀▄ █▄▄█ █▄▄▀ ░░█░░ █▀▀█'
+        puts '   ▒█▄▀▄█ ▀▀▀ ▀▀▀ ▀▀▀ ▀▀▀▀ ▀░░░▀ ▀▀▀ 　 ░░▀░░ ▀▀▀▀ 　 ▒█░░▒█ ▀░░▀ ▀░▀▀ ▀░▀ ▀░░▀ ▀░▀▀ ░░▀░░ ▀░░▀'
+        puts ""
+    elsif input_from_travel_city_method == 7
+        3.times { puts ""}
+        puts '       ██████╗░░█████╗░░██╗░░░░░░░██╗███╗░░██╗░██████╗████████╗░█████╗░██████╗░'
+        puts '       ██╔══██╗██╔══██╗░██║░░██╗░░██║████╗░██║██╔════╝╚══██╔══╝██╔══██╗██╔══██╗'
+        puts '       ██║░░██║███████║░╚██╗████╗██╔╝██╔██╗██║╚█████╗░░░░██║░░░███████║██████╔╝'
+        puts '       ██║░░██║██╔══██║░░████╔═████║░██║╚████║░╚═══██╗░░░██║░░░██╔══██║██╔══██╗'
+        puts '       ██████╔╝██║░░██║░░╚██╔╝░╚██╔╝░██║░╚███║██████╔╝░░░██║░░░██║░░██║██║░░██║'
+        puts '       ╚═════╝░╚═╝░░╚═╝░░░╚═╝░░░╚═╝░░╚═╝░░╚══╝╚═════╝░░░░╚═╝░░░╚═╝░░╚═╝╚═╝░░╚═╝'
+        puts ""
+    elsif input_from_travel_city_method == 8
+        3.times { puts ""}
+        puts '   ▒█░░▒█ █▀▀ █░░ █▀▀ █▀▀█ █▀▄▀█ █▀▀ 　 ▀▀█▀▀ █▀▀█ 　 █▀▄▀█ █▀▀█ █▀▀█ ▀▀█▀▀ █░░█ █▀▀█ █░░'
+        puts '   ▒█▒█▒█ █▀▀ █░░ █░░ █░░█ █░▀░█ █▀▀ 　 ░░█░░ █░░█ 　 █░▀░█ █░░█ █▄▄▀ ░░█░░ █▀▀█ █▄▄█ █░░'
+        puts '   ▒█▄▀▄█ ▀▀▀ ▀▀▀ ▀▀▀ ▀▀▀▀ ▀░░░▀ ▀▀▀ 　 ░░▀░░ ▀▀▀▀ 　 ▀░░░▀ ▀▀▀▀ ▀░▀▀ ░░▀░░ ▀░░▀ ▀░░▀ ▀▀▀'
+        puts ""
+    elsif input_from_travel_city_method == 9
+        3.times { puts ""}
+        puts "\t\t  ╭╮╭╮╭╮╱╱╭╮╱╱╱╱╱╱╱╱╱╱╱╱╱╱ ╭╮╱╱╱╱ ╭━━━╮╱╱╭╮╱╭╮╱╱╱╱╱╭╮"
+        puts "\t\t  ┃┃┃┃┃┃╱╱┃┃╱╱╱╱╱╱╱╱╱╱╱╱╱ ╭╯╰╮╱╱╱ ┃╭━╮┃╱╱┃┃╭╯╰╮╱╱╱╱┃┃"
+        puts "\t\t  ┃┃┃┃┃┣━━┫┃╭━━┳━━┳╮╭┳━━╮ ╰╮╭╋━━╮ ┃╰━━┳━━┫┃┣╮╭╋╮╭┳━╯┣━━╮"
+        puts "\t\t  ┃╰╯╰╯┃┃━┫┃┃╭━┫╭╮┃╰╯┃┃━┫╱ ┃┃┃╭╮┃ ╰━━╮┃╭╮┃┃┣┫┃┃┃┃┃╭╮┃┃━┫"
+        puts "\t\t  ╰╮╭╮╭┫┃━┫╰┫╰━┫╰╯┃┃┃┃┃━┫╱ ┃╰┫╰╯┃ ┃╰━╯┃╰╯┃╰┫┃╰┫╰╯┃╰╯┃┃━┫"
+        puts "\t\t  ╱╰╯╰╯╰━━┻━┻━━┻━━┻┻┻┻━━╯╱ ╰━┻━━╯ ╰━━━┻━━┻━┻┻━┻━━┻━━┻━━╯"
+        puts ""
+    else
+        puts "Invalid input"
+        puts "-------------"
+    end
+
+end
+
 
 run
 
-# binding.pry
+# 
 # 0

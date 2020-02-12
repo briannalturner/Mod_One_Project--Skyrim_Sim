@@ -1,7 +1,7 @@
 class Player < ActiveRecord::Base
     has_many :relationships
     has_many :towns, through: :relationships
-    
+
     def enter_city(user_input_number)
         arr = ["Riften", "Windhelm", "Winterhold", "Whiterun", "Falkreath", "Markarth", "Dawnstar", "Morthal", "Solitude"]
         puts "The super cool logo thing"
@@ -25,5 +25,11 @@ class Player < ActiveRecord::Base
         rel7 = Relationship.find_or_create_by(player_id: person_id, town_id: Town.all[6].id, thanehood: false, bounty: 0, goodwill: 0, home: false)
         rel8 = Relationship.find_or_create_by(player_id: person_id, town_id: Town.all[7].id, thanehood: false, bounty: 0, goodwill: 0, home: false)
         rel9 = Relationship.find_or_create_by(player_id: person_id, town_id: Town.all[8].id, thanehood: false, bounty: 0, goodwill: 0, home: false)
+    end
+
+    #helper method to see an array of all relationships the instance player has
+    def get_relationships
+        binding.pry
+        Relationship.all.select { |instance| instance.player_id == self.id }
     end
 end
