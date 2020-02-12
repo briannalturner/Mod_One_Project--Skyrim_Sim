@@ -3,6 +3,7 @@ require_relative '../config/environment'
 require 'colorize'
 require 'colorized_string'
 
+
 $current_player = nil
 $current_location = nil
 
@@ -97,6 +98,9 @@ def create_character
     rel7 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: Town.all[6].id, thanehood: false, bounty: 0, goodwill: 0, home: false)
     rel8 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: Town.all[7].id, thanehood: false, bounty: 0, goodwill: 0, home: false)
     rel9 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: Town.all[8].id, thanehood: false, bounty: 0, goodwill: 0, home: false)
+
+    name = $current_player.name
+    system("say 'welcome to skyrim, #{name}'")
 end
 
 def login()
@@ -118,6 +122,8 @@ def login()
     end
     current_id = $current_player.id
     $current_player.add_relationships(current_id)
+    name = $current_player.name
+    system("say 'welcome to skyrim, #{name}'")
 end
 
 
@@ -314,7 +320,7 @@ end
 #     puts '▒█▄▀▄█ ▀▀▀ ▀▀▀ ▀▀▀ ▀▀▀▀ ▀░░░▀ ▀▀▀ 　 ░░▀░░ ▀▀▀▀ 　 ▒█░▒█ ▀▀▀ ▀░░ ░░▀░░ ▀▀▀ ▀░░▀ '
 # end
 
-#run
+run
 
-binding.pry
-0
+# binding.pry
+# 0
