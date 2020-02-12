@@ -69,15 +69,15 @@ def create_character
     if Player.find_by(:name => name) == nil #If this player does not exist in the database... do
         new_player = Player.create(:name => name, :gender => gender, :race => race, :money => 0, :location => Town.all[0].id)
         $current_player = Player.find_by(:name => name)
-        rel1 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: Town.all[0].id, thanehood: false, bounty: 0, goodwill: 0, home: false)
-        rel2 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: Town.all[1].id, thanehood: false, bounty: 0, goodwill: 0, home: false)
+        rel1 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: Town.all[0].id, thanehood: false, bounty: 0, goodwill: 0, home: false, home_name: "Honeyside")
+        rel2 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: Town.all[1].id, thanehood: false, bounty: 0, goodwill: 0, home: false, home_name: "Hjerim")
         rel3 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: Town.all[2].id, thanehood: false, bounty: 0, goodwill: 0, home: false)
-        rel4 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: Town.all[3].id, thanehood: false, bounty: 0, goodwill: 0, home: false)
-        rel5 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: Town.all[4].id, thanehood: false, bounty: 0, goodwill: 0, home: false)
-        rel6 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: Town.all[5].id, thanehood: false, bounty: 0, goodwill: 0, home: false)
-        rel7 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: Town.all[6].id, thanehood: false, bounty: 0, goodwill: 0, home: false)
-        rel8 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: Town.all[7].id, thanehood: false, bounty: 0, goodwill: 0, home: false)
-        rel9 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: Town.all[8].id, thanehood: false, bounty: 0, goodwill: 0, home: false)
+        rel4 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: Town.all[3].id, thanehood: false, bounty: 0, goodwill: 0, home: false, home_name: "Breezehome")
+        rel5 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: Town.all[4].id, thanehood: false, bounty: 0, goodwill: 0, home: false, home_name: "Lakeview Manor")
+        rel6 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: Town.all[5].id, thanehood: false, bounty: 0, goodwill: 0, home: false, home_name: "Vlindrel Hall")
+        rel7 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: Town.all[6].id, thanehood: false, bounty: 0, goodwill: 0, home: false, home_name: "Heljarchen Hall")
+        rel8 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: Town.all[7].id, thanehood: false, bounty: 0, goodwill: 0, home: false, home_name: "Winstad Manor")
+        rel9 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: Town.all[8].id, thanehood: false, bounty: 0, goodwill: 0, home: false, home_name: "Proudspire Manor")
         $current_player = Player.find_by(:name => name)
         name = $current_player.name
 
@@ -142,22 +142,54 @@ def player_options
 
     #For interactions should we make it so that we show all interactions possible in that location
     #since interactions class does not specify town location... we have to use npc.id and then get the npc.town_id 
-    puts "\nWhat do you want to do?\n
-    1. Interact with citizens    2. Travel to another city    3. Look for Quests    4. Return to Main Menu\n\n"
-    print "Enter Number: ".colorize(:light_blue)
-    input = gets.chomp
-    if input == '1'
-        interact_with_citizens
-    elsif input == '2'
-        travel_menu
-    elsif input == '3'
-        quest_method
-    elsif input == '4'
-        puts "\n"
-        run
+    if relationship.home == false
+        puts "\n\n----------------------------"
+        puts "What do you want to do?\n".colorize(:yellow)
+    puts "1.".colorize(:blue)+" Interact with citizens"+"       2.".colorize(:blue)+" Travel to another city\n"
+    puts "3.".colorize(:blue)+" Look for Quests"+"     4.".colorize(:blue)+" Buy home"+"    5.".colorize(:blue)+ " Exit to Main Menu\n\n"
+        print "Enter Number: ".colorize(:light_blue)
+        input = gets.chomp
+        if input == '1'
+            interact_with_citizens
+        elsif input == '2'
+            travel_menu
+        elsif input == '3'
+            quest_method
+        elsif input == '4'
+            buy_home
+            player_options
+        elsif input == '5'
+            puts "\n"
+            run
+        else
+            puts'Invalid input. Please try again.'
+            player_options
+        end
     else
-        puts'Invalid input. Please try again.'
-        player_options
+        puts "----------------------------\n"
+        puts "\nWhat do you want to do?\n".colorize(:yellow)
+    puts "1.".colorize(:blue)+" Interact with citizens"+"       2.".colorize(:blue)+" Travel to another city\n"
+    puts "3.".colorize(:blue)+" Look for Quests"+"     4.".colorize(:blue)+" Visit your home"+"    5.".colorize(:blue)+ " Exit to Main Menu\n\n"
+            print "Enter Number: ".colorize(:light_blue)
+            input = gets.chomp
+            if input == '1'
+                interact_with_citizens
+            elsif input == '2'
+                travel_menu
+            elsif input == '3'
+                quest_method
+            elsif input == '4'
+                puts "You enter your home, #{relationship.home_name}...".colorize(:yellow)
+                sleep(1.5)
+                puts "\nAfter a good night's rest you reenter the streets of #{$current_location.name}.".colorize(:yellow)
+                player_options
+            elsif input == '5'
+                puts "\n"
+                run
+            else
+                puts'Invalid input. Please try again.'
+                player_options
+            end
     end
 end
 
@@ -477,6 +509,14 @@ def get_logo(input_from_travel_city_method)
         puts "-------------"
     end
 
+end
+
+def buy_home
+    relationship = Relationship.find_by(:player_id => $current_player.id, :town_id => $current_location.id)
+    relationship.home = true
+    binding.pry
+    relationship.save
+    puts "You now own #{relationship.home_name}"
 end
 
 
