@@ -27,7 +27,6 @@ def login()
     end
 end
 
-
 def selection_menu
     selection = main_menu #input from main menu
     #binding.pry
@@ -41,7 +40,6 @@ def selection_menu
       selection_menu
     end
 end
-
 
 def welcome
     puts "\n\n"
@@ -64,9 +62,6 @@ def main_menu
     #maybe add a future puts statement for showing the current accounts?
     x = gets.chomp
     return x
-    
-    #create character/login
-    #name of who you are logged in as and where you are...
 end
 
 def create_character
@@ -85,7 +80,6 @@ def create_character
     new_player = Player.find_or_create_by(:name => name, :gender => gender, :race => race, :money => 0, :location => Town.all[0].id)
     puts new_player
     $current_player = Player.find_by(:name => name)
-    puts "\nYou awake in Riften\n".colorize(:blue)
     #binding.pry
 
     rel1 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: Town.all[0].id, thanehood: false, bounty: 0, goodwill: 0, home: false)
@@ -119,7 +113,6 @@ def login()
     current_id = $current_player.id
     $current_player.add_relationships(current_id)
 end
-
 
 def player_options
     $current_location = Town.find($current_player.location)
