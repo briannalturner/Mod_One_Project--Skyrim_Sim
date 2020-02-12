@@ -46,18 +46,27 @@ end
 
 def welcome
     puts "\n\n"
-    puts'░██████╗██╗░░██╗██╗░░░██╗██████╗░██╗███╗░░░███╗  ░██████╗██╗███╗░░░███╗'.colorize(:light_blue)
-    puts'██╔════╝██║░██╔╝╚██╗░██╔╝██╔══██╗██║████╗░████║  ██╔════╝██║████╗░████║'.colorize(:light_blue)
-    puts'╚█████╗░█████═╝░░╚████╔╝░██████╔╝██║██╔████╔██║  ╚█████╗░██║██╔████╔██║'.colorize(:light_blue)
-    puts'░╚═══██╗██╔═██╗░░░╚██╔╝░░██╔══██╗██║██║╚██╔╝██║  ░╚═══██╗██║██║╚██╔╝██║'.colorize(:light_blue)
-    puts'██████╔╝██║░╚██╗░░░██║░░░██║░░██║██║██║░╚═╝░██║  ██████╔╝██║██║░╚═╝░██║'.colorize(:light_blue)
-    puts'╚═════╝░╚═╝░░╚═╝░░░╚═╝░░░╚═╝░░╚═╝╚═╝╚═╝░░░░░╚═╝  ╚═════╝░╚═╝╚═╝░░░░░╚═╝'.colorize(:light_blue)
-    puts "\n\n\t\t\t\   Welcome to Skyrim\n\n".colorize(:blue)
+    puts'       ░██████╗██╗░░██╗██╗░░░██╗██████╗░██╗███╗░░░███╗  ░██████╗██╗███╗░░░███╗'
+    # .colorize(:light_blue)
+    puts'       ██╔════╝██║░██╔╝╚██╗░██╔╝██╔══██╗██║████╗░████║  ██╔════╝██║████╗░████║'
+    # .colorize(:light_blue)
+    puts'       ╚█████╗░█████═╝░░╚████╔╝░██████╔╝██║██╔████╔██║  ╚█████╗░██║██╔████╔██║'
+    # .colorize(:light_blue)
+    puts'       ░╚═══██╗██╔═██╗░░░╚██╔╝░░██╔══██╗██║██║╚██╔╝██║  ░╚═══██╗██║██║╚██╔╝██║'
+    # .colorize(:light_blue)
+    puts'       ██████╔╝██║░╚██╗░░░██║░░░██║░░██║██║██║░╚═╝░██║  ██████╔╝██║██║░╚═╝░██║'
+    # .colorize(:light_blue)
+    puts'       ╚═════╝░╚═╝░░╚═╝░░░╚═╝░░░╚═╝░░╚═╝╚═╝╚═╝░░░░░╚═╝  ╚═════╝░╚═╝╚═╝░░░░░╚═╝'
+    # .colorize(:light_blue)
+    puts "\n\n\t\t\t\        Welcome to Skyrim\n\n"
+    # .colorize(:blue)
 end
 
 def main_menu
-    puts "Main Menu".colorize(:light_red)
-    puts "Please select one of the following options:".colorize(:light_red)
+    puts "Main Menu"
+    # .colorize(:light_red)
+    puts "Please select one of the following options:"
+    # .colorize(:light_red)
     puts "\n"
     puts "1. Login"
     puts "2. Create a new character"
@@ -72,21 +81,32 @@ end
 
 def create_character
     races = ['High Elf', 'Argonian', 'Wood Elf', 'Breton', 'Dark Elf', 'Imperial', 'Khajiit', 'Nord', 'Orc', 'Redguard']
-    puts "  ---CHARACTER CREATION---".colorize(:blue)
-    print "\n1) Input a name for your character:  ".colorize(:light_red)
+    puts "\n\n"
+    puts '      ▒█▀▀█ █░░█ █▀▀█ █▀▀█ █▀▀█ █▀▀ ▀▀█▀▀ █▀▀ █▀▀█ 　 ▒█▀▀█ █▀▀█ █▀▀ █▀▀█ ▀▀█▀▀ ░▀░ █▀▀█ █▀▀▄ '
+    puts '      ▒█░░░ █▀▀█ █▄▄█ █▄▄▀ █▄▄█ █░░ ░░█░░ █▀▀ █▄▄▀ 　 ▒█░░░ █▄▄▀ █▀▀ █▄▄█ ░░█░░ ▀█▀ █░░█ █░░█ '
+    puts "      ▒█▄▄█ ▀░░▀ ▀░░▀ ▀░▀▀ ▀░░▀ ▀▀▀ ░░▀░░ ▀▀▀ ▀░▀▀ 　 ▒█▄▄█ ▀░▀▀ ▀▀▀ ▀░░▀ ░░▀░░ ▀▀▀ ▀▀▀▀ ▀░░▀ \n\n"
+    puts '      ***************************************************************************************'
+
+    # .colorize(:blue)
+    print "\n1) Input a name for your character:  "
+    # .colorize(:light_red)
     name = gets.chomp
-    print "\n2) Input the gender for your character:  ".colorize(:light_red)
+    print "\n2) Input the gender for your character:  "
+    # .colorize(:light_red)
     gender = gets.chomp.capitalize
     puts "\n3) Select your race:\n
     1. High Elf    2. Argonian    3. Wood Elf    4. Breton    5. Dark Elf\n
-    6. Imperial    7. Khajiit     8. Nord        9. Orc       10. Redguard\n\n".colorize(:light_red)
-    print "enter number: ".colorize(:light_red)
+    6. Imperial    7. Khajiit     8. Nord        9. Orc       10. Redguard\n\n"
+    # .colorize(:light_red)
+    print "Enter Number: "
+    # .colorize(:light_red)
     race = races[(gets.chomp.to_i - 1)]
     # binding.pry
     new_player = Player.find_or_create_by(:name => name, :gender => gender, :race => race, :money => 0, :location => Town.all[0].id)
-    puts new_player
+    # puts new_player
     $current_player = Player.find_by(:name => name)
-    puts "\nYou awake in Riften\n".colorize(:blue)
+    # puts "\nYou awake in Riften\n"
+    # .colorize(:blue)
     #binding.pry
 
     rel1 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: Town.all[0].id, thanehood: false, bounty: 0, goodwill: 0, home: false)
@@ -100,7 +120,19 @@ def create_character
     rel9 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: Town.all[8].id, thanehood: false, bounty: 0, goodwill: 0, home: false)
 
     name = $current_player.name
+    puts "\n"
+    puts "      ********************************************************************************\n\n"
+    # .colorize(:light_red)
+    puts '      ▒█░░▒█ █▀▀ █░░ █▀▀ █▀▀█ █▀▄▀█ █▀▀ 　 ▀▀█▀▀ █▀▀█ 　 ▒█▀▀▀█ █░█ █░░█ █▀▀█ ░▀░ █▀▄▀█'
+    # .colorize(:light_blue)
+    puts '      ▒█▒█▒█ █▀▀ █░░ █░░ █░░█ █░▀░█ █▀▀ 　 ░░█░░ █░░█ 　 ░▀▀▀▄▄ █▀▄ █▄▄█ █▄▄▀ ▀█▀ █░▀░█'
+    # .colorize(:light_blue)
+    puts '      ▒█▄▀▄█ ▀▀▀ ▀▀▀ ▀▀▀ ▀▀▀▀ ▀░░░▀ ▀▀▀ 　 ░░▀░░ ▀▀▀▀ 　 ▒█▄▄▄█ ▀░▀ ▄▄▄█ ▀░▀▀ ▀▀▀ ▀░░░▀'
+    # .colorize(:light_blue)
+    puts "\n"
+    
     system("say 'welcome to skyrim, #{name}'")
+
 end
 
 def login()
@@ -114,10 +146,14 @@ def login()
     else
         $current_player = Player.find_by(:name => name)
         puts "\n"
-        puts "********************************************************************************\n\n".colorize(:light_red)
-        puts '▒█░░▒█ █▀▀ █░░ █▀▀ █▀▀█ █▀▄▀█ █▀▀ 　 ▀▀█▀▀ █▀▀█ 　 ▒█▀▀▀█ █░█ █░░█ █▀▀█ ░▀░ █▀▄▀█'.colorize(:light_blue)
-        puts '▒█▒█▒█ █▀▀ █░░ █░░ █░░█ █░▀░█ █▀▀ 　 ░░█░░ █░░█ 　 ░▀▀▀▄▄ █▀▄ █▄▄█ █▄▄▀ ▀█▀ █░▀░█'.colorize(:light_blue)
-        puts '▒█▄▀▄█ ▀▀▀ ▀▀▀ ▀▀▀ ▀▀▀▀ ▀░░░▀ ▀▀▀ 　 ░░▀░░ ▀▀▀▀ 　 ▒█▄▄▄█ ▀░▀ ▄▄▄█ ▀░▀▀ ▀▀▀ ▀░░░▀'.colorize(:light_blue)
+        puts "      ********************************************************************************\n\n"
+        # .colorize(:light_red)
+        puts '      ▒█░░▒█ █▀▀ █░░ █▀▀ █▀▀█ █▀▄▀█ █▀▀ 　 ▀▀█▀▀ █▀▀█ 　 ▒█▀▀▀█ █░█ █░░█ █▀▀█ ░▀░ █▀▄▀█'
+        # .colorize(:light_blue)
+        puts '      ▒█▒█▒█ █▀▀ █░░ █░░ █░░█ █░▀░█ █▀▀ 　 ░░█░░ █░░█ 　 ░▀▀▀▄▄ █▀▄ █▄▄█ █▄▄▀ ▀█▀ █░▀░█'
+        # .colorize(:light_blue)
+        puts '      ▒█▄▀▄█ ▀▀▀ ▀▀▀ ▀▀▀ ▀▀▀▀ ▀░░░▀ ▀▀▀ 　 ░░▀░░ ▀▀▀▀ 　 ▒█▄▄▄█ ▀░▀ ▄▄▄█ ▀░▀▀ ▀▀▀ ▀░░░▀'
+        # .colorize(:light_blue)
         puts "\n"
     end
     current_id = $current_player.id
@@ -129,14 +165,18 @@ end
 
 def player_options
     $current_location = Town.find($current_player.location)
-    puts"Logged in as: #{$current_player.name}".colorize(:blue)
-    puts"You are currently in #{$current_location.name}.".colorize(:blue)
+    puts"Logged in as: #{$current_player.name}"
+    # .colorize(:blue)
+    puts"You are currently in #{$current_location.name}."
+    # .colorize(:blue)
 
     #For interactions should we make it so that we show all interactions possible in that location
     #since interactions class does not specify town location... we have to use npc.id and then get the npc.town_id 
     puts "\nWhat do you want to do?\n
-    1. Interact with citizens    2. Travel to another city    3. Look for Quests    4. Return to Main Menu\n\n".colorize(:light_red)
-    print "Enter Number: ".colorize(:light_red)
+    1. Interact with citizens    2. Travel to another city    3. Look for Quests    4. Return to Main Menu\n\n"
+    # .colorize(:light_red)
+    print "Enter Number: \n\n"
+    # .colorize(:light_red)
     input = gets.chomp
     if input == '1'
         interact_with_citizens
@@ -154,16 +194,22 @@ end
 
 def travel_menu
     towns = [Town.all[0], Town.all[1], Town.all[2] ,Town.all[3], Town.all[4], Town.all[5] ,Town.all[6], Town.all[7], Town.all[8]]
-    puts "\nWhich city do you want to travel to?\n".colorize(:light_red)
-    puts "  1. #{towns[0].name}     2. #{towns[1].name}     3. #{towns[2].name}\n".colorize(:light_red)
-    puts "  4. #{towns[3].name}     5. #{towns[4].name}     6. #{towns[5].name}\n".colorize(:light_red)
-    puts "  7. #{towns[6].name}     8. #{towns[7].name}     9. #{towns[8].name}\n".colorize(:light_red)
-    print "Enter Number:  ".colorize(:light_red)
+    puts "\nWhich city do you want to travel to?\n"
+        # .colorize(:light_red)
+    puts "  1. #{towns[0].name}     2. #{towns[1].name}     3. #{towns[2].name}\n"
+    # .colorize(:light_red)
+    puts "  4. #{towns[3].name}     5. #{towns[4].name}     6. #{towns[5].name}\n"
+    # .colorize(:light_red)
+    puts "  7. #{towns[6].name}     8. #{towns[7].name}     9. #{towns[8].name}\n"
+    # .colorize(:light_red)
+    print "Enter Number:  "
+    # .colorize(:light_red)
     input = gets.chomp.to_i
     $current_location = towns[input - 1]
 
     #updating the current_player location... So that the next time we reach player_options menu... the location is correct.
     $current_player.location = $current_location.id
+    system("say 'Welcome to #{$current_location.name}'")
     player_options
 end
 
