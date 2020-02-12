@@ -262,7 +262,8 @@ end
 def quest_method
     relationship = Relationship.find_by(:player_id => $current_player.id, :town_id => $current_location.id)
     q = Quest.all.sample
-    q.town_id = $current_location.id
+    binding.pry
+    relationship.town_id = $current_location.id
     puts q.description
     puts"The reward is #{q.reward} and the goodwill #{q.goodwill}"
     puts'1. Accept Quest  2. Reject Quest'

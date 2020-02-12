@@ -1,6 +1,6 @@
 class Relationship < ActiveRecord::Base
-    belongs_to :players
-    belongs_to :towns
+    belongs_to :player
+    belongs_to :town
     
     def update()
         ### Stuck need to find a way to update an instance of a pre-existing instance that we declared in the beginning
