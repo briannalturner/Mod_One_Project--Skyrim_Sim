@@ -34,18 +34,24 @@ def main_menu_selection
     puts "\n"
     puts "1. Login"
     puts "2. Create a new character"
-    puts "3. Exit program"
+    puts "3. See list of existing player accounts"
+    puts "4. Delete existing player"
+    puts "Q. Exit Program"
     #maybe add a future puts statement for showing the current accounts?
-    print "\nEnter Number: ".colorize(:light_blue)
+    print "\n Input: ".colorize(:light_blue)
     selection = gets.chomp
     if selection == '1'
         login
     elsif selection == '2'
         create_character
     elsif selection == '3'
+        print_all_players
+    elsif selection == '4'
+        delete_player_and_associated_relationships
+    elsif selection.downcase == 'q'
         exit
     else
-      selection_menu
+        main_menu_selection
     end
 end
 
@@ -93,7 +99,40 @@ def create_character
     puts '      ▒█▒█▒█ █▀▀ █░░ █░░ █░░█ █░▀░█ █▀▀ 　 ░░█░░ █░░█ 　 ░▀▀▀▄▄ █▀▄ █▄▄█ █▄▄▀ ▀█▀ █░▀░█'.colorize(:light_blue)
     puts '      ▒█▄▀▄█ ▀▀▀ ▀▀▀ ▀▀▀ ▀▀▀▀ ▀░░░▀ ▀▀▀ 　 ░░▀░░ ▀▀▀▀ 　 ▒█▄▄▄█ ▀░▀ ▄▄▄█ ▀░▀▀ ▀▀▀ ▀░░░▀'.colorize(:light_blue)
     puts "\n"
-    
+end
+
+def print_all_players
+    puts "\n\nName of playable characters:\n".colorize(:green)
+    Player.all.each do |instance|
+        puts "  #{instance.name}".colorize(:yellow)
+    end
+    puts "\nThese are the current players within the database...\n\nPress any key to return to the main menu :) . . .  SPACE and ESCAPE key won't work here... thank me later".colorize(:green)
+    gets.chomp
+    run
+end
+
+def delete_player_and_associated_relationships
+    print_all_players
+    puts "---------"
+    print "Input the name of the character you want to delete:  "
+    input = gets.chomp
+
+    if Player.find_by(:name => input) == nil #if player does not exist
+        puts "\nThat player does not exist... Select an option below\n".colorize(:red)
+        puts "press (1) To try again\n\npress (q) to return to Main Menu\n"
+        print "input: "
+        second_input = gets.chomp
+        if second_input == '1'
+            delete_player_and_associated_relationships
+        elsif second_input.downcase == 'q'
+            run
+        end
+    else
+        del_player = Player.find_by(:name => input)
+        del_player.get_relationships.each {|instance| instance.destroy}
+        del_player.destroy
+        run
+    end
 end
 
 def login()
@@ -126,6 +165,7 @@ def login()
     current_id = $current_player.id
     $current_player.add_relationships(current_id)
     name = $current_player.name
+    run
 end
 
 def player_options

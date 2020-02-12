@@ -29,7 +29,6 @@ class Player < ActiveRecord::Base
 
     #helper method to see an array of all relationships the instance player has
     def get_relationships
-        binding.pry
         Relationship.all.select { |instance| instance.player_id == self.id }
     end
 end
