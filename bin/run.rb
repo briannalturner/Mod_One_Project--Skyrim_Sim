@@ -16,18 +16,6 @@ def run
 
 end
 
-def login()
-    puts "Enter your name"
-    name = gets.chomp
-    if Player.find_by(:name => name) == false 
-        puts"This player doesn't exist"
-        login()
-    else
-        $current_player = Player.find_by(:name => name)
-        puts"Welcome to Skyrim #{$current_player.name}"
-    end
-end
-
 
 def selection_menu
     selection = main_menu #input from main menu
@@ -118,9 +106,14 @@ def create_character
 end
 
 def login()
-    puts "****************"
-    puts "Enter your name:"
-    puts "\n"
+    puts "\n\n"
+
+    puts '       ▒█░░░ █▀▀█ █▀▀▀ ░▀░ █▀▀▄ 　 ▀▀█▀▀ █▀▀█ 　 ▒█░░▒█ █▀▀█ █░░█ █▀▀█ 　 ░█▀▀█ █▀▀ █▀▀ █▀▀█ █░░█ █▀▀▄ ▀▀█▀▀ '.colorize(:light_blue)
+    puts '       ▒█░░░ █░░█ █░▀█ ▀█▀ █░░█ 　 ░░█░░ █░░█ 　 ▒█▄▄▄█ █░░█ █░░█ █▄▄▀ 　 ▒█▄▄█ █░░ █░░ █░░█ █░░█ █░░█ ░░█░░ '.colorize(:light_blue)
+    puts "       ▒█▄▄█ ▀▀▀▀ ▀▀▀▀ ▀▀▀ ▀░░▀ 　 ░░▀░░ ▀▀▀▀ 　 ░░▒█░░ ▀▀▀▀ ░▀▀▀ ▀░▀▀ 　 ▒█░▒█ ▀▀▀ ▀▀▀ ▀▀▀▀ ░▀▀▀ ▀░░▀ ░░▀░░\n".colorize(:light_blue)
+    puts '      *****************************************************************************************************'
+
+    print "\nEnter your name: ".colorize(:light_blue)
     name = gets.chomp
     if Player.find_by(:name => name) == false 
         puts"This player doesn't exist"
@@ -148,6 +141,7 @@ end
 def player_options
     $current_location = Town.find($current_player.location)
     relationship = Relationship.find_by(:player_id => $current_player.id, :town_id => $current_location.id)
+    puts "**********\n\n"
     puts"Logged in as: #{$current_player.name}".colorize(:blue)
     puts"You are currently in #{$current_location.name}.".colorize(:blue)
 
@@ -174,11 +168,10 @@ end
 
 def travel_menu
     towns = [Town.all[0], Town.all[1], Town.all[2] ,Town.all[3], Town.all[4], Town.all[5] ,Town.all[6], Town.all[7], Town.all[8]]
-    puts "\nWhich city do you want to travel to?\n"
-
-    puts "  1. #{towns[0].name}     2. #{towns[1].name}     3. #{towns[2].name}\n"
-    puts "  4. #{towns[3].name}     5. #{towns[4].name}     6. #{towns[5].name}\n"
-    puts "  7. #{towns[6].name}     8. #{towns[7].name}     9. #{towns[8].name}\n"
+    puts "\nWhich city do you want to travel to?\n
+      1. #{towns[0].name}     2. #{towns[1].name}     3. #{towns[2].name}\n
+      4. #{towns[3].name}     5. #{towns[4].name}     6. #{towns[5].name}\n
+      7. #{towns[6].name}     8. #{towns[7].name}     9. #{towns[8].name}\n\n"
     print "Enter Number:  ".colorize(:light_blue)
     input = gets.chomp.to_i
     $current_location = towns[input - 1]
@@ -199,11 +192,11 @@ def interact_with_citizens
     }
     relationship = Relationship.find_by(:player_id => $current_player.id, :town_id => $current_location.id)
 
-    puts'You see the following citizens:'
-    puts"1. #{names[0]}   2. #{names[1]}"
-    puts"3. #{names[2]}   4. #{names[3]}"
-    puts"5. Exit"
-
+    puts "\nYou see the following citizens:\n
+    1. #{names[0]}   2. #{names[1]}\n
+    3. #{names[2]}   4. #{names[3]}\n
+    5. Exit\n\n"
+    print "Enter Number:".colorize(:light_blue)
     input = gets.chomp
 
     if input == '1'
@@ -284,15 +277,17 @@ end
 def quest_method
     relationship = Relationship.find_by(:player_id => $current_player.id, :town_id => $current_location.id)
     q = Quest.all.sample
-    binding.pry
+    # binding.pry
     relationship.town_id = $current_location.id
+    puts "\n"
     puts q.description
-    puts"The reward is #{q.reward} and the goodwill #{q.goodwill}"
-    puts'1. Accept Quest  2. Reject Quest'
+    puts"The reward is #{q.reward} and the goodwill #{q.goodwill}\n"
+    puts"\n1. Accept Quest  2. Reject Quest\n\n"
+    print "Enter Number: ".colorize(:light_blue)
     input = gets.chomp
     puts "\n\n"
     if input == '1'
-        puts "You depart for adventure to #{q.description.split(" ")[-1]}\n" #This returns name of place we are going to
+        puts "You depart for your adventure to the #{q.description.split(" ")[-1]}\n" #This returns name of place we are going to
         completion_chance = 80 #rand(0..100)
         #binding.pry
         if completion_chance > 60
@@ -300,13 +295,13 @@ def quest_method
             puts'You successfully completed the Quest.'.colorize(:green)
             $current_player.money += q.reward
             relationship.goodwill += q.goodwill
-            puts"You now have #{$current_player.money} septims and you gained #{q.goodwill} goodwill.".colorize(:green)
+            puts"You now have #{$current_player.money} septims and you gained #{q.goodwill} goodwill.\n\n".colorize(:green)
             relationship.save
             player_options
         else
             puts ". . .\n. . .\n"
             puts "Along the way you realize the challenge ahead of you and you say  '!@#$ it.' '".colorize(:yellow)
-            puts "With that you decide to head back to town".colorize(:yellow)
+            puts "With that you decide to head back to town\n\n".colorize(:yellow)
             player_options
         end
     elsif input == '2'
