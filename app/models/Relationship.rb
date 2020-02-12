@@ -13,13 +13,13 @@ class Relationship < ActiveRecord::Base
         #return self #returns the updated relationship????
     end
 
-    # def get_npcs_for_city
-    #     Npc.all.select {|npc| self.id == npc.town_id} 
-    # end
+    def get_npcs_for_city
+        Npc.all.select {|npc| self.id == npc.town_id} 
+    end
 
-    # #We have to go through all interactions... and find the npc_id associated with that interaction.
-    # def get_interactions_for_city
-    #     self.get_npcs_for_city.select {|npc| binding.pry}
-    # end
+    #We have to go through all interactions... and find the npc_id associated with that interaction.
+    def get_interactions_for_city
+        self.get_npcs_for_city.select {|npc| binding.pry}
+    end
 end
 
