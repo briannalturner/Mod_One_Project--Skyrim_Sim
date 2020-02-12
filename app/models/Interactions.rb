@@ -1,4 +1,4 @@
 class Interaction < ActiveRecord::Base
-    belongs_to :npcs
+    belongs_to :npc
     
 end
