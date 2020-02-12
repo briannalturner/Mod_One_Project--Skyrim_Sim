@@ -75,9 +75,10 @@ def create_character
     6. Imperial    7. Khajiit     8. Nord        9. Orc       10. Redguard\n\n"
     print "Enter Number: ".colorize(:light_blue)
     race = races[(gets.chomp.to_i - 1)]
-    binding.pry
-    if Player.find_by(:name => name) == nil
-        new_player = Player.create(:name => name, :gender => gender, :race => race, :money => 0, :location => Town.all[0].id) 
+
+    if Player.find_by(:name => name) == nil #If this player does not exist in the database... do
+        new_player = Player.create(:name => name, :gender => gender, :race => race, :money => 0, :location => Town.all[0].id)
+        $current_player = Player.find_by(:name => name)
         rel1 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: Town.all[0].id, thanehood: false, bounty: 0, goodwill: 0, home: false)
         rel2 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: Town.all[1].id, thanehood: false, bounty: 0, goodwill: 0, home: false)
         rel3 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: Town.all[2].id, thanehood: false, bounty: 0, goodwill: 0, home: false)
@@ -89,7 +90,8 @@ def create_character
         rel9 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: Town.all[8].id, thanehood: false, bounty: 0, goodwill: 0, home: false)
         $current_player = Player.find_by(:name => name)
         name = $current_player.name
-    else
+
+    else #Looks like we already have this character in the database
         puts "\n\n\t\t\t\t----------NOTICE------------".colorize(:red)
         puts "\tthe name you used is already in the database... loading pre-existing account".colorize(:yellow)
         $current_player = Player.find_by(:name => name)
@@ -147,6 +149,7 @@ def player_options
 
     puts"\nYou are currently in: ".colorize(:yellow) + "#{$current_location.name}.".colorize(:blue)
     puts "   Money: ".colorize(:yellow) + "#{$current_player.money}"
+    #binding.pry
     puts "   Reputation points: ".colorize(:yellow) + "#{relationship.goodwill}"
     puts "   Bounty: ".colorize(:yellow) + "#{relationship.bounty}"
 
