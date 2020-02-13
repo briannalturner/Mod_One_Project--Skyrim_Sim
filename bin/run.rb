@@ -83,9 +83,11 @@ def login()
     player_options
 end
 
+
+
+
 def player_options
     $current_location = Town.find($current_player.location)
-    #binding.pry
     relationship = Relationship.find_by(:player_id => $current_player.id, :town_id => $current_location.id)
 
     puts "\t\t\t      **************************\n\n"
@@ -224,7 +226,19 @@ def player_options
         elsif input == '3'
             quest_method
         elsif input == '4'
+            
             puts "\nYou enter your home, #{relationship.home_name}...".colorize(:yellow)
+            title = <<-'EOF'
+
+                     (')) ^v^  _           (`)_
+                    (__)_) ,--j j-------, (__)_)
+                        /_.-.___.-.__/ \
+                        ,8| [_],-.[_] | oOo
+                    ,,,oO8|_o8_|_|_8o_|&888o,,,hjw 
+            EOF
+
+            puts title
+
             sleep(1.5)
             puts "\nAfter a good night's rest you reenter the streets of #{$current_location.name}.".colorize(:yellow)
             sleep(1.5)
