@@ -104,6 +104,69 @@ def player_options
     puts "   Reputation points: ".colorize(:yellow) + "#{relationship.goodwill}"
     puts "   Bounty: ".colorize(:yellow) + "#{relationship.bounty}"
 
+    if relationship.bounty >= 1000
+        relationship = Relationship.find_by(:player_id => $current_player.id, :town_id => $current_location.id)
+        input = Relationship.guards_attempt_arrest($current_player, $current_location)
+        if input == '1'
+            puts "You managed to escape.\n".colorize(:yellow)
+            sleep(1)
+            travel_menu
+        elsif input == '2'
+            puts "You killed the guard.\n".colorize(:yellow)
+            relationship.bounty += 1000
+            relationship.save
+            puts "Your bounty is now #{relationship.bounty}.".colorize(:light_red)
+            sleep(1)
+            player_options
+        elsif input == '3'
+            if $current_player.money >= relationship.bounty
+                puts "\n\n****************"
+                puts "GUARD\n".colorize(:yellow)
+                puts "\nYou're not as stupid as you look."
+                sleep(1)
+                $current_player.money -= relationship.bounty
+                relationship.bounty = 0
+                relationship.save
+                puts "\nYour bounty is now #{relationship.bounty}.".colorize(:yellow)
+                sleep(1)
+                player_options
+            else
+                puts "\n\n****************"
+                puts "GUARD\n".colorize(:yellow)
+                puts "\nYour broke ass is going to jail."
+                sleep(1)
+                puts "\n. . .\n"
+                sleep(1)
+                puts "\n. . .\n"
+                sleep(1)
+                puts "\nYou emerge from #{$current_location.name}'s dungeon many years later, a reformed #{$current_player.race}."
+                sleep(2)
+                relationship.bounty = 0
+                relationship.save
+                puts "\nYour bounty is now #{relationship.bounty}.".colorize(:yellow)
+                sleep(2)
+                player_options
+            end
+        elsif input == '4'
+            puts "\n. . .\n"
+            sleep(1)
+            puts "\n. . .\n"
+            sleep(1)
+            puts "\nYou emerge from #{$current_location.name}'s dungeon many years later, a reformed #{$current_player.race}."
+            sleep(2)
+            relationship.bounty = 0
+            relationship.save
+            puts "\nYour bounty is now #{relationship.bounty}.".colorize(:yellow)
+            sleep(2)
+            player_options
+        else
+            puts "INVALID INPUT\n".colorize(:light_red)
+            sleep(1)
+            Relationship.guards_attempt_arrest
+        end
+    end
+
+
     #For interactions should we make it so that we show all interactions possible in that location
     #since interactions class does not specify town location... we have to use npc.id and then get the npc.town_id 
     if relationship.home == false
