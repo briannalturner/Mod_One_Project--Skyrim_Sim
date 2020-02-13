@@ -37,7 +37,6 @@ class Interaction < ActiveRecord::Base
             puts "\n"
             puts"1. #{x[0].action_name}     2. #{x[1].action_name}\n"
             print "Enter Number: ".colorize(:light_blue)
-            print "Enter Number: ".colorize(:light_blue)
             input2 = gets.chomp
     
             if input2 == '1'
