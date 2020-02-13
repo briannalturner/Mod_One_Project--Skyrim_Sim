@@ -48,9 +48,12 @@ class Quest < ActiveRecord::Base
                 puts '▒█▀▀▀ █▄▄█ ▀█▀ █░░ █░░█ █▄▄▀ █▀▀ '.colorize(:light_red)
                 puts '▒█░░░ ▀░░▀ ▀▀▀ ▀▀▀ ░▀▀▀ ▀░▀▀ ▀▀▀ '.colorize(:light_red)
 
-                puts "You reached the #{enemy}'s lair, but you got your ass wooped'".colorize(:red)
-                puts "You flee from and return #{$current_location.name} to town".colorize(:red)
-                sleep(2.5)
+                puts "\nYou reached the #{enemy}'s lair, only to get your ass wooped :( '".colorize(:red)
+                puts "You flee for your life!".colorize(:red)
+                puts ". . ."
+                sleep (2.5)
+                puts "You make it back to #{$current_location.name}, barely alive."
+                sleep(2)
                 player_options
             end
         elsif input == '2'
