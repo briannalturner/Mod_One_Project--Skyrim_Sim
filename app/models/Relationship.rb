@@ -21,5 +21,15 @@ class Relationship < ActiveRecord::Base
     def get_interactions_for_city
         self.get_npcs_for_city.select {|npc| binding.pry}
     end
+
+    def self.buy_home(current_player, current_location)
+        relationship = self.find_by(:player_id => current_player.id, :town_id => current_location.id)
+        relationship.home = true
+        relationship.save
+        puts "\nYou now own #{relationship.home_name}".colorize(:yellow)
+        sleep(1.5)
+    end
+
+    
 end
 
