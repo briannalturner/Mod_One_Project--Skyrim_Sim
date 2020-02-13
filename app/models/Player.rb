@@ -32,16 +32,27 @@ class Player < ActiveRecord::Base
     end
 
     def self.delete_specific_player()
-        puts "\n\nName of playable characters:\n".colorize(:green)
-        self.all.each do |instance|
-            puts "  #{instance.name}".colorize(:yellow)
+        puts "\n\n"
+        characters = <<-'EOF'
+        ▒█▀▀█ █░░█ █▀▀█ █▀▀█ █▀▀█ █▀▀ ▀▀█▀▀ █▀▀ █▀▀█ █▀▀ 
+        ▒█░░░ █▀▀█ █▄▄█ █▄▄▀ █▄▄█ █░░ ░░█░░ █▀▀ █▄▄▀ ▀▀█ 
+        ▒█▄▄█ ▀░░▀ ▀░░▀ ▀░▀▀ ▀░░▀ ▀▀▀ ░░▀░░ ▀▀▀ ▀░▀▀ ▀▀▀
+        ************************************************
+        EOF
+        puts characters.colorize(:light_cyan)
+        puts "\n"
+        hash = {}
+        counter = 1
+        Player.all.each do |instance|
+            hash[instance.name] = "#{instance.race}, #{instance.gender}"
+            puts "#{counter}. #{instance.name}: #{hash[instance.name]}\n\n"
+            counter += 1
         end
-        puts "\nThese are the current players within the database...\n\n"
+        puts "\n"
         print "Enter the name of the character you want to delete: "
         input = gets.chomp
         if self.find_by(:name => input) == nil
-            puts "This player does not exist in the database"
-            puts "returning to main menu"
+            puts "This player does not exist in the database.".colorize(:light_red)
             sleep (1)
         else
             current_player = self.find_by(:name => input)
@@ -99,11 +110,24 @@ class Player < ActiveRecord::Base
     end
 
     def self.print_all_players
-        puts "\n\nName of playable characters:\n".colorize(:green)
+        puts "\n\n"
+        characters = <<-'EOF'
+        ▒█▀▀█ █░░█ █▀▀█ █▀▀█ █▀▀█ █▀▀ ▀▀█▀▀ █▀▀ █▀▀█ █▀▀ 
+        ▒█░░░ █▀▀█ █▄▄█ █▄▄▀ █▄▄█ █░░ ░░█░░ █▀▀ █▄▄▀ ▀▀█ 
+        ▒█▄▄█ ▀░░▀ ▀░░▀ ▀░▀▀ ▀░░▀ ▀▀▀ ░░▀░░ ▀▀▀ ▀░▀▀ ▀▀▀
+        ************************************************
+        EOF
+        puts characters.colorize(:light_cyan)
+        puts "\n"
+        hash = {}
+        counter = 1
         Player.all.each do |instance|
-            puts "  #{instance.name}".colorize(:yellow)
+            hash[instance.name] = "#{instance.race}, #{instance.gender}"
+            puts "#{counter}. #{instance.name}: #{hash[instance.name]}\n\n"
+            counter += 1
         end
-        puts "\nThese are the current players within the database...\n\nPress enter to exit :)".colorize(:green)
+        puts "\n"
+        print "Press ENTER: ".colorize(:light_cyan)
         gets.chomp
     end
 end
