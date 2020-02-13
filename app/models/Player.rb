@@ -88,4 +88,8 @@ class Player < ActiveRecord::Base
         gets.chomp
         run
     end
+
+    def self.delete_specific_player
+        
+    end
 end
