@@ -93,7 +93,7 @@ def player_options
 
     puts"\nYou are currently in: ".colorize(:yellow) + "#{$current_location.name}.".colorize(:blue)
     puts "   Money: ".colorize(:yellow) + "#{$current_player.money}"
-    
+    #binding.pry
     puts "   Reputation points: ".colorize(:yellow) + "#{relationship.goodwill}"
     puts "   Bounty: ".colorize(:yellow) + "#{relationship.bounty}"
 
