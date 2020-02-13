@@ -235,14 +235,15 @@ def player_options
             if relationship.goodwill >= 1000
                 puts "\n#{$current_location.jarl} considers your request and realizes you've helped #{$current_location.name} many times.".colorize(:yellow)
                 sleep(1.5)
-                puts "\n#{$current_location.jarl} tells you that you can become Thane of #{$current_location.name} if you'll complete one last quest.\nWill you accept?".colorize(:yellow)
-                print "Y / N: "
+                puts "\n#{$current_location.jarl} tells you that you can become Thane of #{$current_location.name} if you'll complete one last quest.\nWill you accept?\n".colorize(:yellow)
+                print "Y / N: ".colorize(:light_blue)
                 input = gets.chomp.downcase
                 if input == 'y'
-                    Relationship.thane_quest($current_player, $current_location)
+                    relationship.thanehood = Relationship.thane_quest($current_player, $current_location)
+                    relationship.save
                     player_options
                 elsif input == 'n'
-                    puts "\n#{$current_location.jarl} throws you out of the castle for wasting their time.\n".colorize(:yellow)
+                    puts "\n#{$current_location.jarl} throws you out of the castle for wasting their time.\n".colorize(:red)
                     sleep(2)
                 else
                     puts "\nINVALID INPUT".colorize(:red)
@@ -250,7 +251,7 @@ def player_options
                     player_options
                 end
             else
-                puts "\n#{$current_location.jarl} scoffs and tells you to come back after you've helped out around #{$current_location.name}.".colorize(:yellow)
+                puts "\n#{$current_location.jarl} scoffs and tells you to come back after you've helped out around #{$current_location.name}.".colorize(:red)
                 sleep(1.5)
             end
             player_options
@@ -262,6 +263,7 @@ def player_options
             player_options
         end
     end
+    binding.pry
 end
 
 def travel_menu

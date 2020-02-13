@@ -33,8 +33,8 @@ Would you like to buy it?\n".colorize(:yellow)
             if current_player.money >= 5000
                 relationship.home = true
                 relationship.save
-                player.money -= 5000
-                player.save
+                current_player.money -= 5000
+                current_player.save
                 puts "\nYou now own #{relationship.home_name}".colorize(:yellow)
                 sleep(1.5)
             else
@@ -85,9 +85,51 @@ Would you like to buy it?\n".colorize(:yellow)
     end
 
     def self.thane_quest(current_player, current_location)
+        enemies = ["bandits", "forsworn", "ice wraiths", "dwemer animunculi", "Falmer", "draugr", "vampires", "dark brotherhood agents"]
+        locations = ["Statue to Meridia", "Gjukar's Monument", "Druadach Redoubt", "Knifepoint Ridge", "Broken Fang Cave", "Eldergleam Sanctuary", "Snapleg Cave"]
+        chosen_enemy = enemies.sample
+        chosen_location = locations.sample
+        correct_order = ['1', '2']
+
+
         puts "\n\n. . . . .\n\n"
         sleep(2)
-        puts "#{current_location.jarl}"
+        puts "#{current_location.jarl} has asked you to clear out all of the #{chosen_enemy} at #{chosen_location}. This is going to be a difficult adventure full of many choices."
+        sleep(2.5)
+        puts "\n\n. . . . .\n\n"
+        sleep(2)
+
+        puts "You enter #{chosen_location}.\n\n".colorize(:yellow)
+        2.times do 
+            puts "You walk forward a few steps.\n"
+            puts "There is an enemy just ahead of you.\n\n"
+            puts "1. Sneak attack   2. Attack head-on\n\n"
+            print "Enter Number: ".colorize(:light_blue)
+            input = gets.chomp
+            correct_answer = correct_order.sample
+            sleep(1)
+            puts "\n\n. . . . .\n\n"
+            sleep(1)
+
+            if input == correct_answer
+                puts "You successfully kill the enemy.\n"
+            else
+                puts "The enemy overcomes you and you are forced to flee. You failed #{current_location.jarl} and have not become Thane of #{current_location.name}.".colorize(:yellow)
+                sleep(2)
+                return false
+            end
+        end
+        puts "\n\n. . . . .\n\n"
+        sleep(1)
+        puts '▒█▀▀▀█ █░░█ █▀▀ █▀▀ █▀▀ █▀▀ █▀▀ '.colorize(:light_green)
+        puts '░▀▀▀▄▄ █░░█ █░░ █░░ █▀▀ ▀▀█ ▀▀█ '.colorize(:light_green)
+        puts '▒█▄▄▄█ ░▀▀▀ ▀▀▀ ▀▀▀ ▀▀▀ ▀▀▀ ▀▀▀ '.colorize(:light_green)
+
+        puts "\nYou successfully completed the Quest!".colorize(:green)
+        sleep(1.5)
+        puts "\n\nYou are now Thane of #{current_location.name}. From this point on, you are above the law in this city.\n\n"
+        sleep(2)
+        return true
     end
 end
 

@@ -43,7 +43,7 @@ class Quest < ActiveRecord::Base
                 puts '▒█▀▀▀ █▄▄█ ▀█▀ █░░ █░░█ █▄▄▀ █▀▀ '.colorize(:light_red)
                 puts '▒█░░░ ▀░░▀ ▀▀▀ ▀▀▀ ░▀▀▀ ▀░▀▀ ▀▀▀ '.colorize(:light_red)
 
-                puts "Along the way you realize the challenge ahead of you and you say '!@#$ it.' '".colorize(:red)
+                puts "Along the way you realize the challenge ahead of you and you say '!@#$ it.'".colorize(:red)
                 puts "With that you decide to head back to town".colorize(:red)
                 sleep(2.5)
                 player_options
