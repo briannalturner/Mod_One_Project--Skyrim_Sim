@@ -24,12 +24,30 @@ class Relationship < ActiveRecord::Base
 
     def self.buy_home(current_player, current_location)
         relationship = self.find_by(:player_id => current_player.id, :town_id => current_location.id)
-        relationship.home = true
-        relationship.save
-        puts "\nYou now own #{relationship.home_name}".colorize(:yellow)
-        sleep(1.5)
-    end
+        puts "\nThe only home available in this city is #{relationship.home_name}. The cost is 5000 septims.\n
+Would you like to buy it?\n".colorize(:yellow)
+        print "Y / N: ".colorize(:blue)
+        input = gets.chomp.downcase
 
-    
+        if input == 'y'
+            if current_player.money >= 5000
+                relationship.home = true
+                relationship.save
+                player.money -= 5000
+                player.save
+                puts "\nYou now own #{relationship.home_name}".colorize(:yellow)
+                sleep(1.5)
+            else
+                puts "\nI think we both know you can't afford this house. Do some quests and come back when you have enough money.".colorize(:light_red)
+                sleep(2)
+            end
+        elsif input == 'n'
+            puts "\nNobody likes a tease.".colorize(:light_red)
+            sleep(1.5)
+        else
+            puts "\nINVALID INPUT".colorize(:light_red)
+            sleep(1.5)
+        end 
+    end
 end
 
