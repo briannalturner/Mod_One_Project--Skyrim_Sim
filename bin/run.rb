@@ -12,7 +12,6 @@ def run
     welcome
     main_menu_selection #choose to create a character or login to pre-existing character
     player_options #a list of options the selected player from 'selection_menu' can accomplish
-
 end
 
 def welcome
@@ -36,7 +35,7 @@ def main_menu_selection
     puts "4. Delete existing player"
     puts "Q. Exit Program"
     #maybe add a future puts statement for showing the current accounts?
-    print "\n Input: ".colorize(:light_blue)
+    print "\nInput: ".colorize(:light_blue)
     selection = gets.chomp
     if selection == '1'
         login
@@ -44,8 +43,6 @@ def main_menu_selection
         $current_player = Player.create_character($current_player)
     elsif selection == '3'
         Player.print_all_players
-        puts "\n\nPress enter to exit :)".colorize(:green)
-        gets.chomp
         run
     elsif selection == '4'
         Player.delete_specific_player
@@ -68,8 +65,9 @@ def login()
     print "\nEnter your name: ".colorize(:light_blue)
     name = gets.chomp
     if Player.find_by(:name => name) == nil 
-        puts"This player doesn't exist"
-        login()
+        puts "\nThis player doesn't exist".colorize(:red)
+        sleep(1)
+        run
     else
         $current_player = Player.find_by(:name => name)
         puts "\n"

@@ -32,14 +32,30 @@ class Player < ActiveRecord::Base
     end
 
     def self.delete_specific_player()
-        Player.print_all_players
+        puts "\n\n"
+        characters = <<-'EOF'
+        ▒█▀▀█ █░░█ █▀▀█ █▀▀█ █▀▀█ █▀▀ ▀▀█▀▀ █▀▀ █▀▀█ █▀▀ 
+        ▒█░░░ █▀▀█ █▄▄█ █▄▄▀ █▄▄█ █░░ ░░█░░ █▀▀ █▄▄▀ ▀▀█ 
+        ▒█▄▄█ ▀░░▀ ▀░░▀ ▀░▀▀ ▀░░▀ ▀▀▀ ░░▀░░ ▀▀▀ ▀░▀▀ ▀▀▀
+        ************************************************
+        EOF
+        puts characters.colorize(:light_cyan)
+        puts "\n"
+        hash = {}
+        counter = 1
+        Player.all.each do |instance|
+            hash[instance.name] = "#{instance.race}, #{instance.gender}"
+            puts "#{counter}. #{instance.name}: #{hash[instance.name]}\n\n"
+            counter += 1
+        end
+        puts "\n"
         print "Enter the name of the character you want to delete: "
         input = gets.chomp
         if self.find_by(:name => input) == nil
-            puts "This player does not exist in the database"
+            puts "This player does not exist in the database.".colorize(:light_red)
             sleep (1)
             puts "returning to main menu"
-            sleep (3.5)
+            sleep (2.5)
         else
             current_player = self.find_by(:name => input)
             Relationship.all.select { |instance| instance.player_id == current_player.id}.each {|instance| instance.destroy}   #contains all relationships of specific player specified
@@ -96,14 +112,24 @@ class Player < ActiveRecord::Base
     end
 
     def self.print_all_players
-        if Player.all.length == 0
-            puts "There are no players current in the database"
-        else 
-            puts "\n\nName of playable characters:\n".colorize(:green)
-            Player.all.each do |instance|
-            puts "  #{instance.name}".colorize(:yellow)
-            end
-            puts "\nThese are the current players within the database...".colorize(:green)
+        puts "\n\n"
+        characters = <<-'EOF'
+        ▒█▀▀█ █░░█ █▀▀█ █▀▀█ █▀▀█ █▀▀ ▀▀█▀▀ █▀▀ █▀▀█ █▀▀ 
+        ▒█░░░ █▀▀█ █▄▄█ █▄▄▀ █▄▄█ █░░ ░░█░░ █▀▀ █▄▄▀ ▀▀█ 
+        ▒█▄▄█ ▀░░▀ ▀░░▀ ▀░▀▀ ▀░░▀ ▀▀▀ ░░▀░░ ▀▀▀ ▀░▀▀ ▀▀▀
+        ************************************************
+        EOF
+        puts characters.colorize(:light_cyan)
+        puts "\n"
+        hash = {}
+        counter = 1
+        Player.all.each do |instance|
+            hash[instance.name] = "#{instance.race}, #{instance.gender}"
+            puts "#{counter}. #{instance.name}: #{hash[instance.name]}\n\n"
+            counter += 1
         end
+        puts "\n"
+        print "Press ENTER: ".colorize(:light_cyan)
+        gets.chomp
     end
 end
