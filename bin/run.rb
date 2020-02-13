@@ -97,37 +97,51 @@ def player_options
     puts "   Reputation points: ".colorize(:yellow) + "#{relationship.goodwill}"
     puts "   Bounty: ".colorize(:yellow) + "#{relationship.bounty}"
 
-    if relationship.bounty >= 1000
-        relationship = Relationship.find_by(:player_id => $current_player.id, :town_id => $current_location.id)
-        input = Relationship.guards_attempt_arrest($current_player, $current_location)
-        if input == '1'
-            puts "You managed to escape.\n".colorize(:yellow)
-            sleep(1)
-            travel_menu
-        elsif input == '2'
-            puts "You killed the guard.\n".colorize(:yellow)
-            relationship.bounty += 1000
-            relationship.save
-            puts "Your bounty is now #{relationship.bounty}.".colorize(:light_red)
-            sleep(1)
-            player_options
-        elsif input == '3'
-            if $current_player.money >= relationship.bounty
-                puts "\n\n****************"
-                puts "GUARD\n".colorize(:yellow)
-                puts "\nYou're not as stupid as you look."
+    if relationship.thanehood == false
+        if relationship.bounty >= 1000
+            relationship = Relationship.find_by(:player_id => $current_player.id, :town_id => $current_location.id)
+            input = Relationship.guards_attempt_arrest($current_player, $current_location)
+            if input == '1'
+                puts "You managed to escape.\n".colorize(:yellow)
                 sleep(1)
-                $current_player.money -= relationship.bounty
-                relationship.bounty = 0
+                travel_menu
+            elsif input == '2'
+                puts "You killed the guard.\n".colorize(:yellow)
+                relationship.bounty += 1000
                 relationship.save
-                puts "\nYour bounty is now #{relationship.bounty}.".colorize(:yellow)
+                puts "Your bounty is now #{relationship.bounty}.".colorize(:light_red)
                 sleep(1)
                 player_options
-            else
-                puts "\n\n****************"
-                puts "GUARD\n".colorize(:yellow)
-                puts "\nYour broke ass is going to jail."
-                sleep(1)
+            elsif input == '3'
+                if $current_player.money >= relationship.bounty
+                    puts "\n\n****************"
+                    puts "GUARD\n".colorize(:yellow)
+                    puts "\nYou're not as stupid as you look."
+                    sleep(1)
+                    $current_player.money -= relationship.bounty
+                    relationship.bounty = 0
+                    relationship.save
+                    puts "\nYour bounty is now #{relationship.bounty}.".colorize(:yellow)
+                    sleep(1)
+                    player_options
+                else
+                    puts "\n\n****************"
+                    puts "GUARD\n".colorize(:yellow)
+                    puts "\nYour broke ass is going to jail."
+                    sleep(1)
+                    puts "\n. . .\n"
+                    sleep(1)
+                    puts "\n. . .\n"
+                    sleep(1)
+                    puts "\nYou emerge from #{$current_location.name}'s dungeon many years later, a reformed #{$current_player.race}."
+                    sleep(2)
+                    relationship.bounty = 0
+                    relationship.save
+                    puts "\nYour bounty is now #{relationship.bounty}.".colorize(:yellow)
+                    sleep(2)
+                    player_options
+                end
+            elsif input == '4'
                 puts "\n. . .\n"
                 sleep(1)
                 puts "\n. . .\n"
@@ -139,23 +153,32 @@ def player_options
                 puts "\nYour bounty is now #{relationship.bounty}.".colorize(:yellow)
                 sleep(2)
                 player_options
+            else
+                puts "INVALID INPUT\n".colorize(:light_red)
+                sleep(1)
+                Relationship.guards_attempt_arrest
             end
-        elsif input == '4'
-            puts "\n. . .\n"
-            sleep(1)
-            puts "\n. . .\n"
-            sleep(1)
-            puts "\nYou emerge from #{$current_location.name}'s dungeon many years later, a reformed #{$current_player.race}."
-            sleep(2)
-            relationship.bounty = 0
-            relationship.save
-            puts "\nYour bounty is now #{relationship.bounty}.".colorize(:yellow)
-            sleep(2)
-            player_options
-        else
-            puts "INVALID INPUT\n".colorize(:light_red)
-            sleep(1)
-            Relationship.guards_attempt_arrest
+        end
+
+        if relationship.thanehood == true && relationship.bounty >= 5000
+            relationship = Relationship.find_by(:player_id => $current_player.id, :town_id => $current_location.id)
+            input = Relationship.guards_beg_for_mercy($current_player, $current_location)
+            if input == '1'
+                puts "You give the guard the finger and walk away.\n".colorize(:yellow)
+                sleep(1)
+            elsif input == '2'
+                puts "You killed the guard.\n".colorize(:yellow)
+                relationship.bounty += 1000
+                relationship.save
+                puts "Your bounty is now #{relationship.bounty}.".colorize(:light_red)
+                sleep(1)
+            elsif input == '3'
+                puts "You get sick of the guards bugging you and tell the Jarl to clear your bounty.\n".colorize(:yellow)
+                relationship.bounty = 0
+                relationship.save
+                puts "Your bounty is now #{relationship.bounty}.".colorize(:yellow)
+                sleep(1)
+            end
         end
     end
 
@@ -190,8 +213,8 @@ def player_options
         puts "----------------------------\n"
         puts "What do you want to do?\n".colorize(:yellow)
         puts "1.".colorize(:blue)+ " Interact with citizens"+"     2.".colorize(:blue)+" Travel to another city\n"
-        puts "3.".colorize(:blue)+ " Look for Quests"+"            4.".colorize(:blue)+" Buy home" 
-        puts "5.".colorize(:blue)+ " Exit to Main Menu\n\n"
+        puts "3.".colorize(:blue)+ " Look for Quests"+"            4.".colorize(:blue)+" Visit home" 
+        puts "5.".colorize(:blue)+ " Ask Jarl about Thanehood"+"   6.".colorize(:blue)+ " Exit to Main Menu\n\n"
         print "Enter Number: ".colorize(:light_blue)
         input = gets.chomp
         if input == '1'
@@ -207,6 +230,31 @@ def player_options
             sleep(1.5)
             player_options
         elsif input == '5'
+            puts "\nYou approach #{$current_location.jarl}'s throne and ask if you can become the Thane of #{$current_location.name}...".colorize(:yellow)
+            sleep(1.5)
+            if relationship.goodwill >= 1000
+                puts "\n#{$current_location.jarl} considers your request and realizes you've helped #{$current_location.name} many times.".colorize(:yellow)
+                sleep(1.5)
+                puts "\n#{$current_location.jarl} tells you that you can become Thane of #{$current_location.name} if you'll complete one last quest.\nWill you accept?".colorize(:yellow)
+                print "Y / N: "
+                input = gets.chomp.downcase
+                if input == 'y'
+                    Relationship.thane_quest($current_player, $current_location)
+                    player_options
+                elsif input == 'n'
+                    puts "\n#{$current_location.jarl} throws you out of the castle for wasting their time.\n".colorize(:yellow)
+                    sleep(2)
+                else
+                    puts "\nINVALID INPUT".colorize(:red)
+                    sleep(2)
+                    player_options
+                end
+            else
+                puts "\n#{$current_location.jarl} scoffs and tells you to come back after you've helped out around #{$current_location.name}.".colorize(:yellow)
+                sleep(1.5)
+            end
+            player_options
+        elsif input == '6'
             puts "\n"
             run
         else
