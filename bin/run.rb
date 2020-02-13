@@ -230,11 +230,11 @@ def player_options
             puts "\nYou enter your home, #{relationship.home_name}...".colorize(:yellow)
             title = <<-'EOF'
 
-                     (')) ^v^  _           (`)_
-                    (__)_) ,--j j-------, (__)_)
-                        /_.-.___.-.__/ \
-                        ,8| [_],-.[_] | oOo
-                    ,,,oO8|_o8_|_|_8o_|&888o,,,hjw 
+         (')) ^v^  _           (`)_
+        (__)_) ,--j j-------, (__)_)
+              /_.-.___.-.__/ \
+            ,8| [_],-.[_] | oOo
+        ,,,oO8|_o8_|_|_8o_|&888o,,,
             EOF
 
             puts title
