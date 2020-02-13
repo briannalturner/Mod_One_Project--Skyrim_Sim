@@ -56,83 +56,18 @@ def main_menu_selection
 end
 
 def create_character
-    races = ['High Elf', 'Argonian', 'Wood Elf', 'Breton', 'Dark Elf', 'Imperial', 'Khajiit', 'Nord', 'Orc', 'Redguard']
-    puts "\n\n"
-    puts '      ▒█▀▀█ █░░█ █▀▀█ █▀▀█ █▀▀█ █▀▀ ▀▀█▀▀ █▀▀ █▀▀█ 　 ▒█▀▀█ █▀▀█ █▀▀ █▀▀█ ▀▀█▀▀ ░▀░ █▀▀█ █▀▀▄ '.colorize(:light_blue)
-    puts '      ▒█░░░ █▀▀█ █▄▄█ █▄▄▀ █▄▄█ █░░ ░░█░░ █▀▀ █▄▄▀ 　 ▒█░░░ █▄▄▀ █▀▀ █▄▄█ ░░█░░ ▀█▀ █░░█ █░░█ '.colorize(:light_blue)
-    puts "      ▒█▄▄█ ▀░░▀ ▀░░▀ ▀░▀▀ ▀░░▀ ▀▀▀ ░░▀░░ ▀▀▀ ▀░▀▀ 　 ▒█▄▄█ ▀░▀▀ ▀▀▀ ▀░░▀ ░░▀░░ ▀▀▀ ▀▀▀▀ ▀░░▀ \n".colorize(:light_blue)
-    puts '      ***************************************************************************************'
-    print "\n1) Input a name for your character:  "
-    name = gets.chomp
-    print "\n2) Input the gender for your character:  "
-    gender = gets.chomp.capitalize
-    puts "\n3) Select your race:\n
-    1. High Elf    2. Argonian    3. Wood Elf    4. Breton    5. Dark Elf\n
-    6. Imperial    7. Khajiit     8. Nord        9. Orc       10. Redguard\n\n"
-    print "Enter Number: ".colorize(:light_blue)
-    race = races[(gets.chomp.to_i - 1)]
-
-    if Player.find_by(:name => name) == nil #If this player does not exist in the database... do
-        new_player = Player.create(:name => name, :gender => gender, :race => race, :money => 0, :location => Town.all[0].id)
-        $current_player = Player.find_by(:name => name)
-        rel1 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: Town.all[0].id, thanehood: false, bounty: 0, goodwill: 0, home: false, home_name: "Honeyside")
-        rel2 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: Town.all[1].id, thanehood: false, bounty: 0, goodwill: 0, home: false, home_name: "Hjerim")
-        rel3 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: Town.all[2].id, thanehood: false, bounty: 0, goodwill: 0, home: false)
-        rel4 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: Town.all[3].id, thanehood: false, bounty: 0, goodwill: 0, home: false, home_name: "Breezehome")
-        rel5 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: Town.all[4].id, thanehood: false, bounty: 0, goodwill: 0, home: false, home_name: "Lakeview Manor")
-        rel6 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: Town.all[5].id, thanehood: false, bounty: 0, goodwill: 0, home: false, home_name: "Vlindrel Hall")
-        rel7 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: Town.all[6].id, thanehood: false, bounty: 0, goodwill: 0, home: false, home_name: "Heljarchen Hall")
-        rel8 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: Town.all[7].id, thanehood: false, bounty: 0, goodwill: 0, home: false, home_name: "Winstad Manor")
-        rel9 = Relationship.find_or_create_by(player_id: $current_player.id, town_id: Town.all[8].id, thanehood: false, bounty: 0, goodwill: 0, home: false, home_name: "Proudspire Manor")
-        $current_player = Player.find_by(:name => name)
-        name = $current_player.name
-
-    else #Looks like we already have this character in the database
-        puts "\n\n\t\t\t\t----------NOTICE------------".colorize(:red)
-        puts "\tthe name you used is already in the database... loading pre-existing account".colorize(:yellow)
-        $current_player = Player.find_by(:name => name)
-        name = $current_player.name
-    end
-    puts "\n"
-    puts "      ********************************************************************************\n\n"
-    puts '      ▒█░░▒█ █▀▀ █░░ █▀▀ █▀▀█ █▀▄▀█ █▀▀ 　 ▀▀█▀▀ █▀▀█ 　 ▒█▀▀▀█ █░█ █░░█ █▀▀█ ░▀░ █▀▄▀█'.colorize(:light_blue)
-    puts '      ▒█▒█▒█ █▀▀ █░░ █░░ █░░█ █░▀░█ █▀▀ 　 ░░█░░ █░░█ 　 ░▀▀▀▄▄ █▀▄ █▄▄█ █▄▄▀ ▀█▀ █░▀░█'.colorize(:light_blue)
-    puts '      ▒█▄▀▄█ ▀▀▀ ▀▀▀ ▀▀▀ ▀▀▀▀ ▀░░░▀ ▀▀▀ 　 ░░▀░░ ▀▀▀▀ 　 ▒█▄▄▄█ ▀░▀ ▄▄▄█ ▀░▀▀ ▀▀▀ ▀░░░▀'.colorize(:light_blue)
-    puts "\n"
+    Player.character_creation
 end
 
 def print_all_players
-    puts "\n\nName of playable characters:\n".colorize(:green)
-    Player.all.each do |instance|
-        puts "  #{instance.name}".colorize(:yellow)
-    end
+    Player.print_all_players
     puts "\nThese are the current players within the database...\n\nPress any key to return to the main menu :) . . .  SPACE and ESCAPE key won't work here... thank me later".colorize(:green)
     gets.chomp
     run
 end
 
 def delete_player_and_associated_relationships
-    print_all_players
-    puts "---------"
-    print "Input the name of the character you want to delete:  "
-    input = gets.chomp
-
-    if Player.find_by(:name => input) == nil #if player does not exist
-        puts "\nThat player does not exist... Select an option below\n".colorize(:red)
-        puts "press (1) To try again\n\npress (q) to return to Main Menu\n"
-        print "input: "
-        second_input = gets.chomp
-        if second_input == '1'
-            delete_player_and_associated_relationships
-        elsif second_input.downcase == 'q'
-            run
-        end
-    else
-        del_player = Player.find_by(:name => input)
-        del_player.get_relationships.each {|instance| instance.destroy}
-        del_player.destroy
-        run
-    end
+    Player.delete_specific_player
 end
 
 def login()
@@ -234,21 +169,14 @@ def player_options
 end
 
 def travel_menu
-    towns = [Town.all[0], Town.all[1], Town.all[2] ,Town.all[3], Town.all[4], Town.all[5] ,Town.all[6], Town.all[7], Town.all[8]]
-    puts "------------------------------------\n"
-    puts "Which city do you want to travel to?\n".colorize(:yellow)
-      puts "1.".colorize(:blue)+" #{towns[0].name}"+"       2.".colorize(:blue)+" #{towns[1].name}"+"     3.".colorize(:blue)+ " #{towns[2].name}\n"
-      puts "4.".colorize(:blue)+" #{towns[3].name}"+"     5.".colorize(:blue)+" #{towns[4].name}"+"    6.".colorize(:blue)+ " #{towns[5].name}\n"
-      puts "7.".colorize(:blue)+" #{towns[6].name}"+"     8.".colorize(:blue)+" #{towns[7].name}"+"      9.".colorize(:blue)+ " #{towns[8].name}\n\n"
-    print "Enter Number:  ".colorize(:light_blue)
-    input = gets.chomp.to_i
+    binding.pry
+    towns = Town.towns_array                            #array of all towns
+    input = Town.user_selection                         #user selection of what town to go to (an integer)
     $current_location = towns[input - 1]
-
-    #updating the current_player location... So that the next time we reach player_options menu... the location is correct.
-    $current_player.location = $current_location.id
+    $current_player.location = $current_location.id     #updating the current_player location... So that the next time we reach player_options menu... the location is correct.
     system("say 'Welcome to #{$current_location.name}'")
-    get_logo(input) #this will print ASCII text of town name
-    player_options
+    get_logo(input)                                     #this will print ASCII text of town name
+    player_options                                      #Returns back to player options to do in town.
 end
 
 def interact_with_citizens
