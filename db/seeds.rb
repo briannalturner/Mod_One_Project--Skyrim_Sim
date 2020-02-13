@@ -189,7 +189,7 @@ kill_nazeem = Interaction.find_or_create_by(description: "You cleave Nazeem's he
 talk_nazeem = Interaction.find_or_create_by(description: "Do you get to the Cloud District very often? Oh, what am I saying - of course you don't.", npc_id: nazeem.id, town_id: whiterun.id)
 
 ### Quests ###
-enemies = ["bandit chief", "giant", "dragon", "hagraven", "draugr", "dwemer centurion", "bear"]
+enemies = ["Bandit Chief", "Giant", "Dragon", "Hagraven", "Draugr", "Dwemer Centurion", "Bear"]
 locations = ["Ysgramor's Tomb", "Faldar's Tooth", "Throat of the World", "Irngthamz", "Bleak Falls Barrow", "Frostmere Crypt", "Bronzewater Cave"]
 quest1 = Quest.create(description: "The Jarl has set a bounty on the #{enemies.sample} at #{locations.sample}.", reward: 500, goodwill: 200, town_id: nil)
 quest2 = Quest.create(description: "The Jarl has set a bounty on the #{enemies.sample} at #{locations.sample}.", reward: 1000, goodwill: 200, town_id: nil)
@@ -205,7 +205,7 @@ talk_mathies = Interaction.find_or_create_by(description: "Our daughter died. Sh
 kill_mathies = Interaction.find_or_create_by(description: "You slaughter Mathies while his wife watches.", npc_id: mathies.id, bounty: 1000, goodwill: 0, town_id: falkreath.id, action_name: "Kill")
 kill_falkreath_jarl = Interaction.find_or_create_by(description: "You destroy Jarl Siddgeir's torso with a firebolt spell.", npc_id: falkreath_jarl.id, bounty: 1000, town_id: falkreath.id, action_name: "Kill")
 talk_falkreath_jarl = Interaction.find_or_create_by(description: "I'm the Jarl, not a barkeep. Speak your business.", npc_id: falkreath_jarl.id, town_id: falkreath.id, action_name: "Talk")
-
+1
 
 
 
