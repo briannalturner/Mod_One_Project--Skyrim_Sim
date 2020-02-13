@@ -49,5 +49,22 @@ Would you like to buy it?\n".colorize(:yellow)
             sleep(1.5)
         end 
     end
+
+    def self.guards_attempt_arrest(current_player, current_location)
+        relationship = self.find_by(:player_id => current_player.id, :town_id => current_location.id)
+        puts "\n. . ."
+        sleep(1)
+        puts "\nA guard approaches you.".colorize(:red)
+        sleep(2)
+        puts "\n\n****************"
+        puts "GUARD\n".colorize(:yellow)
+        puts "\nYou have committed crimes against Skyrim and her people. What say you in your defense?"
+        sleep(2)
+        puts "\nYou have #{current_player.money} septims.\n\n".colorize(:light_blue)
+        puts "1. Run away!   2. Kill the Guard   3. Pay bounty(#{relationship.bounty} septims)  4. Go to jail\n\n"
+        print "Enter Number: ".colorize(:light_blue)
+        input = gets.chomp
+        input
+    end
 end
 

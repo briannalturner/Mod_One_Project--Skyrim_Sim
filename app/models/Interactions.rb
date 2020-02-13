@@ -22,10 +22,10 @@ class Interaction < ActiveRecord::Base
         puts "*******************************"
         puts "       INTERACTION MENU".colorize(:light_blue)
         puts "*******************************"
-        puts "\nYou see the following citizens:\n
-        1. #{names[0]}   2. #{names[2]}\n
-        3. #{names[4]}   4. #{names[6]}\n
-        5. Exit\n\n"
+        puts "\nYou see the following citizens:\n".colorize(:yellow)
+puts "1. #{names[0]}   2. #{names[2]}\n
+3. #{names[4]}   4. #{names[6]}\n
+5. Exit\n\n"
         print "Enter Number: ".colorize(:light_blue)
         input = gets.chomp
     
@@ -46,7 +46,8 @@ class Interaction < ActiveRecord::Base
                 if x[0].bounty
                     relationship.bounty += x[0].bounty
                     relationship.save
-                    puts"Your bounty is #{relationship.bounty}".colorize(:red)
+                    puts"\nYour bounty is #{relationship.bounty}".colorize(:red)
+                    sleep(2)
                 end
                 self.interact_with_citizens(current_player, current_location)
             elsif input2 == '2'
@@ -56,7 +57,8 @@ class Interaction < ActiveRecord::Base
                 if x[1].bounty
                     relationship.bounty += x[1].bounty
                     relationship.save
-                    puts"Your bounty is #{relationship.bounty}".colorize(:red)
+                    puts"\nYour bounty is #{relationship.bounty}".colorize(:red)
+                    sleep(2)
                 end
                 self.interact_with_citizens(current_player, current_location)
             else
@@ -79,7 +81,8 @@ class Interaction < ActiveRecord::Base
                 if x[2].bounty
                     relationship.bounty += x[2].bounty
                     relationship.save
-                    puts"Your bounty is #{relationship.bounty}".colorize(:red)
+                    puts"\nYour bounty is #{relationship.bounty}".colorize(:red)
+                    sleep(2)
                 end
                 self.interact_with_citizens(current_player, current_location)
             elsif input2 == '2'
@@ -89,7 +92,8 @@ class Interaction < ActiveRecord::Base
                 if x[3].bounty
                     relationship.bounty += x[3].bounty
                     relationship.save
-                    puts"Your bounty is #{relationship.bounty}".colorize(:red)
+                    puts"\nYour bounty is #{relationship.bounty}".colorize(:red)
+                    sleep(2)
                 end
                 self.interact_with_citizens(current_player, current_location)
             else
@@ -112,7 +116,8 @@ class Interaction < ActiveRecord::Base
                 if x[4].bounty
                     relationship.bounty += x[4].bounty
                     relationship.save
-                    puts"Your bounty is #{relationship.bounty}".colorize(:red)
+                    puts"\nYour bounty is #{relationship.bounty}".colorize(:red)
+                    sleep(2)
                 end
                 self.interact_with_citizens(current_player, current_location)
             elsif input2 == '2'
@@ -122,7 +127,8 @@ class Interaction < ActiveRecord::Base
                 if x[5].bounty
                     relationship.bounty += x[5].bounty
                     relationship.save
-                    puts"Your bounty is #{relationship.bounty}".colorize(:red)
+                    puts"\nYour bounty is #{relationship.bounty}".colorize(:red)
+                    sleep(2)
                 end
                 self.interact_with_citizens(current_player, current_location)
             else
@@ -145,7 +151,8 @@ class Interaction < ActiveRecord::Base
                 if x[6].bounty
                     relationship.bounty += x[6].bounty
                     relationship.save
-                    puts"Your bounty is #{relationship.bounty}".colorize(:red)
+                    puts"\nYour bounty is #{relationship.bounty}".colorize(:red)
+                    sleep(2)
                 end
                 self.interact_with_citizens(current_player, current_location)
             elsif input2 == '2'
@@ -155,7 +162,8 @@ class Interaction < ActiveRecord::Base
                 if x[7].bounty
                     relationship.bounty += x[7].bounty
                     relationship.save
-                    puts"Your bounty is #{relationship.bounty}".colorize(:red)
+                    puts"\nYour bounty is #{relationship.bounty}".colorize(:red)
+                    sleep(2)
                 end
                 self.interact_with_citizens(current_player, current_location)
             else
