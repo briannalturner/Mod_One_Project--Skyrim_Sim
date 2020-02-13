@@ -66,5 +66,28 @@ Would you like to buy it?\n".colorize(:yellow)
         input = gets.chomp
         input
     end
+
+    def self.guards_beg_for_mercy(current_player, current_location)
+        relationship = self.find_by(:player_id => current_player.id, :town_id => current_location.id)
+        puts "\n. . ."
+        sleep(1)
+        puts "\nA guard approaches you.".colorize(:red)
+        sleep(2)
+        puts "\n\n****************"
+        puts "GUARD\n".colorize(:yellow)
+        puts "\nLook, I know you're the thane and all but... Could you stop killing people?"
+        sleep(2)
+        puts "\nYou have #{current_player.money} septims.\n\n".colorize(:light_blue)
+        puts "1. Ignore him   2. Kill him   3. Pay bounty(free)\n\n"
+        print "Enter Number: ".colorize(:light_blue)
+        input = gets.chomp
+        input
+    end
+
+    def self.thane_quest(current_player, current_location)
+        puts "\n\n. . . . .\n\n"
+        sleep(2)
+        puts "#{current_location.jarl}"
+    end
 end
 
