@@ -32,17 +32,14 @@ class Player < ActiveRecord::Base
     end
 
     def self.delete_specific_player()
-        puts "\n\nName of playable characters:\n".colorize(:green)
-        self.all.each do |instance|
-            puts "  #{instance.name}".colorize(:yellow)
-        end
-        puts "\nThese are the current players within the database...\n\n"
+        Player.print_all_players
         print "Enter the name of the character you want to delete: "
         input = gets.chomp
         if self.find_by(:name => input) == nil
             puts "This player does not exist in the database"
-            puts "returning to main menu"
             sleep (1)
+            puts "returning to main menu"
+            sleep (3.5)
         else
             current_player = self.find_by(:name => input)
             Relationship.all.select { |instance| instance.player_id == current_player.id}.each {|instance| instance.destroy}   #contains all relationships of specific player specified
@@ -105,9 +102,8 @@ class Player < ActiveRecord::Base
             puts "\n\nName of playable characters:\n".colorize(:green)
             Player.all.each do |instance|
             puts "  #{instance.name}".colorize(:yellow)
+            end
             puts "\nThese are the current players within the database...".colorize(:green)
         end
-        puts "\n\nPress enter to exit :)".colorize(:green)
-        gets.chomp
     end
 end

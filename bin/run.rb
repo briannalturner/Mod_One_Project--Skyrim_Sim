@@ -44,6 +44,8 @@ def main_menu_selection
         $current_player = Player.create_character($current_player)
     elsif selection == '3'
         Player.print_all_players
+        puts "\n\nPress enter to exit :)".colorize(:green)
+        gets.chomp
         run
     elsif selection == '4'
         Player.delete_specific_player
@@ -161,26 +163,25 @@ def player_options
                 Relationship.guards_attempt_arrest
             end
         end
-
-        if relationship.thanehood == true && relationship.bounty >= 5000
-            relationship = Relationship.find_by(:player_id => $current_player.id, :town_id => $current_location.id)
-            input = Relationship.guards_beg_for_mercy($current_player, $current_location)
-            if input == '1'
-                puts "You give the guard the finger and walk away.\n".colorize(:yellow)
-                sleep(1)
-            elsif input == '2'
-                puts "You killed the guard.\n".colorize(:yellow)
-                relationship.bounty += 1000
-                relationship.save
-                puts "Your bounty is now #{relationship.bounty}.".colorize(:light_red)
-                sleep(1)
-            elsif input == '3'
-                puts "You get sick of the guards bugging you and tell the Jarl to clear your bounty.\n".colorize(:yellow)
-                relationship.bounty = 0
-                relationship.save
-                puts "Your bounty is now #{relationship.bounty}.".colorize(:yellow)
-                sleep(1)
-            end
+    end
+    if relationship.thanehood == true && relationship.bounty >= 5000
+        relationship = Relationship.find_by(:player_id => $current_player.id, :town_id => $current_location.id)
+        input = Relationship.guards_beg_for_mercy($current_player, $current_location)
+        if input == '1'
+            puts "You give the guard the finger and walk away.\n".colorize(:yellow)
+            sleep(1)
+        elsif input == '2'
+            puts "You killed the guard.\n".colorize(:yellow)
+            relationship.bounty += 1000
+            relationship.save
+            puts "Your bounty is now #{relationship.bounty}.".colorize(:light_red)
+            sleep(1)
+        elsif input == '3'
+            puts "You get sick of the guards bugging you and tell the Jarl to clear your bounty.\n".colorize(:yellow)
+            relationship.bounty = 0
+            relationship.save
+            puts "Your bounty is now #{relationship.bounty}.".colorize(:yellow)
+            sleep(1)
         end
     end
 
