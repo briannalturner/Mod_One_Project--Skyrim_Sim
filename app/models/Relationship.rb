@@ -21,5 +21,7 @@ class Relationship < ActiveRecord::Base
     def get_interactions_for_city
         self.get_npcs_for_city.select {|npc| binding.pry}
     end
+
+    
 end
 
