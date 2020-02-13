@@ -12,7 +12,6 @@ class Player < ActiveRecord::Base
         print "enter number: "
         choice = arr[(gets.chomp.to_i - 1)]
         self.location = Town.find_by(name: choice).id
-        binding.pry
     end
     
     def add_relationships(person_id)
@@ -46,10 +45,8 @@ class Player < ActiveRecord::Base
             sleep (1)
         else
             current_player = self.find_by(:name => input)
-            binding.pry
             Relationship.all.select { |instance| instance.player_id == current_player.id}.each {|instance| instance.destroy}   #contains all relationships of specific player specified
             current_player.destroy
-            
         end
     end
 
@@ -92,6 +89,7 @@ class Player < ActiveRecord::Base
             name = current_player.name
         end
         puts "\n"
+        sleep(1)
         puts "      ********************************************************************************\n\n"
         puts '      ▒█░░▒█ █▀▀ █░░ █▀▀ █▀▀█ █▀▄▀█ █▀▀ 　 ▀▀█▀▀ █▀▀█ 　 ▒█▀▀▀█ █░█ █░░█ █▀▀█ ░▀░ █▀▄▀█'.colorize(:light_blue)
         puts '      ▒█▒█▒█ █▀▀ █░░ █░░ █░░█ █░▀░█ █▀▀ 　 ░░█░░ █░░█ 　 ░▀▀▀▄▄ █▀▄ █▄▄█ █▄▄▀ ▀█▀ █░▀░█'.colorize(:light_blue)
@@ -105,7 +103,7 @@ class Player < ActiveRecord::Base
         Player.all.each do |instance|
             puts "  #{instance.name}".colorize(:yellow)
         end
-        puts "\nThese are the current players within the database...\n\nPress any key to return to the main menu :) . . .  SPACE and ESCAPE key won't work here... thank me later".colorize(:green)
+        puts "\nThese are the current players within the database...\n\nPress enter to exit :)".colorize(:green)
         gets.chomp
     end
 end
