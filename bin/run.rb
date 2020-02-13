@@ -196,7 +196,7 @@ def player_options
         elsif input == '3'
             quest_method
         elsif input == '4'
-            buy_home
+            Relationship.buy_home($current_player, $current_location)
             player_options
         elsif input == '5'
             puts "\n"
@@ -219,9 +219,10 @@ def player_options
             elsif input == '3'
                 quest_method
             elsif input == '4'
-                puts "You enter your home, #{relationship.home_name}...".colorize(:yellow)
+                puts "\nYou enter your home, #{relationship.home_name}...".colorize(:yellow)
                 sleep(1.5)
                 puts "\nAfter a good night's rest you reenter the streets of #{$current_location.name}.".colorize(:yellow)
+                sleep(1.5)
                 player_options
             elsif input == '5'
                 puts "\n"
@@ -377,14 +378,6 @@ def get_logo(input_from_travel_city_method)
         puts "-------------"
     end
 
-end
-
-def buy_home
-    relationship = Relationship.find_by(:player_id => $current_player.id, :town_id => $current_location.id)
-    relationship.home = true
-    binding.pry
-    relationship.save
-    puts "You now own #{relationship.home_name}"
 end
 
 
