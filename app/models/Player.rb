@@ -99,11 +99,15 @@ class Player < ActiveRecord::Base
     end
 
     def self.print_all_players
-        puts "\n\nName of playable characters:\n".colorize(:green)
-        Player.all.each do |instance|
+        if Player.all.length == 0
+            puts "There are no players current in the database"
+        else 
+            puts "\n\nName of playable characters:\n".colorize(:green)
+            Player.all.each do |instance|
             puts "  #{instance.name}".colorize(:yellow)
+            puts "\nThese are the current players within the database...".colorize(:green)
         end
-        puts "\nThese are the current players within the database...\n\nPress enter to exit :)".colorize(:green)
+        puts "\n\nPress enter to exit :)".colorize(:green)
         gets.chomp
     end
 end

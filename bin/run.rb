@@ -85,7 +85,7 @@ end
 
 def player_options
     $current_location = Town.find($current_player.location)
-    binding.pry
+    #binding.pry
     relationship = Relationship.find_by(:player_id => $current_player.id, :town_id => $current_location.id)
 
     puts "\t\t\t      **************************\n\n"

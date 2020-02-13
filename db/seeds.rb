@@ -21,23 +21,6 @@ morthal = Town.find_or_create_by(name: "Morthal", jarl: "Jarl Idgrod Ravencrone"
 solitude = Town.find_or_create_by(name: "Solitude", jarl: "Jarl Elisif the Fair")
 
 
-### PLAYERS ###
-bri = Player.find_or_create_by(name: "Bri", gender: "female", race: "Khajiit", money: 0, location: riften.id)
-alan = Player.find_or_create_by(name: "Alan", gender: "male", race: "Argonian", money: 0, location: riften.id)
-carl = Player.find_or_create_by(name: "Carl", gender: "male", race: "Breton", money: 0, location: riften.id)
-lauren = Player.find_or_create_by(name: "Lauren", gender: "female", race: "Redguard", money: 0, location: riften.id)
-sonata = Player.find_or_create_by(name: "Sonata", gender: "female", race: "Imperial", money: 0, location: riften.id)
-ryan = Player.find_or_create_by(name: "Ryan", gender: "male", race: "Orc", money: 0, location: riften.id)
-will = Player.find_or_create_by(name: "Will", gender: "male", race: "Wood Elf", money: 0, location: riften.id)
-paul = Player.find_or_create_by(name: "Paul", gender: "male", race: "High Elf", money: 0, location: riften.id)
-yo = Player.find_or_create_by(name: "Yo", gender: "male", race: "Dark Elf", money: 0, location: riften.id)
-wesley = Player.find_or_create_by(name: "Wesley", gender: "male", race: "Khajiit", money: 0, location: riften.id)
-matteo = Player.find_or_create_by(name: "Matteo", gender: "male", race: "Khajiit", money: 0, location: riften.id)
-valentin = Player.find_or_create_by(name: "Valentin", gender: "male", race: "Nord", money: 0, location: riften.id)
-jason = Player.find_or_create_by(name: "Jason", gender: "male", race: "Wood Elf", money: 0, location: riften.id)
-
-
-
 
 
 
@@ -137,6 +120,18 @@ talk_svari = Interaction.find_or_create_by(description: "Mum doesn't say much si
 
 
 ### guard interactions ###
+guard_dialogue_option = ["I used to be an adventurer like you. Then I took an arrow in the knee...", 
+"Let me guess... someone stole your sweetroll.",
+"Disrespect the law, and you disrespect",
+"What do you need?",
+"No lollygaggin'",
+"My cousin's out fighting dragons, and what do I get? Guard duty.",
+"Gotta keep my eyes open. Damn dragons could swoop down at any time",
+"Fear not. Come dragon or giant, we'll be ready.",
+"I'd be a lot warmer and a lot happier with a bellyfull of mead...",
+"I mostly deal with petty thievery and drunken brawls. Been too long since we've had a good bandit raid.",
+"Watch the skies traveler."
+]
 kill_markarth_guard = Interaction.find_or_create_by(description: "You eviscerate the Guard's neck with one swipe of your sword.", npc_id: markarth_guard.id, bounty: 1000, town_id: markarth.id, action_name: "Kill")
 kill_dawnstar_guard = Interaction.find_or_create_by(description: "You eviscerate the Guard's neck with one swipe of your sword.", npc_id: dawnstar_guard.id, bounty: 1000, town_id: dawnstar.id, action_name: "Kill")
 kill_morthal_guard = Interaction.find_or_create_by(description: "You eviscerate the Guard's neck with one swipe of your sword.", npc_id: morthal_guard.id, bounty: 1000, town_id: morthal.id, action_name: "Kill")
@@ -146,15 +141,15 @@ kill_solitude_guard = Interaction.find_or_create_by(description: "You eviscerate
 kill_riften_guard = Interaction.find_or_create_by(description: "You eviscerate the Guard's neck with one swipe of your sword.", npc_id: riften_guard.id, bounty: 1000, town_id: riften.id, action_name: "Kill")
 kill_whiterun_guard = Interaction.find_or_create_by(description: "You eviscerate the Guard's neck with one swipe of your sword.", npc_id: whiterun_guard.id, bounty: 1000, town_id: whiterun.id, action_name: "Kill")
 kill_winterhold_guard = Interaction.find_or_create_by(description: "You eviscerate the Guard's neck with one swipe of your sword.", npc_id: winterhold_guard.id, bounty: 1000, town_id: winterhold.id, action_name: "Kill")
-talk_markarth_guard = Interaction.find_or_create_by(description: "I used to be an adventurer like you, then I took an arrow in the knee.", npc_id: markarth_guard.id, town_id: markarth.id, action_name: "Talk")
-talk_dawnstar_guard = Interaction.find_or_create_by(description: "I used to be an adventurer like you, then I took an arrow in the knee.", npc_id: dawnstar_guard.id, town_id: dawnstar.id, action_name: "Talk")
-talk_morthal_guard = Interaction.find_or_create_by(description: "I used to be an adventurer like you, then I took an arrow in the knee.", npc_id: morthal_guard.id, town_id: morthal.id, action_name: "Talk")
-talk_windhelm_guard = Interaction.find_or_create_by(description: "I used to be an adventurer like you, then I took an arrow in the knee.", npc_id: windhelm_guard.id, town_id: windhelm.id, action_name: "Talk")
-talk_falkreath_guard = Interaction.find_or_create_by(description: "Let me guess... someone stole your sweetroll.", npc_id: falkreath_guard.id, town_id: falkreath.id, action_name: "Talk")
-talk_solitude_guard = Interaction.find_or_create_by(description: "Let me guess... someone stole your sweetroll.", npc_id: solitude_guard.id, town_id: solitude.id, action_name: "Talk")
-talk_riften_guard = Interaction.find_or_create_by(description: "Let me guess... someone stole your sweetroll.", npc_id: riften_guard.id, town_id: riften.id, action_name: "Talk")
-talk_whiterun_guard = Interaction.find_or_create_by(description: "Let me guess... someone stole your sweetroll.", npc_id: whiterun_guard.id, town_id: whiterun.id, action_name: "Talk")
-talk_winterhold_guard = Interaction.find_or_create_by(description: "Let me guess... someone stole your sweetroll.", npc_id: winterhold_guard.id, town_id: winterhold.id, action_name: "Talk")
+talk_markarth_guard = Interaction.find_or_create_by(description: guard_dialogue_option.sample, npc_id: markarth_guard.id, town_id: markarth.id, action_name: "Talk")
+talk_dawnstar_guard = Interaction.find_or_create_by(description: guard_dialogue_option.sample, npc_id: dawnstar_guard.id, town_id: dawnstar.id, action_name: "Talk")
+talk_morthal_guard = Interaction.find_or_create_by(description: guard_dialogue_option.sample, npc_id: morthal_guard.id, town_id: morthal.id, action_name: "Talk")
+talk_windhelm_guard = Interaction.find_or_create_by(description: guard_dialogue_option.sample, npc_id: windhelm_guard.id, town_id: windhelm.id, action_name: "Talk")
+talk_falkreath_guard = Interaction.find_or_create_by(description: guard_dialogue_option.sample, npc_id: falkreath_guard.id, town_id: falkreath.id, action_name: "Talk")
+talk_solitude_guard = Interaction.find_or_create_by(description: guard_dialogue_option.sample, npc_id: solitude_guard.id, town_id: solitude.id, action_name: "Talk")
+talk_riften_guard = Interaction.find_or_create_by(description: guard_dialogue_option.sample, npc_id: riften_guard.id, town_id: riften.id, action_name: "Talk")
+talk_whiterun_guard = Interaction.find_or_create_by(description: guard_dialogue_option.sample, npc_id: whiterun_guard.id, town_id: whiterun.id, action_name: "Talk")
+talk_winterhold_guard = Interaction.find_or_create_by(description: guard_dialogue_option.sample, npc_id: winterhold_guard.id, town_id: winterhold.id, action_name: "Talk")
 
 ### Riften Interactions ###
 kill_riften_jarl = Interaction.find_or_create_by(description: "You eviscerate the Jarl Laila Law-Giver's neck with one swipe of your sword.", npc_id: riften_jarl.id, bounty: 1000, town_id: riften.id, action_name: "Kill")
