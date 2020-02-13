@@ -16,7 +16,6 @@ def run
 
 end
 
-
 def welcome
     puts "\n\n"
     puts'       ░██████╗██╗░░██╗██╗░░░██╗██████╗░██╗███╗░░░███╗  ░██████╗██╗███╗░░░███╗'.colorize(:light_blue)
@@ -95,6 +94,7 @@ end
 def player_options
     $current_location = Town.find($current_player.location)
     relationship = Relationship.find_by(:player_id => $current_player.id, :town_id => $current_location.id)
+
     puts "\t\t\t      **************************\n\n"
     puts"Logged in as: ".colorize(:yellow) + "#{$current_player.name}".colorize(:blue)
 
@@ -159,7 +159,7 @@ def player_options
 end
 
 def travel_menu
-    binding.pry
+    #binding.pry
     towns = Town.towns_array                            #array of all towns
     input = Town.user_selection                         #user selection of what town to go to (an integer)
     $current_location = towns[input - 1]
@@ -171,38 +171,7 @@ end
 
 def quest_method
     relationship = Relationship.find_by(:player_id => $current_player.id, :town_id => $current_location.id)
-    q = Quest.all.sample
-    # 
-    relationship.town_id = $current_location.id
-    puts "\n"
-    puts q.description
-    puts"The reward is #{q.reward} and the goodwill #{q.goodwill}\n"
-    puts"\n1. Accept Quest  2. Reject Quest\n\n"
-    print "Enter Number: ".colorize(:light_blue)
-    input = gets.chomp
-    puts "\n\n"
-    if input == '1'
-        puts "You depart for your adventure to the #{q.description.split(" ")[-1]}\n" #This returns name of place we are going to
-        completion_chance = 80 #rand(0..100)
-        #
-        if completion_chance > 60
-            puts ". . .\n. . .\n"
-            puts'You successfully completed the Quest.'.colorize(:green)
-            $current_player.money += q.reward
-            relationship.goodwill += q.goodwill
-            puts"You now have #{$current_player.money} septims and you gained #{q.goodwill} goodwill.\n\n".colorize(:green)
-            relationship.save
-            $current_player.save
-            player_options
-        else
-            puts ". . .\n. . .\n"
-            puts "Along the way you realize the challenge ahead of you and you say  '!@#$ it.' '".colorize(:yellow)
-            puts "With that you decide to head back to town\n\n".colorize(:yellow)
-            player_options
-        end
-    elsif input == '2'
-        player_options
-    end
+    Quest.quest_info($currentplayer, $current_location, relationship)
 end
 
 
