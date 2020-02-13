@@ -109,8 +109,9 @@ def player_options
     if relationship.home == false
         puts "\n\n----------------------------"
         puts "What do you want to do?\n".colorize(:yellow)
-    puts "1.".colorize(:blue)+" Interact with citizens"+"       2.".colorize(:blue)+" Travel to another city\n"
-    puts "3.".colorize(:blue)+" Look for Quests"+"     4.".colorize(:blue)+" Buy home"+"    5.".colorize(:blue)+ " Exit to Main Menu\n\n"
+        puts "1.".colorize(:blue)+ " Interact with citizens"+"     2.".colorize(:blue)+" Travel to another city\n"
+        puts "3.".colorize(:blue)+ " Look for Quests"+"            4.".colorize(:blue)+" Buy home" 
+        puts "5.".colorize(:blue)+ " Exit to Main Menu\n\n"
         print "Enter Number: ".colorize(:light_blue)
         input = gets.chomp
         if input == '1'
@@ -131,30 +132,31 @@ def player_options
         end
     else
         puts "----------------------------\n"
-        puts "\nWhat do you want to do?\n".colorize(:yellow)
-    puts "1.".colorize(:blue)+" Interact with citizens"+"       2.".colorize(:blue)+" Travel to another city\n"
-    puts "3.".colorize(:blue)+" Look for Quests"+"     4.".colorize(:blue)+" Visit your home"+"    5.".colorize(:blue)+ " Exit to Main Menu\n\n"
-            print "Enter Number: ".colorize(:light_blue)
-            input = gets.chomp
-            if input == '1'
-                Interaction.interact_with_citizens($current_player, $current_location)
-            elsif input == '2'
-                travel_menu
-            elsif input == '3'
-                quest_method
-            elsif input == '4'
-                puts "\nYou enter your home, #{relationship.home_name}...".colorize(:yellow)
-                sleep(1.5)
-                puts "\nAfter a good night's rest you reenter the streets of #{$current_location.name}.".colorize(:yellow)
-                sleep(1.5)
-                player_options
-            elsif input == '5'
-                puts "\n"
-                run
-            else
-                puts'Invalid input. Please try again.'
-                player_options
-            end
+        puts "What do you want to do?\n".colorize(:yellow)
+        puts "1.".colorize(:blue)+ " Interact with citizens"+"     2.".colorize(:blue)+" Travel to another city\n"
+        puts "3.".colorize(:blue)+ " Look for Quests"+"            4.".colorize(:blue)+" Buy home" 
+        puts "5.".colorize(:blue)+ " Exit to Main Menu\n\n"
+        print "Enter Number: ".colorize(:light_blue)
+        input = gets.chomp
+        if input == '1'
+            Interaction.interact_with_citizens($current_player, $current_location)
+        elsif input == '2'
+            travel_menu
+        elsif input == '3'
+            quest_method
+        elsif input == '4'
+            puts "\nYou enter your home, #{relationship.home_name}...".colorize(:yellow)
+            sleep(1.5)
+            puts "\nAfter a good night's rest you reenter the streets of #{$current_location.name}.".colorize(:yellow)
+            sleep(1.5)
+            player_options
+        elsif input == '5'
+            puts "\n"
+            run
+        else
+            puts'Invalid input. Please try again.'
+            player_options
+        end
     end
 end
 
@@ -177,70 +179,27 @@ end
 
 def get_logo(input_from_travel_city_method)
     if input_from_travel_city_method == 1
-        3.times { puts ""}
-        puts '   ▒█░░▒█ █▀▀ █░░ █▀▀ █▀▀█ █▀▄▀█ █▀▀ 　 ▀▀█▀▀ █▀▀█ 　 ▒█▀▀█ ░▀░ █▀▀ ▀▀█▀▀ █▀▀ █▀▀▄ '
-        puts '   ▒█▒█▒█ █▀▀ █░░ █░░ █░░█ █░▀░█ █▀▀ 　 ░░█░░ █░░█ 　 ▒█▄▄▀ ▀█▀ █▀▀ ░░█░░ █▀▀ █░░█ '
-        puts '   ▒█▄▀▄█ ▀▀▀ ▀▀▀ ▀▀▀ ▀▀▀▀ ▀░░░▀ ▀▀▀ 　 ░░▀░░ ▀▀▀▀ 　 ▒█░▒█ ▀▀▀ ▀░░ ░░▀░░ ▀▀▀ ▀░░▀ '
-        puts ""
+        Town.riften_logo
     elsif input_from_travel_city_method == 2
-        3.times { puts ""}
-        puts '   ▒█░░▒█ █▀▀ █░░ █▀▀ █▀▀█ █▀▄▀█ █▀▀ 　 ▀▀█▀▀ █▀▀█ 　 ▒█░░▒█ ░▀░ █▀▀▄ █▀▀▄ █░░█ █▀▀ █░░ █▀▄▀█'
-        puts '   ▒█▒█▒█ █▀▀ █░░ █░░ █░░█ █░▀░█ █▀▀ 　 ░░█░░ █░░█ 　 ▒█▒█▒█ ▀█▀ █░░█ █░░█ █▀▀█ █▀▀ █░░ █░▀░█'
-        puts '   ▒█▄▀▄█ ▀▀▀ ▀▀▀ ▀▀▀ ▀▀▀▀ ▀░░░▀ ▀▀▀ 　 ░░▀░░ ▀▀▀▀ 　 ▒█▄▀▄█ ▀▀▀ ▀░░▀ ▀▀▀░ ▀░░▀ ▀▀▀ ▀▀▀ ▀░░░'
-        puts ""
+        Town.windhelm_logo
     elsif input_from_travel_city_method == 3
-        3.times { puts ""}
-        puts '   ▒█░░▒█ █▀▀ █░░ █▀▀ █▀▀█ █▀▄▀█ █▀▀ 　 ▀▀█▀▀ █▀▀█ 　 ▒█░░▒█ ░▀░ █▀▀▄ ▀▀█▀▀ █▀▀ █▀▀█ █░░█ █▀▀█ █░░ █▀▀▄'
-        puts '   ▒█▒█▒█ █▀▀ █░░ █░░ █░░█ █░▀░█ █▀▀ 　 ░░█░░ █░░█ 　 ▒█▒█▒█ ▀█▀ █░░█ ░░█░░ █▀▀ █▄▄▀ █▀▀█ █░░█ █░░ █░░█'
-        puts '   ▒█▄▀▄█ ▀▀▀ ▀▀▀ ▀▀▀ ▀▀▀▀ ▀░░░▀ ▀▀▀ 　 ░░▀░░ ▀▀▀▀ 　 ▒█▄▀▄█ ▀▀▀ ▀░░▀ ░░▀░░ ▀▀▀ ▀░▀▀ ▀░░▀ ▀▀▀▀ ▀▀▀ ▀▀▀░'
-        puts ""
+        Town.winterhold_logo
     elsif input_from_travel_city_method == 4
-        3.times { puts ""}
-        puts '   ▒█░░▒█ █▀▀ █░░ █▀▀ █▀▀█ █▀▄▀█ █▀▀ 　 ▀▀█▀▀ █▀▀█ 　 ▒█░░▒█ █░░█ ░▀░ ▀▀█▀▀ █▀▀ █▀▀█ █░░█ █▀▀▄'
-        puts '   ▒█▒█▒█ █▀▀ █░░ █░░ █░░█ █░▀░█ █▀▀ 　 ░░█░░ █░░█ 　 ▒█▒█▒█ █▀▀█ ▀█▀ ░░█░░ █▀▀ █▄▄▀ █░░█ █░░█'
-        puts '   ▒█▄▀▄█ ▀▀▀ ▀▀▀ ▀▀▀ ▀▀▀▀ ▀░░░▀ ▀▀▀ 　 ░░▀░░ ▀▀▀▀ 　 ▒█▄▀▄█ ▀░░▀ ▀▀▀ ░░▀░░ ▀▀▀ ▀░▀▀ ░▀▀▀ ▀░░▀'
-        puts ""
+        Town.whiterun_logo
     elsif input_from_travel_city_method == 5
-        3.times { puts ""}
-        puts '   ▒█░░▒█ █▀▀ █░░ █▀▀ █▀▀█ █▀▄▀█ █▀▀ 　 ▀▀█▀▀ █▀▀█ 　 ▒█▀▀▀ █▀▀█ █░░ █░█ █▀▀█ █▀▀ █▀▀█ ▀▀█▀▀ █░░█'
-        puts '   ▒█▒█▒█ █▀▀ █░░ █░░ █░░█ █░▀░█ █▀▀ 　 ░░█░░ █░░█ 　 ▒█▀▀▀ █▄▄█ █░░ █▀▄ █▄▄▀ █▀▀ █▄▄█ ░░█░░ █▀▀█'
-        puts '   ▒█▄▀▄█ ▀▀▀ ▀▀▀ ▀▀▀ ▀▀▀▀ ▀░░░▀ ▀▀▀ 　 ░░▀░░ ▀▀▀▀ 　 ▒█░░░ ▀░░▀ ▀▀▀ ▀░▀ ▀░▀▀ ▀▀▀ ▀░░▀ ░░▀░░ ▀░░▀'
-        puts ""
+        Town.falkreath_logo
     elsif input_from_travel_city_method == 6
-        3.times { puts ""}
-        puts '   ▒█░░▒█ █▀▀ █░░ █▀▀ █▀▀█ █▀▄▀█ █▀▀ 　 ▀▀█▀▀ █▀▀█ 　 ▒█▀▄▀█ █▀▀█ █▀▀█ █░█ █▀▀█ █▀▀█ ▀▀█▀▀ █░░█'
-        puts '   ▒█▒█▒█ █▀▀ █░░ █░░ █░░█ █░▀░█ █▀▀ 　 ░░█░░ █░░█ 　 ▒█▒█▒█ █▄▄█ █▄▄▀ █▀▄ █▄▄█ █▄▄▀ ░░█░░ █▀▀█'
-        puts '   ▒█▄▀▄█ ▀▀▀ ▀▀▀ ▀▀▀ ▀▀▀▀ ▀░░░▀ ▀▀▀ 　 ░░▀░░ ▀▀▀▀ 　 ▒█░░▒█ ▀░░▀ ▀░▀▀ ▀░▀ ▀░░▀ ▀░▀▀ ░░▀░░ ▀░░▀'
-        puts ""
+        Town.markarth_logo
     elsif input_from_travel_city_method == 7
-        3.times { puts ""}
-        puts '       ██████╗░░█████╗░░██╗░░░░░░░██╗███╗░░██╗░██████╗████████╗░█████╗░██████╗░'
-        puts '       ██╔══██╗██╔══██╗░██║░░██╗░░██║████╗░██║██╔════╝╚══██╔══╝██╔══██╗██╔══██╗'
-        puts '       ██║░░██║███████║░╚██╗████╗██╔╝██╔██╗██║╚█████╗░░░░██║░░░███████║██████╔╝'
-        puts '       ██║░░██║██╔══██║░░████╔═████║░██║╚████║░╚═══██╗░░░██║░░░██╔══██║██╔══██╗'
-        puts '       ██████╔╝██║░░██║░░╚██╔╝░╚██╔╝░██║░╚███║██████╔╝░░░██║░░░██║░░██║██║░░██║'
-        puts '       ╚═════╝░╚═╝░░╚═╝░░░╚═╝░░░╚═╝░░╚═╝░░╚══╝╚═════╝░░░░╚═╝░░░╚═╝░░╚═╝╚═╝░░╚═╝'
-        puts ""
+        Town.dawnstar_logo
     elsif input_from_travel_city_method == 8
-        3.times { puts ""}
-        puts '   ▒█░░▒█ █▀▀ █░░ █▀▀ █▀▀█ █▀▄▀█ █▀▀ 　 ▀▀█▀▀ █▀▀█ 　 █▀▄▀█ █▀▀█ █▀▀█ ▀▀█▀▀ █░░█ █▀▀█ █░░'
-        puts '   ▒█▒█▒█ █▀▀ █░░ █░░ █░░█ █░▀░█ █▀▀ 　 ░░█░░ █░░█ 　 █░▀░█ █░░█ █▄▄▀ ░░█░░ █▀▀█ █▄▄█ █░░'
-        puts '   ▒█▄▀▄█ ▀▀▀ ▀▀▀ ▀▀▀ ▀▀▀▀ ▀░░░▀ ▀▀▀ 　 ░░▀░░ ▀▀▀▀ 　 ▀░░░▀ ▀▀▀▀ ▀░▀▀ ░░▀░░ ▀░░▀ ▀░░▀ ▀▀▀'
-        puts ""
+        Town.morthal_logo
     elsif input_from_travel_city_method == 9
-        3.times { puts ""}
-        puts "\t\t  ╭╮╭╮╭╮╱╱╭╮╱╱╱╱╱╱╱╱╱╱╱╱╱╱ ╭╮╱╱╱╱ ╭━━━╮╱╱╭╮╱╭╮╱╱╱╱╱╭╮"
-        puts "\t\t  ┃┃┃┃┃┃╱╱┃┃╱╱╱╱╱╱╱╱╱╱╱╱╱ ╭╯╰╮╱╱╱ ┃╭━╮┃╱╱┃┃╭╯╰╮╱╱╱╱┃┃"
-        puts "\t\t  ┃┃┃┃┃┣━━┫┃╭━━┳━━┳╮╭┳━━╮ ╰╮╭╋━━╮ ┃╰━━┳━━┫┃┣╮╭╋╮╭┳━╯┣━━╮"
-        puts "\t\t  ┃╰╯╰╯┃┃━┫┃┃╭━┫╭╮┃╰╯┃┃━┫╱ ┃┃┃╭╮┃ ╰━━╮┃╭╮┃┃┣┫┃┃┃┃┃╭╮┃┃━┫"
-        puts "\t\t  ╰╮╭╮╭┫┃━┫╰┫╰━┫╰╯┃┃┃┃┃━┫╱ ┃╰┫╰╯┃ ┃╰━╯┃╰╯┃╰┫┃╰┫╰╯┃╰╯┃┃━┫"
-        puts "\t\t  ╱╰╯╰╯╰━━┻━┻━━┻━━┻┻┻┻━━╯╱ ╰━┻━━╯ ╰━━━┻━━┻━┻┻━┻━━┻━━┻━━╯"
-        puts ""
+        Town.solitude_logo
     else
-        puts "Invalid input"
+        puts "Invalid input".colorize(:light_red)
         puts "-------------"
     end
-
 end
 
 
