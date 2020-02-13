@@ -166,6 +166,7 @@ def travel_menu
     input = Town.user_selection                         #user selection of what town to go to (an integer)
     $current_location = towns[input - 1]
     $current_player.location = $current_location.id     #updating the current_player location... So that the next time we reach player_options menu... the location is correct.
+    $current_player.save
     system("say 'Welcome to #{$current_location.name}'")
     get_logo(input)                                     #this will print ASCII text of town name
     player_options                                      #Returns back to player options to do in town.
