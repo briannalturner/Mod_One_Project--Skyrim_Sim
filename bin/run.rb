@@ -163,9 +163,9 @@ def login()
         puts "\n"
     end
     current_id = $current_player.id
-    $current_player.add_relationships(current_id)
+    # $current_player.add_relationships(current_id)
     name = $current_player.name
-    run
+    player_options
 end
 
 def player_options
