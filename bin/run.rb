@@ -1,5 +1,4 @@
 require_relative '../config/environment'
-#require '../db/seeds.rb'
 require 'colorize'
 require 'colorized_string'
 
@@ -7,7 +6,7 @@ require 'colorized_string'
 $current_player = nil
 $current_location = nil
 
-#after creating character... find way to login with that character. 
+#So currently in our pre-existing files... if we reset the seed data we will lose the relationships for initial players: "Bri", "Alan" etc...
 
 def run
     welcome
@@ -86,6 +85,7 @@ end
 
 def player_options
     $current_location = Town.find($current_player.location)
+    binding.pry
     relationship = Relationship.find_by(:player_id => $current_player.id, :town_id => $current_location.id)
 
     puts "\t\t\t      **************************\n\n"

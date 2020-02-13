@@ -19,7 +19,7 @@ class Quest < ActiveRecord::Base
         puts "\n\n"
         if input == '1'
             puts "You depart for your adventure to #{location}\n" #This returns name of place we are going to
-            completion_chance = rand(0..100)
+            completion_chance = 40 #rand(0..100)
             if completion_chance > 60
                 puts "\n. . .\n"
                 sleep(0.75)
@@ -47,7 +47,7 @@ class Quest < ActiveRecord::Base
                 puts '▒█▀▀▀ █▀▀█ ░▀░ █░░ █░░█ █▀▀█ █▀▀ '.colorize(:light_red)
                 puts '▒█▀▀▀ █▄▄█ ▀█▀ █░░ █░░█ █▄▄▀ █▀▀ '.colorize(:light_red)
                 puts '▒█░░░ ▀░░▀ ▀▀▀ ▀▀▀ ░▀▀▀ ▀░▀▀ ▀▀▀ '.colorize(:light_red)
-
+                binding.pry
                 puts "\nYou reached the #{enemy}'s lair, only to get your ass wooped :( '".colorize(:red)
                 puts "You flee for your life!".colorize(:red)
                 puts ". . ."
