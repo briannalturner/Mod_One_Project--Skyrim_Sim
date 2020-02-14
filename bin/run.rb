@@ -91,11 +91,8 @@ def player_options
     relationship = Relationship.find_by(:player_id => $current_player.id, :town_id => $current_location.id)
 
     puts "\t\t\t      **************************\n\n"
-    puts"Name: ".colorize(:light_cyan) + "#{$current_player.name}"
-
-    puts "\nRace: #{$current_player.race}"
-    puts "Gender: #{$current_player.gender}"
-    puts"\nYou are currently in: ".colorize(:yellow) + "#{$current_location.name}.".colorize(:blue)
+    puts"\nName: ".colorize(:blue) + "#{$current_player.name}       "+"Race: ".colorize(:blue) + "#{$current_player.race}      "+" Gender: ".colorize(:blue) + "#{$current_player.gender.capitalize}\n"
+    puts"\n\nYou are currently in: ".colorize(:yellow) + "#{$current_location.name}.".colorize(:blue)
     puts "   Money: ".colorize(:yellow) + "#{$current_player.money}"
     #binding.pry
     puts "   Reputation points: ".colorize(:yellow) + "#{relationship.goodwill}"
@@ -278,7 +275,6 @@ def player_options
             player_options
         end
     end
-    binding.pry
 end
 
 def travel_menu
@@ -288,7 +284,7 @@ def travel_menu
     $current_location = towns[input - 1]
     $current_player.location = $current_location.id     #updating the current_player location... So that the next time we reach player_options menu... the location is correct.
     $current_player.save
-    system("say 'Welcome to #{$current_location.name}'")
+    # system("say 'Welcome to #{$current_location.name}'")
     get_logo(input)                                     #this will print ASCII text of town name
     player_options                                      #Returns back to player options to do in town.
 end

@@ -126,8 +126,8 @@ class Player < ActiveRecord::Base
         hash = {}
         counter = 1
         Player.all.each do |instance|
-            hash[instance.name] = "#{instance.race}, #{instance.gender}"
-            puts "#{counter}. #{instance.name}: #{hash[instance.name]}\n\n"
+            hash[instance.name] = "#{instance.race}, #{instance.gender.capitalize}"
+            puts "#{counter}. #{instance.name.capitalize}: #{hash[instance.name]}\n\n"
             counter += 1
         end
         puts "\n"

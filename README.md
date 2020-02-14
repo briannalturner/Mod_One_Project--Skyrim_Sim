@@ -3,7 +3,8 @@
 SKYRIM SIMULATOR
 
 How to Use:
-#### need instructions on how to install
+
+Go to Github repository, clone the repository and then open a terminal and type in 'ruby bin/run.rb'.
 
 
 Object of the Game:
