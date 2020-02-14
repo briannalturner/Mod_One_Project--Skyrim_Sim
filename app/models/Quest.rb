@@ -19,12 +19,12 @@ class Quest < ActiveRecord::Base
         puts "\n\n"
         if input == '1'
             puts "You depart for your adventure to #{location}\n" #This returns name of place we are going to
-            completion_chance = rand(0..100)
+            completion_chance = 100 #rand(0..100)
             if completion_chance > 60
                 puts "\n. . .\n"
-                sleep(0.75)
+                #sleep(0.75)
                 puts ". . .\n\n"
-                sleep(1)
+                #sleep(1)
 
                 puts '▒█▀▀▀█ █░░█ █▀▀ █▀▀ █▀▀ █▀▀ █▀▀ '.colorize(:light_green)
                 puts '░▀▀▀▄▄ █░░█ █░░ █░░ █▀▀ ▀▀█ ▀▀█ '.colorize(:light_green)
@@ -34,7 +34,7 @@ class Quest < ActiveRecord::Base
                 $current_player.money += q.reward
                 relationship.goodwill += q.goodwill
                 puts"You now have #{$current_player.money} septims and you gained #{q.goodwill} goodwill.".colorize(:green)
-                sleep(2.5)
+                #sleep(2.5)
                 relationship.save
                 $current_player.save
                 player_options

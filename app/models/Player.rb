@@ -54,6 +54,8 @@ class Player < ActiveRecord::Base
         if self.find_by(:name => input) == nil
             puts "This player does not exist in the database.".colorize(:light_red)
             sleep (1)
+            puts "returning to main menu"
+            sleep (2.5)
         else
             current_player = self.find_by(:name => input)
             Relationship.all.select { |instance| instance.player_id == current_player.id}.each {|instance| instance.destroy}   #contains all relationships of specific player specified
