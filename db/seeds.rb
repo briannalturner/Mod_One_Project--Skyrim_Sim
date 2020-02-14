@@ -120,7 +120,7 @@ talk_svari = Interaction.find_or_create_by(description: "Mum doesn't say much si
 ### guard interactions ###
 guard_dialogue_option = ["I used to be an adventurer like you. Then I took an arrow in the knee...", 
 "Let me guess... someone stole your sweetroll.",
-"Disrespect the law, and you disrespect",
+"Disrespect the law, and you disrespect me",
 "What do you need?",
 "No lollygaggin'",
 "My cousin's out fighting dragons, and what do I get? Guard duty.",
