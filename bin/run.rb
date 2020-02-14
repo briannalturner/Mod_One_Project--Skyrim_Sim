@@ -91,8 +91,10 @@ def player_options
     relationship = Relationship.find_by(:player_id => $current_player.id, :town_id => $current_location.id)
 
     puts "\t\t\t      **************************\n\n"
-    puts"Logged in as: ".colorize(:yellow) + "#{$current_player.name}".colorize(:blue)
+    puts"Name: ".colorize(:light_cyan) + "#{$current_player.name}"
 
+    puts "\nRace: #{$current_player.race}"
+    puts "Gender: #{$current_player.gender}"
     puts"\nYou are currently in: ".colorize(:yellow) + "#{$current_location.name}.".colorize(:blue)
     puts "   Money: ".colorize(:yellow) + "#{$current_player.money}"
     #binding.pry

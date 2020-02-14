@@ -81,7 +81,7 @@ Would you like to buy it?\n".colorize(:yellow)
         puts "1. Ignore him   2. Kill him   3. Pay bounty(free)\n\n"
         print "Enter Number: ".colorize(:light_blue)
         input = gets.chomp
-        input
+        return input
     end
 
     def self.thane_quest(current_player, current_location)

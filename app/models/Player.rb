@@ -49,7 +49,7 @@ class Player < ActiveRecord::Base
             counter += 1
         end
         puts "\n"
-        print "Enter the name of the character you want to delete: "
+        print "Enter the name of the character you want to delete: ".colorize(:light_cyan)
         input = gets.chomp
         if self.find_by(:name => input) == nil
             puts "This player does not exist in the database.".colorize(:light_red)
@@ -58,6 +58,8 @@ class Player < ActiveRecord::Base
             current_player = self.find_by(:name => input)
             Relationship.all.select { |instance| instance.player_id == current_player.id}.each {|instance| instance.destroy}   #contains all relationships of specific player specified
             current_player.destroy
+            puts "\n#{input}'s account has been deleted.".colorize(:light_red)
+            sleep(1)
         end
     end
 
@@ -130,4 +132,5 @@ class Player < ActiveRecord::Base
         print "Press ENTER: ".colorize(:light_cyan)
         gets.chomp
     end
+
 end
