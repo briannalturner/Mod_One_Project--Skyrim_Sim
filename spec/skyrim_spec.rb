@@ -24,4 +24,5 @@ describe "Player" do
     it "returns player location" do
         expect(bri.location).to eq 64
     end
+
 end
