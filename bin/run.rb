@@ -239,6 +239,7 @@ def player_options
 
             sleep(1.5)
             puts "\nAfter a good night's rest you reenter the streets of #{$current_location.name}.".colorize(:yellow)
+            puts "\n"
             sleep(1.5)
             player_options
         elsif input == '5'
