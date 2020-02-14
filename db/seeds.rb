@@ -167,19 +167,19 @@ talk_calixto = Interaction.find_or_create_by(description: "My sister passed away
 
 ### Winterhold Interactions ###
 kill_savos_aren = Interaction.find_or_create_by(description: "You slice Savos Aren cleanly through the chest with your blade.", npc_id: savos_aren.id, bounty: 1000, town_id: winterhold.id, action_name: "Attack")
-talk_savos_aren = Interaction.find_or_create_by(description: "Allow me to introduce myself. I am Savos Aren, Arch-Mage of the College of Winterhold. I am quite content to see nearly any aspect of magic explored and investigated here. But I do not and will not approve of any research or experiments that cause purposeful harm to members of the College. Are we clear?", npc_id: savos_aren.id, town_id: winterhold.id)
+talk_savos_aren = Interaction.find_or_create_by(description: "Allow me to introduce myself. I am Savos Aren, Arch-Mage of the College of Winterhold. I am quite content to see nearly any aspect of magic explored and investigated here. But I do not and will not approve of any research or experiments that cause purposeful harm to members of the College. Are we clear?", npc_id: savos_aren.id, town_id: winterhold.id, action_name: "Talk")
 kill_winterhold_jarl = Interaction.find_or_create_by(description: "You destroy Jarl Korir's torso with a firebolt spell.", npc_id: winterhold_jarl.id, bounty: 1000, town_id: winterhold.id, action_name: "Attack")
-talk_winterhold_jarl = Interaction.find_or_create_by(description: "You know Winterhold used to be the seat of power in Skyrim? Now it's a shell. Few will admit it, but we know the truth about the Great Collapse. The College is the worst thing that's ever happened to Winterhold, maybe to Skyrim.", npc_id: winterhold_jarl.id, town_id: winterhold.id)
+talk_winterhold_jarl = Interaction.find_or_create_by(description: "You know Winterhold used to be the seat of power in Skyrim? Now it's a shell. Few will admit it, but we know the truth about the Great Collapse. The College is the worst thing that's ever happened to Winterhold, maybe to Skyrim.", npc_id: winterhold_jarl.id, town_id: winterhold.id, action_name: "Talk")
 kill_ancano = Interaction.find_or_create_by(description: "You cleave Ancano's leg in two with your sword.", npc_id: ancano.id, bounty: 1000, town_id: winterhold.id, action_name: "Attack")
-talk_ancano = Interaction.find_or_create_by(description: "I have many important things on my mind. Your concerns are not among them. Are you quite sure we need to be speaking?", npc_id: ancano.id, town_id: winterhold.id)
+talk_ancano = Interaction.find_or_create_by(description: "I have many important things on my mind. Your concerns are not among them. Are you quite sure we need to be speaking?", npc_id: ancano.id, town_id: winterhold.id, action_name: "Talk")
 
 ### Whiterun Interactions ###
 kill_heimskr = Interaction.find_or_create_by(description: "You slice Heimskr cleanly through the chest with your blade.", npc_id: heimskr.id, bounty: 1000, town_id: whiterun.id, action_name: "Attack")
 talk_heimskr = Interaction.find_or_create_by(description: "You have come! You have come to hear the word of Talos! The truth, child of Talos, is that the Dragon's children have come to purge the world in fire and righteousness! There are those who would silence the Dragon's truth... BUT NOT I! Not Heimskr! His word will be known! He has returned... Oh, how Talos has returned. Helgen has been purged in his light. Will Whiterun be next? The Imperials silence us because they fear us! They are cowards! Cowards and fools who have forgotten the truth! ... May Talos guide you ... ", npc_id: heimskr.id, town_id: whiterun.id, action_name: "Talk")
 kill_whiterun_jarl = Interaction.find_or_create_by(description: "You destroy Jarl Balgruuf the Greater's torso with a firebolt spell.", npc_id: whiterun_jarl.id, bounty: 1000, town_id: whiterun.id, action_name: "Attack")
-talk_whiterun_jarl = Interaction.find_or_create_by(description: "I'm the Jarl, not a barkeep. Speak your business.", npc_id: whiterun_jarl.id, town_id: whiterun.id)
+talk_whiterun_jarl = Interaction.find_or_create_by(description: "I'm the Jarl, not a barkeep. Speak your business.", npc_id: whiterun_jarl.id, town_id: whiterun.id, action_name: "Talk")
 kill_nazeem = Interaction.find_or_create_by(description: "You cleave Nazeem's leg in two with your sword.", npc_id: nazeem.id, bounty: 1000, town_id: whiterun.id, action_name: "Attack")
-talk_nazeem = Interaction.find_or_create_by(description: "Do you get to the Cloud District very often? Oh, what am I saying - of course you don't.", npc_id: nazeem.id, town_id: whiterun.id)
+talk_nazeem = Interaction.find_or_create_by(description: "Do you get to the Cloud District very often? Oh, what am I saying - of course you don't.", npc_id: nazeem.id, town_id: whiterun.id, action_name: "Talk")
 
 ### Quests ###
 enemies = ["Bandit Chief", "Giant", "Dragon", "Hagraven", "Draugr", "Dwemer Centurion", "Bear"]

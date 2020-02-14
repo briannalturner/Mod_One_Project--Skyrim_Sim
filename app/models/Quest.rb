@@ -19,7 +19,7 @@ class Quest < ActiveRecord::Base
         puts "\n\n"
         if input == '1'
             puts "You depart for your adventure to #{location}\n" #This returns name of place we are going to
-            completion_chance = 100 #rand(0..100)
+            completion_chance = rand(20..100)
             if completion_chance > 60
                 puts "\n. . .\n"
                 #sleep(0.75)
@@ -40,9 +40,9 @@ class Quest < ActiveRecord::Base
                 player_options
             else
                 puts "\n. . .\n"
-                sleep(0.75)
+                # sleep(0.75)
                 puts ". . .\n\n"
-                sleep(1)
+                # sleep(?)
 
                 puts '▒█▀▀▀ █▀▀█ ░▀░ █░░ █░░█ █▀▀█ █▀▀ '.colorize(:light_red)
                 puts '▒█▀▀▀ █▄▄█ ▀█▀ █░░ █░░█ █▄▄▀ █▀▀ '.colorize(:light_red)
@@ -50,9 +50,9 @@ class Quest < ActiveRecord::Base
                 puts "\nYou reached the #{enemy}'s lair, only to get your ass wooped :( '".colorize(:red)
                 puts "You flee for your life!".colorize(:red)
                 puts ". . ."
-                sleep (2.5)
+                # sleep (2.5)
                 puts "You make it back to #{$current_location.name}, barely alive."
-                sleep(2)
+                # sleep(1)
                 player_options
             end
         elsif input == '2'

@@ -93,11 +93,11 @@ Would you like to buy it?\n".colorize(:yellow)
 
 
         puts "\n\n. . . . .\n\n"
-        sleep(2)
+        sleep(1)
         puts "#{current_location.jarl} has asked you to clear out all of the #{chosen_enemy} at #{chosen_location}. This is going to be a difficult adventure full of many choices."
         sleep(2.5)
         puts "\n\n. . . . .\n\n"
-        sleep(2)
+        sleep(1)
 
         puts "You enter #{chosen_location}.\n\n".colorize(:yellow)
         2.times do 
@@ -112,7 +112,7 @@ Would you like to buy it?\n".colorize(:yellow)
             sleep(1)
 
             if input == correct_answer
-                puts "You successfully kill the enemy.\n"
+                puts "You successfully kill the enemy.\n".colorize(:light_green)
             else
                 puts "The enemy overcomes you and you are forced to flee. You failed #{current_location.jarl} and have not become Thane of #{current_location.name}.".colorize(:yellow)
                 sleep(2)
