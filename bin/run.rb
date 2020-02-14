@@ -99,7 +99,7 @@ def player_options
     puts "   Bounty: ".colorize(:yellow) + "#{relationship.bounty}"
 
     if relationship.thanehood == false
-        if relationship.bounty >= 1000
+        if relationship.bounty >= 1000 && relationship.bounty < 5000
             relationship = Relationship.find_by(:player_id => $current_player.id, :town_id => $current_location.id)
             input = Relationship.guards_attempt_arrest($current_player, $current_location)
             if input == '1'
@@ -158,6 +158,25 @@ def player_options
                 puts "INVALID INPUT\n".colorize(:light_red)
                 sleep(1)
                 Relationship.guards_attempt_arrest
+            end
+        elsif relationship.thanehood == false && relationship.bounty >= 5000
+            relationship = Relationship.find_by(:player_id => $current_player.id, :town_id => $current_location.id)
+            input = Relationship.guards_are_fed_up($current_player, $current_location)
+            puts "\n\n"
+            if input == '1'
+                puts "You attempt to run away... which was a stupid idea... you are caught"
+                sleep(1)
+            elsif input == '2'
+                puts "You draw your weapon... and immediately get shot in the face"
+                puts "Yeah you died and lose everything... it be like that"
+                puts "Returning to main menu"
+                sleep (2)
+                run
+            elsif input == '3'
+                puts "Because of all the crimes you committed you are forced to hand over all your money, and you are sent to jail"
+                $current_player.money = 0
+                $current_player.save
+                sleep(1)
             end
         end
     end

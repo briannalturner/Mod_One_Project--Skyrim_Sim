@@ -67,6 +67,23 @@ Would you like to buy it?\n".colorize(:yellow)
         input
     end
 
+    def self.guards_are_fed_up(current_player, current_location)
+        relationship = self.find_by(:player_id => current_player.id, :town_id => current_location.id)
+        puts "\n. . ."
+        sleep(1)
+        puts "\nMultiple guards approach you.".colorize(:red)
+        sleep(2)
+        puts "\n\n****************"
+        puts "GUARD\n".colorize(:yellow)
+        puts "\nHey it's the murderous #{current_player.race}! Stop right there!"
+        puts "\nYou are clearly outnumbered what are you going to do?".colorize(:red)
+        sleep(2)
+        puts "1. Attempt to run away!   2. Kill the Guards   3. Accept Arrest\n\n"
+        print "Enter Number: ".colorize(:light_blue)
+        input = gets.chomp
+        input
+    end
+
     def self.guards_beg_for_mercy(current_player, current_location)
         relationship = self.find_by(:player_id => current_player.id, :town_id => current_location.id)
         puts "\n. . ."
