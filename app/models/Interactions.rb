@@ -123,6 +123,10 @@ puts "1. #{names[0]}   2. #{names[2]}\n
             elsif input2 == '2'
                 puts "\n"
                 puts x[5].description.colorize(:yellow)
+                if x[5].description.include?('You hand Edda 5 gold.')
+                    current_player.money -= 5
+                    current_player.save
+                end
                 sleep(1.5)
                 if x[5].bounty
                     relationship.bounty += x[5].bounty
