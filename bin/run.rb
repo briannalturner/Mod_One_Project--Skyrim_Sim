@@ -159,24 +159,40 @@ def player_options
                 sleep(1)
                 Relationship.guards_attempt_arrest
             end
-        elsif relationship.thanehood == false && relationship.bounty >= 5000
+        elsif relationship.thanehood == false && relationship.bounty >= 3000
             relationship = Relationship.find_by(:player_id => $current_player.id, :town_id => $current_location.id)
             input = Relationship.guards_are_fed_up($current_player, $current_location)
             puts "\n\n"
             if input == '1'
-                puts "You attempt to run away... which was a stupid idea... you are caught"
+                puts "You attempt to run away... which was a stupid idea... you are caught\n".colorize(:yellow)
+                sleep(0.5)
+                puts "The guards take all your money and shove you into jail".colorize(:yellow)
+                sleep(1)
+                puts "\nYou emerge from #{$current_location.name}'s dungeon many years later, as a 'hopefully' reformed #{$current_player.race}."
+                $current_player.money = 0
+                $current_player.save
+                relationship.bounty = 0
+                relationship.save
                 sleep(1)
             elsif input == '2'
                 puts "You draw your weapon... and immediately get shot in the face"
                 puts "Yeah you died and lose everything... it be like that"
                 puts "Returning to main menu"
+                $current_player.money = 0
+                $current_player.save
+                relationship.bounty = 0
+                relationship.save
                 sleep (2)
                 run
             elsif input == '3'
+                puts "Guard: Smart choice #{$current_player.race}... we would have killed you if you resisted.\n"
+                sleep(0.5)
                 puts "Because of all the crimes you committed you are forced to hand over all your money, and you are sent to jail"
                 $current_player.money = 0
                 $current_player.save
+                puts "The guards take all your money to \"pay for the damages\" you've done in #{$current_location.name}".colorize(:yellow)
                 sleep(1)
+                puts "\nYou emerge from #{$current_location.name}'s dungeon many years later, as a 'hopefully' reformed #{$current_player.race}."
             end
         end
     end
